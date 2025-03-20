@@ -8,6 +8,13 @@ Pattern
 Methods
 -------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. automethod:: svgwrite.pattern.Pattern.__init__
 
 .. method:: Pattern.add
@@ -39,6 +46,13 @@ from the origin of the pattern tile.
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **patternUnits** -- ``'userSpaceOnUse | objectBoundingBox'``
 

@@ -3,6 +3,13 @@
 feMerge Filter Element
 ======================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. seealso:: http://www.w3.org/TR/SVG11/filters.html#feMergeElement
 
 This filter primitive composites input image layers on top of each other using
@@ -43,6 +50,13 @@ For common properties see: :ref:`filter_primitive`
 
 Methods
 -------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 .. method:: feMerge.feMergeNode(layernames)
 

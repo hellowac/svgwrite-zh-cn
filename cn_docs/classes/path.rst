@@ -34,6 +34,13 @@ Parent Classes
 Path Commands
 -------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. seealso:: http://www.w3.org/TR/SVG11/paths.html#PathData
 
 Uppercase commands indicates absolute coordinates, lowercase commands

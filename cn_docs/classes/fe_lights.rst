@@ -3,6 +3,13 @@
 feDistantLight Filter Element
 =============================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 The light source **feDistantLight** is a child element of the filter primitives
 :ref:`feDiffuseLighting <feDiffuseLighting>` or :ref:`feSpecularLighting <feDiffuseLighting>`,
 create and add this object with the method :meth:`feDistantLight`
@@ -12,6 +19,13 @@ of the filter primitives **feDiffuseLighting** or **feSpecularLighting**.
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **azimuth** -- `<number>`
 
@@ -30,6 +44,13 @@ SVG Attributes
 fePointLight Filter Element
 ===========================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 The light source **fePointLight** is a child element of the filter primitives
 :ref:`feDiffuseLighting <feDiffuseLighting>` or :ref:`feSpecularLighting <feDiffuseLighting>`,
 create and add this object with the method :meth:`fePointLight`
@@ -42,6 +63,13 @@ The light source **feDistantLight** is a child element of the filter primitives
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **x** -- `<number>` -- **source** parameter
 
@@ -72,6 +100,13 @@ SVG Attributes
 feSpotLight Filter Element
 ==========================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 The light source **feSpotLight** is a child element of the filter primitives
 :ref:`feDiffuseLighting <feDiffuseLighting>` or :ref:`feSpecularLighting <feDiffuseLighting>`,
 create and add this object with the method :meth:`feSpotLight`
@@ -81,6 +116,13 @@ of the filter primitives **feDiffuseLighting** or **feSpecularLighting**.
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **x**, **y**, **z** -- see :ref:`fePointLight`
 

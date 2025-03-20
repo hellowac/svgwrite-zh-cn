@@ -21,6 +21,13 @@ Attributes
 Methods
 -------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. automethod:: svgwrite.drawing.Drawing.add
 
 .. automethod:: svgwrite.drawing.Drawing.write

@@ -1,6 +1,13 @@
 ClipPath
 ========
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. autoclass:: svgwrite.masking.ClipPath
 
 Adding clipping elements to :class:`ClipPath`::
@@ -13,6 +20,13 @@ Adding clipping elements to :class:`ClipPath`::
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **class** -- `string`
 
@@ -61,6 +75,13 @@ Mask
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **class** -- `string`
 

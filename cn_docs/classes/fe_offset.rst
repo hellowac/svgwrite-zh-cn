@@ -3,6 +3,13 @@
 feOffset Filter Element
 =======================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. seealso:: http://www.w3.org/TR/SVG11/filters.html#feOffsetElement
 
 This filter primitive offsets the input image relative to its current position
@@ -22,6 +29,13 @@ For common properties see: :ref:`filter_primitive`
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **in** -- (see :ref:`in <in_attr>` attribute)
 

@@ -24,6 +24,13 @@ Parent Classes
 SVG Attributes
 --------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 * **type** -- `string`
 
   default is ``'text/css'``

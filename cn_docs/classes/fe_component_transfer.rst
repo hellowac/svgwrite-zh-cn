@@ -3,6 +3,13 @@
 feComponentTransfer Filter Element
 ==================================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. seealso:: http://www.w3.org/TR/SVG11/filters.html#feComponentTransferElement
 
 This filter primitive performs component-wise remapping of data::
@@ -32,6 +39,13 @@ SVG Attributes
 Methods
 -------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. method:: feFuncR(type_, \*\*extra)
 
    create and add a transfer function for the **red** component of the input graphic
@@ -50,6 +64,13 @@ Methods
 
 Parameters for feFuncX() Methods
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **type** -- ``'identity | table | discrete | linear | gamma'``
 

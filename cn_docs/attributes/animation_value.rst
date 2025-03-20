@@ -6,6 +6,13 @@ Animation Value Attributes
 calcMode
 --------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 calcMode = ``'discrete | linear | paced | spline'``
 
 Specifies the interpolation mode for the animation. This can take any of the
@@ -42,6 +49,13 @@ value          description
 values
 ------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 values = `<list>`
 
 A semicolon-separated list of one or more values. Vector-valued attributes
@@ -55,6 +69,13 @@ space before and after semicolon separators, is allowed and will be ignored.
 
 keyTimes
 --------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 keyTimes = `<list>`
 
@@ -96,6 +117,13 @@ ignored.
 keySplines
 ----------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 keySplines = `<list>`
 
 A set of Bézier control points associated with the **keyTimes** list,
@@ -123,6 +151,13 @@ many or too few values), the document fragment is in error.
 from
 ----
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 from = `<value>`
 
 Specifies the starting value of the animation.
@@ -134,6 +169,13 @@ Specifies the starting value of the animation.
 to
 ----
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 to = `<value>`
 
 Specifies the ending value of the animation.
@@ -144,6 +186,13 @@ Specifies the ending value of the animation.
 
 by
 ----
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 by = `<value>`
 

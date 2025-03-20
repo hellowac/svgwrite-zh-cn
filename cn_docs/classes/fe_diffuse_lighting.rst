@@ -3,6 +3,13 @@
 feDiffuseLighting Filter Element
 ================================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. seealso:: http://www.w3.org/TR/SVG11/filters.html#feDiffuseLightingElement
 
 This filter primitive lights an image using the alpha channel as a bump map. The
@@ -20,6 +27,13 @@ For common properties see: :ref:`filter_primitive`
 
 Methods
 -------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 .. method:: feDiffuseLighting.feDistantLight(azimuth=0, elevation=0, **extra)
 
@@ -40,6 +54,13 @@ Methods
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **in** -- (see :ref:`in <in_attr>` attribute)
 

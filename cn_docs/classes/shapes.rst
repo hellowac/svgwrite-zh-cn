@@ -18,6 +18,13 @@ SVG Attributes
 Common SVG Attributes
 ---------------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 These are the common SVG Attributes for Line, Rect, Circle, Ellipse,
 Poliyline and Polygon.
 
@@ -68,6 +75,13 @@ Rect
 SVG Attributes
 --------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 * **x** -- `<coordinate>` -- **insert** parameter
 
   The x-axis coordinate of the side of the
@@ -112,6 +126,13 @@ Circle
 SVG Attributes
 --------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 * **cx** -- `<coordinate>` -- **center** parameter
 
   The x-axis coordinate of the center of the circle.
@@ -142,6 +163,13 @@ Ellipse
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **cx** -- `<coordinate>` -- **center** parameter
 
@@ -178,12 +206,26 @@ Polyline
 Attributes
 ----------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. attribute:: Polyline.points
 
    `list` of points, a point is a `2-tuple` (x, y): x, y = `<number>`
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **points** -- `list` of points  -- **points** parameter
 

@@ -47,6 +47,13 @@ Parent Classes
 SVG Attributes
 --------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 * **x** -- `<coordinate+>`
 
    If a single `<coordinate>` is provided, then the value represents the new
@@ -248,6 +255,13 @@ Parent Classes
 SVG Attributes
 --------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 * **class** -- `string`
 
   assigns one or more css-class-names to an element
@@ -294,6 +308,13 @@ Parent Classes
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **class** -- `string`
 
@@ -358,6 +379,13 @@ Parent Classes
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **x** -- *<coordinate>*
 

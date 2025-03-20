@@ -1,6 +1,13 @@
 Script
 ======
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 The *script* element indicate links to a client-side language.
 
 .. autoclass:: svgwrite.container.Script
@@ -23,6 +30,13 @@ Parent Classes
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **type** -- `string`
 

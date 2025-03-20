@@ -6,6 +6,13 @@ Animation Target Attributes
 attributeType
 -------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 Specifies the namespace in which the target attribute and its associated
 values are defined. The attribute value is one of the following (values are
 case-sensitive):
@@ -36,6 +43,13 @@ The default value is ``'auto'``.
 
 attributeName
 -------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 attributeName = `<attributeName>`
 

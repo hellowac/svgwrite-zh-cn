@@ -3,6 +3,13 @@
 feComposite Filter Element
 ==========================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. seealso:: http://www.w3.org/TR/SVG11/filters.html#feCompositeElement
 
 This filter performs the combination of the two input images pixel-wise in image
@@ -24,6 +31,13 @@ For common properties see: :ref:`filter_primitive`
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **in** -- (see :ref:`in <in_attr>` attribute)
 

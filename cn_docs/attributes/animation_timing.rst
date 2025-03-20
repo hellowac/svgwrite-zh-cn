@@ -6,6 +6,13 @@ Animation Timing Attributes
 begin
 -----
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 begin = `<begin-value-list>`
 
 Defines when the element should begin (i.e. become active).
@@ -18,6 +25,13 @@ The attribute value is a semicolon separated list of values.
 
 dur
 ---
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 dur = `<Clock-value>` | ``'media | indefinite'``
 
@@ -48,6 +62,13 @@ indefinite (although this may still be useful for **set** elements).
 end
 ---
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 end = `<end-value-list>`
 
 Defines an end value for the animation that can constrain the active duration.
@@ -64,6 +85,13 @@ described in DOM interfaces).
 
 min
 ---
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 min = `<Clock-value>` | ``'media'``
 
@@ -91,6 +119,13 @@ duration at all.
 max
 ---
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 max = `<Clock-value>` | ``'media'``
 
 Specifies the maximum value of the active duration.
@@ -117,6 +152,13 @@ duration at all.
 restart
 -------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 restart = ``'always | whenNotActive | never'``
 
 =================== ==========================================================
@@ -140,6 +182,13 @@ value               description
 
 repeatCount
 -----------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 repeatCount = `<number>` | ``'indefinite'``
 
@@ -165,6 +214,13 @@ value            description
 repeatDur
 ---------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 repeatDur = `<Clock-value>` | ``'indefinite'``
 
 Specifies the total duration for repeat. It can have the following attribute
@@ -185,6 +241,13 @@ value            description
 
 fill
 ----
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 fill = ``'freeze | remove'``
 

@@ -15,6 +15,13 @@ Parent Classes
 SVG Attributes
 --------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 * **class** -- `string`
 
   assigns one or more css-class-names to an element

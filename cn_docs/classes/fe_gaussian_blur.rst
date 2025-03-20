@@ -3,6 +3,13 @@
 feGaussianBlur Filter Element
 =============================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. seealso:: http://www.w3.org/TR/SVG11/filters.html#feGaussianBlurElement
 
 This filter primitive performs a Gaussian blur on the input image.
@@ -17,6 +24,13 @@ For common properties see: :ref:`filter_primitive`
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **in** -- (see :ref:`in <in_attr>` attribute)
 

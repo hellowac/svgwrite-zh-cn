@@ -1,6 +1,13 @@
 Hyperlink
 =========
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 The **Hyperlink** class represents the SVG **a** element.
 
 .. autoclass:: svgwrite.container.Hyperlink
@@ -18,6 +25,13 @@ Parent Classes
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **class** -- `string`
 

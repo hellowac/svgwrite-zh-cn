@@ -3,6 +3,13 @@
 feTurbulence Filter Element
 ===========================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. seealso:: http://www.w3.org/TR/SVG11/filters.html#feTurbulenceElement
 
 This filter primitive creates an image using the Perlin turbulence function. It
@@ -15,6 +22,13 @@ For common properties see: :ref:`filter_primitive`
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **in** -- (see :ref:`in <in_attr>` attribute)
 

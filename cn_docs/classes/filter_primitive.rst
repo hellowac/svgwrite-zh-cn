@@ -3,6 +3,13 @@
 Filter Primitives Overview
 ==========================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. seealso:: http://www.w3.org/TR/SVG11/filters.html#FilterPrimitivesOverview
 
 Unless otherwise stated, all image filters operate on premultiplied RGBA
@@ -32,6 +39,13 @@ initial values for these properties apply to the examples.
 
 Common SVG Attributes for Filter Primitives
 ===========================================
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 With the exception of the **in** attribute, all of the following attributes
 are available on all filter primitive elements:

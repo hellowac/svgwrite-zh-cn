@@ -1,6 +1,13 @@
 SolidColor
 ==========
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 The `solidColor` element is a paint server that provides a single color with opacity. It can be referenced like the
 other paint servers (i.e. gradients).
 
@@ -16,6 +23,13 @@ Methods
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **solid-color** -- ``'currentColor | <color> | inherit'`` (__init__() parameter `color`)
 

@@ -3,6 +3,13 @@
 feMorphology Filter Element
 =============================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. seealso:: http://www.w3.org/TR/SVG11/filters.html#feMorphologyElement
 
 This filter primitive performs "fattening" or "thinning" of artwork. It is
@@ -29,6 +36,13 @@ For common properties see: :ref:`filter_primitive`
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **in** -- (see :ref:`in <in_attr>` attribute)
 

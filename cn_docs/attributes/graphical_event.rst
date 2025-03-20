@@ -1,6 +1,13 @@
 Graphical Event Attributes
 ==========================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 W3C Reference: http://www.w3.org/TR/SVG11/intro.html#TermGraphicalEventAttribute
 
 A graphical event attribute is an event attribute that specifies script to run for

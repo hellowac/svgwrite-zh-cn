@@ -3,6 +3,13 @@
 feSpecularLighting Filter Element
 =================================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. seealso:: http://www.w3.org/TR/SVG11/filters.html#feSpecularLightingElement
 
 This filter primitive lights a source graphic using the alpha channel as a bump
@@ -34,6 +41,13 @@ For common properties see: :ref:`filter_primitive`
 Methods
 -------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. method:: feSpecularLighting.feDistantLight(azimuth=0, elevation=0, **extra)
 
     create and add a light source: :ref:`feDistantLight`
@@ -53,6 +67,13 @@ Methods
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **in** -- (see :ref:`in <in_attr>` attribute)
 

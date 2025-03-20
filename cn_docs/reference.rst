@@ -1,5 +1,7 @@
-SVG References
+SVG 参考
 ==============
+
+SVG References
 
 * W3C (en): http://www.w3.org/Graphics/SVG/
 * W3C SVG 1.1 (en): http://www.w3.org/TR/SVG11/
@@ -9,14 +11,18 @@ SVG References
 * SVG on Wikibooks (de): http://de.wikibooks.org/wiki/Svg
 * SVG Authoring Guidelines: http://jwatt.org/svg/authoring/ by Jonathan Watt
 
-Additional SVG Documentation
+其他 SVG 文档
 ============================
+
+Additional SVG Documentation
 
 * O'Reilly commons: http://commons.oreilly.com/wiki/index.php/SVG_Essentials
 * SelfSVG (de): http://www.selfsvg.info
 
-SVG Implementation Status
+SVG 实现状态
 =========================
+
+SVG Implementation Status
 
 * Firefox: http://www.mozilla.org/projects/svg/status.html
 * Opera:

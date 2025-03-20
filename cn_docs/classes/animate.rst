@@ -1,6 +1,13 @@
 animate module
 ==============
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 Because the Web is a dynamic medium, SVG supports the ability to change
 vector graphics over time.
 
@@ -39,12 +46,26 @@ Methods
 SVG Animation Attributes
 ------------------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 * onbegin, onend, onrepeat, onload (:doc:`Animation Event Attributes </attributes/animation_events>`)
 * attributeType, attributeName (:doc:`Animation Target Attributes </attributes/animation_target>`)
 * begin, dur, end, min, max, restart, repeatCount, repeatDur, fill (:doc:`Animation Timing Attributes </attributes/animation_timing>`)
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **externalResourcesRequired** -- `bool`
 
@@ -86,6 +107,13 @@ Methods
 SVG Animation Attributes
 ------------------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 * onbegin, onend, onrepeat, onload (:doc:`Animation Event Attributes </attributes/animation_events>`)
 * begin, dur, end, min, max, restart, repeatCount, repeatDur, fill (:doc:`Animation Timing Attributes </attributes/animation_timing>`)
 * calcMode, values, keyTimes, keySplines, from, to, by (:doc:`Animation Value Attributes </attributes/animation_value>`)
@@ -93,6 +121,13 @@ SVG Animation Attributes
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **externalResourcesRequired** -- `bool`
 
@@ -190,6 +225,13 @@ Methods
 SVG Animation Attributes
 ------------------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 * onbegin, onend, onrepeat, onload (:doc:`Animation Event Attributes </attributes/animation_events>`)
 * attributeType, attributeName (:doc:`Animation Target Attributes </attributes/animation_target>`)
 * begin, dur, end, min, max, restart, repeatCount, repeatDur, fill (:doc:`Animation Timing Attributes </attributes/animation_timing>`)
@@ -198,6 +240,13 @@ SVG Animation Attributes
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **externalResourcesRequired** -- `bool`
 
@@ -213,6 +262,13 @@ Standard SVG Attributes
 
 AnimateColor
 ============
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 .. autoclass:: svgwrite.animate.AnimateColor
 
@@ -239,12 +295,26 @@ result from **animateColor** animations.
 Parent Classes
 --------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 * :class:`svgwrite.base.BaseElement`
 * :class:`svgwrite.mixins.XLink`
 * :class:`svgwrite.animate.Animate`
 
 SVG Animation Attributes
 ------------------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * onbegin, onend, onrepeat, onload (:doc:`Animation Event Attributes </attributes/animation_events>`)
 * attributeType, attributeName (:doc:`Animation Target Attributes </attributes/animation_target>`)
@@ -281,6 +351,13 @@ Methods
 SVG Animation Attributes
 ------------------------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 * onbegin, onend, onrepeat, onload (:doc:`Animation Event Attributes </attributes/animation_events>`)
 * attributeType, attributeName (:doc:`Animation Target Attributes </attributes/animation_target>`)
 * begin, dur, end, min, max, restart, repeatCount, repeatDur, fill (:doc:`Animation Timing Attributes </attributes/animation_timing>`)
@@ -289,6 +366,13 @@ SVG Animation Attributes
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **externalResourcesRequired** -- `bool`
 

@@ -1,6 +1,13 @@
 XLink Attributes
 ================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 W3C Reference: http://www.w3.org/TR/SVG11/intro.html#TermXLinkAttributes
 
 The XLink attributes are the seven attributes defined in the XML Linking Language

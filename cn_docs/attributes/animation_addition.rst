@@ -4,6 +4,13 @@ Animation Addition Attributes
 additive
 --------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 additive = ``'replace | sum'``
 
 Controls whether or not the animation is additive.
@@ -25,6 +32,13 @@ value         description
 
 accumulate
 ----------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 accumulate = ``'none | sum'``
 

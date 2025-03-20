@@ -3,6 +3,13 @@
 feBlend Filter Element
 ======================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. seealso:: http://www.w3.org/TR/SVG11/filters.html#feBlendElement
 
 This filter composites two objects together using commonly used imaging
@@ -13,6 +20,13 @@ For common properties see: :ref:`filter_primitive`
 
 SVG Attributes
 --------------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 * **mode** -- ``'normal | multiply | screen | darken | lighten'``
 

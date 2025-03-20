@@ -6,6 +6,13 @@ Animation Events Attributes
 onbegin
 -------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. seealso:: http://www.w3.org/TR/SVG11/script.html#OnBeginEventAttribute
 
 onbegin = `<anything>`
@@ -22,6 +29,13 @@ Complete list of support events: http://www.w3.org/TR/SVG11/interact.html#SVGEve
 onend
 -----
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 onend = `<anything>`
 
 Complete list of support events: http://www.w3.org/TR/SVG11/interact.html#SVGEvents
@@ -33,6 +47,13 @@ Complete list of support events: http://www.w3.org/TR/SVG11/interact.html#SVGEve
 onrepeat
 --------
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 onrepeat = `<anything>`
 
 Complete list of support events: http://www.w3.org/TR/SVG11/interact.html#SVGEvents
@@ -43,6 +64,13 @@ Complete list of support events: http://www.w3.org/TR/SVG11/interact.html#SVGEve
 
 onload
 ------
+
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
 
 onload = `<anything>`
 
