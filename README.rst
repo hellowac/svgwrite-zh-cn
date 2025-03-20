@@ -1,7 +1,7 @@
 svgwrite
 ========
 
-`中文 <./REEADME.CN>`_
+`中文 <./REEADME.CN.rst>`_
 
 This package is inactive! No new features will be added, there will
 be no change of behavior, just bugfixes will be merged.
