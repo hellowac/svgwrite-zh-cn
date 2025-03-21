@@ -5,8 +5,10 @@ BaseElement
 
 .. automethod:: svgwrite.base.BaseElement.__init__
 
-Attributes
+属性
 ----------
+
+Attributes
 
 .. attribute:: BaseElement.attribs
 
@@ -16,8 +18,10 @@ Attributes
 
    *list* of SVG subelements
 
-Methods
+方法
 -------
+
+Methods
 
 .. automethod:: svgwrite.base.BaseElement.add
 
@@ -52,8 +56,10 @@ set/get SVG attributes::
    }
    element.update(attribs)
 
-Common SVG Attributes
+常见 SVG 属性
 ---------------------
+
+Common SVG Attributes
 
 * :doc:`Core Attributes </attributes/core>`
 * :doc:`Conditional Processing Attributes </attributes/conditional_processing>`

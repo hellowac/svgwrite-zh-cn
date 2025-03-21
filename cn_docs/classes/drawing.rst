@@ -7,8 +7,10 @@ Drawing
 
 .. automethod:: svgwrite.drawing.Drawing.__init__
 
-Attributes
+属性
 ----------
+
+Attributes
 
 .. attribute:: Drawing.filename
 
@@ -18,14 +20,10 @@ Attributes
 
    SVG defs section - as :class:`~svgwrite.container.Defs` object.
 
-Methods
+方法
 -------
 
-.. tab:: 中文
-
-
-
-.. tab:: 英文
+Methods
 
 
 .. automethod:: svgwrite.drawing.Drawing.add
@@ -42,14 +40,24 @@ Methods
 
 .. method:: Drawing.tostring()
 
-   Get the XML representation as unicode `string`. If you embed the SVG object
-   into a XHTML page, you have to link to the CSS files (if you use CSS classes)
-   in the header section of the surrounding XHTML page.
+   .. tab:: 中文
 
-   :return: unicode XML string of this object and all its subelements
+      获取 XML 表示形式作为 unicode “字符串”。如果将 SVG 对象嵌入 XHTML 页面，则必须链接到周围 XHTML 页面标题部分中的 CSS 文件（如果使用 CSS 类）。
+
+      :return: 此对象及其所有子元素的 unicode XML 字符串
+
+   .. tab:: 英文
+
+      Get the XML representation as unicode `string`. If you embed the SVG object
+      into a XHTML page, you have to link to the CSS files (if you use CSS classes)
+      in the header section of the surrounding XHTML page.
+
+      :return: unicode XML string of this object and all its subelements
+
+工厂函数
+---------------
 
 Factory Methods
----------------
 
 .. method:: Drawing.line(start=(0, 0), end=(0, 0), \*\*extra)
 
@@ -173,11 +181,18 @@ Factory Methods
 
 .. method:: Drawing.filter(start=None, size=None, resolution=None, inherit=None, \*\*extra)
 
-   Create a :class:`svgwrite.filters.Filter` object. (Filter Primitives are created
-   by **factory-methods** of the class **Filter**)
+   .. tab:: 中文
+
+      创建一个 :class:`svgwrite.filters.Filter` 对象。（过滤器原语由 **Filter** 类的 **工厂方法** 创建）
+
+   .. tab:: 英文
+
+      Create a :class:`svgwrite.filters.Filter` object. (Filter Primitives are created by **factory-methods** of the class **Filter**)
+
+父类
+--------------
 
 Parent Classes
---------------
 
 * :class:`svgwrite.base.BaseElement`
 * :class:`svgwrite.container.Symbol`

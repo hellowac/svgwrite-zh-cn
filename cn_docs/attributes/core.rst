@@ -5,14 +5,20 @@ Core Attributes
 
 .. tab:: 中文
 
+    W3C Reference: http://www.w3.org/TR/SVG11/intro.html#TermCoreAttributes
+
+    核心属性是可以在任何 SVG 元素上指定的属性.
+
 .. tab:: 英文
 
-    W3C Reference: http://www.w3.org/TR/SVG11/intro.html#TermCoreAttribute
+    W3C Reference: http://www.w3.org/TR/SVG11/intro.html#TermCoreAttributes
 
     The core attributes are those attributes that can be specified on any SVG element.
 
-W3C Direct Links
+W3C 直达链接
 ----------------
+
+W3C Direct Links
 
 .. tab:: 中文
 

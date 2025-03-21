@@ -1,19 +1,25 @@
-Presentation Attributes
+演示属性
 =======================
+
+Presentation Attributes
 
 .. tab:: 中文
 
+    W3C Reference: http://www.w3.org/TR/SVG11/intro.html#TermPresentationAttribute
 
+    SVG 元素上的 XML 属性，用于指定该元素的给定属性的值。
 
 .. tab:: 英文
 
+    W3C Reference: http://www.w3.org/TR/SVG11/intro.html#TermPresentationAttribute
 
-W3C Reference: http://www.w3.org/TR/SVG11/intro.html#TermPresentationAttribute
+    An XML attribute on an SVG element which specifies a value for a given property for that element.
 
-An XML attribute on an SVG element which specifies a value for a given property for that element.
+
+W3C 直达链接
+----------------
 
 W3C Direct Links
-----------------
 
 * `alignment-baseline <http://www.w3.org/TR/SVG11/text.html#AlignmentBaselineProperty>`_
 * `baseline-shift <http://www.w3.org/TR/SVG11/text.html#BaselineShiftProperty>`_
