@@ -1,0 +1,797 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="核心属性" href="attributes/core.html" /><link rel="prev" title="svgwrite 1.4.3 documentation" href="index.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>概述 - svgwrite 1.4.3 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">svgwrite 1.4.3 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">svgwrite 1.4.3 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">内容/Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">概述</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="attributes/core.html">核心属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/conditional_processing.html">条件处理属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/document_event.html">文档事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/graphical_event.html">图形事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/presentation.html">演示属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/xlink.html">XLink 属性</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">SVG 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html#id1">其他 SVG 文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html#id2">SVG 实现状态</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块/Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="svgwrite.html">svgwrite 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils/utils.html">utils 模块</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">结构对象/Structural Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/base.html">BaseElement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/drawing.html">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/svg.html">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/group.html">Group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/defs.html">Defs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/symbol.html">Symbol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/marker.html">Marker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/use.html">Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/hyperlink.html">Hyperlink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/script.html">Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/style.html">Style</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘制对象/Graphical Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/path.html">Path</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html">Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html#rect">Rect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html#circle">Circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html#ellipse">Ellipse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html#polyline">Polyline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html#polygon">Polygon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html#basic-shapes-examples">Basic Shapes Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/image.html">Image</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">文本对象/Text Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/text.html#tspan">TSpan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/text.html#tref">TRef</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/text.html#textpath">TextPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/text.html#textarea">TextArea</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘图服务/Paint server</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/gradients.html">线性渐变/LinearGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/gradients.html#radialgradient">径向渐变/RadialGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/pattern.html">图案/Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/solidcolor.html">SolidColor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">遮盖/Masking</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/masking.html">ClipPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/masking.html#mask">Mask</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">动画/Animation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/animate.html">animate 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/animate.html#set">Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/animate.html#animatemotion">AnimateMotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/animate.html#id8">Animate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/animate.html#animatecolor">AnimateColor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/animate.html#animatetransform">AnimateTransform</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="classes/animate.html#id22">SVG 动画属性</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="attributes/animation_events.html">Animation Events Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/animation_target.html">Animation Target Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/animation_timing.html">Animation Timing Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/animation_value.html">Animation Value Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/animation_addition.html">Animation Addition Attributes</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">滤镜效果/Filter Effects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/filters.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/filters.html#filter-element">Filter Element</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/filter_primitive.html">滤镜原语概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/filter_primitive.html#svg">滤镜原语的通用svg属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_blend.html">feBlend 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_color_matrix.html">feColorMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_component_transfer.html">feComponentTransfer 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_composite.html">feComposite 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_convolve_matrix.html">feConvolveMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_diffuse_lighting.html">feDiffuseLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_displacement_map.html">feDisplacementMap 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_flood.html">feFlood 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_gaussian_blur.html">feGaussianBlur 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_image.html">feImage 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_merge.html">feMerge 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_morphology.html">feMorphology 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_offset.html">feOffset 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_specular_lighting.html">feSpecularLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_tile.html">feTile 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_turbulence.html">feTurbulence 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_lights.html">feDistantLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_lights.html#fepointlight">fePointLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_lights.html#fespotlight">feSpotLight 滤镜元素</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MixIns</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html">ViewBox Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html#transform-mixin">Transform Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html#xlink-mixin">XLink Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html#presentation-mixin">Presentation Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html#mediagroup-mixin">MediaGroup Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html#markers-mixin">Markers Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html#clipping-mixin">Clipping Mixin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">扩展/Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="extensions/inkscape.html">Inkscape 扩展</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="id1">
+<h1>概述<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<p>Overview</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>如名称 <cite>svgwrite</cite> 所示， <cite>svgwrite</cite> 创建新的 SVG 图形，它不会读取/导入现有的图形，但你可以通过 <cite>&lt;image&gt;</cite> 实体始终包含其他 SVG 图形。</p>
+<p><cite>svgwrite</cite> 具有一个调试功能，可以通过 <code class="code docutils literal notranslate"><span class="pre">svgwrite.Drawing(debug=True)</span></code> 激活。此功能用于在开发过程中查找代码生成的 SVG 错误。该验证算法未经过优化，因此对于大的 SVG 文件来说非常慢。未来也不会进行改进。因为它很慢，所以不要在生产代码中使用它！</p>
+<p>如果没有调试功能的 <cite>svgwrite</cite> 仍然太慢，你必须使用 <cite>lxml</cite> 包而不通过 <cite>svgwrite</cite> 作为包装器。这是一个残酷的事实，因为 <cite>svgwrite</cite> 只是 <cite>xml.etree.ElementTree</cite> 的一个包装器。如果你学习了 ElementTree API 和 SVG 元素及属性，你就不再需要 <cite>svgwrite</cite>。</p>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>As the name <cite>svgwrite</cite> implies, <cite>svgwrite</cite> creates new SVG drawings, it does not read/import existing drawings, but you can always include other SVG drawings by the <cite>&lt;image&gt;</cite> entity.</p>
+<p><cite>svgwrite</cite> has a debugging feature, activated by <code class="code docutils literal notranslate"><span class="pre">svgwrite.Drawing(debug=True)</span></code>. This feature is meant to find
+SVG errors produced by your code while developing. This validation algorithm is not optimized and therefore very slow for
+big SVG files. That will not change in the future. And because it is slow DON’T use it in production code!</p>
+<p>If <cite>svgwrite</cite> without debugging is still too slow, you have to use the <cite>lxml</cite> package without <cite>svgwrite</cite> as wrapper. That
+is the ugly truth since <cite>svgwrite</cite> is just a wrapper around <cite>xml.etree.ElementTree</cite>. If you learn the ElementTree API and the
+SVG elements and attributes, you do not need <cite>svgwrite</cite>.</p>
+</div>
+</div>
+<section id="svg">
+<h2>SVG 元素<a class="headerlink" href="#svg" title="此标题的永久链接">#</a></h2>
+<p>SVG Elements</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>使用 <strong>Drawing</strong> 类的 <strong>工厂方法</strong> 来创建新的对象。
+（这是为了支持不同 SVG 版本的验证。）
+所有 <strong>工厂方法</strong> 都具有原始的 SVG 元素名称（例如 Drawing.a(…)，
+Drawing.g(…)，Drawing.symbol(…)，Drawing.line(…)）</p>
+</div>
+<p>一个简短的示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dwg</span> <span class="o">=</span> <span class="n">svgwrite</span><span class="o">.</span><span class="n">Drawing</span><span class="p">()</span>
+<span class="n">link</span> <span class="o">=</span> <span class="n">dwg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dwg</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="s2">&quot;http://link.to/internet&quot;</span><span class="p">))</span>
+<span class="n">square</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dwg</span><span class="o">.</span><span class="n">rect</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>Use the <strong>factory-methods</strong> of the class <strong>Drawing</strong> to create new objects.
+(This is necessary to support validation for different SVG versions.)
+All <strong>factory-methods</strong> have the original SVG Elementname (e.g. Drawing.a(…),
+Drawing.g(…), Drawing.symbol(…), Drawing.line(…))</p>
+</div>
+<p>a short example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dwg</span> <span class="o">=</span> <span class="n">svgwrite</span><span class="o">.</span><span class="n">Drawing</span><span class="p">()</span>
+<span class="n">link</span> <span class="o">=</span> <span class="n">dwg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dwg</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="s2">&quot;http://link.to/internet&quot;</span><span class="p">))</span>
+<span class="n">square</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dwg</span><span class="o">.</span><span class="n">rect</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h3>结构元素<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h3>
+<p>Structural Elements</p>
+<p><a class="reference internal" href="classes/drawing.html#svgwrite.drawing.Drawing" title="svgwrite.drawing.Drawing"><code class="xref py py-class docutils literal notranslate"><span class="pre">Drawing</span></code></a>, <a class="reference internal" href="classes/svg.html#svgwrite.container.SVG" title="svgwrite.container.SVG"><code class="xref py py-class docutils literal notranslate"><span class="pre">SVG</span></code></a>,
+<a class="reference internal" href="classes/group.html#svgwrite.container.Group" title="svgwrite.container.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a>, <a class="reference internal" href="classes/defs.html#svgwrite.container.Defs" title="svgwrite.container.Defs"><code class="xref py py-class docutils literal notranslate"><span class="pre">Defs</span></code></a>,
+<a class="reference internal" href="classes/symbol.html#svgwrite.container.Symbol" title="svgwrite.container.Symbol"><code class="xref py py-class docutils literal notranslate"><span class="pre">Symbol</span></code></a>, <a class="reference internal" href="classes/marker.html#svgwrite.container.Marker" title="svgwrite.container.Marker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Marker</span></code></a>,
+<a class="reference internal" href="classes/use.html#svgwrite.container.Use" title="svgwrite.container.Use"><code class="xref py py-class docutils literal notranslate"><span class="pre">Use</span></code></a>, <a class="reference internal" href="classes/hyperlink.html#svgwrite.container.Hyperlink" title="svgwrite.container.Hyperlink"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hyperlink</span></code></a></p>
+</section>
+<section id="id3">
+<h3>图形元素<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
+<p>Graphical Elements</p>
+<p><a class="reference internal" href="classes/shapes.html#svgwrite.shapes.Line" title="svgwrite.shapes.Line"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>, <a class="reference internal" href="classes/shapes.html#svgwrite.shapes.Rect" title="svgwrite.shapes.Rect"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rect</span></code></a>,
+<a class="reference internal" href="classes/shapes.html#svgwrite.shapes.Circle" title="svgwrite.shapes.Circle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circle</span></code></a>, <a class="reference internal" href="classes/shapes.html#svgwrite.shapes.Ellipse" title="svgwrite.shapes.Ellipse"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ellipse</span></code></a>,
+<a class="reference internal" href="classes/shapes.html#svgwrite.shapes.Polyline" title="svgwrite.shapes.Polyline"><code class="xref py py-class docutils literal notranslate"><span class="pre">Polyline</span></code></a>, <a class="reference internal" href="classes/shapes.html#svgwrite.shapes.Polygon" title="svgwrite.shapes.Polygon"><code class="xref py py-class docutils literal notranslate"><span class="pre">Polygon</span></code></a>,
+<a class="reference internal" href="classes/path.html#svgwrite.path.Path" title="svgwrite.path.Path"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a></p>
+</section>
+<section id="id4">
+<h3>文本对象<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
+<p>Text Objects</p>
+<p><a class="reference internal" href="classes/text.html#svgwrite.text.Text" title="svgwrite.text.Text"><code class="xref py py-class docutils literal notranslate"><span class="pre">Text</span></code></a>, <a class="reference internal" href="classes/text.html#svgwrite.text.TSpan" title="svgwrite.text.TSpan"><code class="xref py py-class docutils literal notranslate"><span class="pre">TSpan</span></code></a>,
+<a class="reference internal" href="classes/text.html#svgwrite.text.TRef" title="svgwrite.text.TRef"><code class="xref py py-class docutils literal notranslate"><span class="pre">TRef</span></code></a>, <a class="reference internal" href="classes/text.html#svgwrite.text.TextPath" title="svgwrite.text.TextPath"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextPath</span></code></a>,
+<a class="reference internal" href="classes/text.html#svgwrite.text.TextArea" title="svgwrite.text.TextArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextArea</span></code></a>,</p>
+</section>
+<section id="id5">
+<h3>绘图服务器<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
+<p>Paint Server</p>
+<p><a class="reference internal" href="classes/gradients.html#svgwrite.gradients.LinearGradient" title="svgwrite.gradients.LinearGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearGradient</span></code></a>, <a class="reference internal" href="classes/gradients.html#svgwrite.gradients.RadialGradient" title="svgwrite.gradients.RadialGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadialGradient</span></code></a>,
+<a class="reference internal" href="classes/pattern.html#svgwrite.pattern.Pattern" title="svgwrite.pattern.Pattern"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pattern</span></code></a>,</p>
+</section>
+<section id="id6">
+<h3>蒙版<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
+<p>Masking</p>
+<p><a class="reference internal" href="classes/masking.html#svgwrite.masking.Mask" title="svgwrite.masking.Mask"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mask</span></code></a>, <a class="reference internal" href="classes/masking.html#svgwrite.masking.ClipPath" title="svgwrite.masking.ClipPath"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClipPath</span></code></a></p>
+</section>
+<section id="id7">
+<h3>动画<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
+<p>Animation</p>
+<p><a class="reference internal" href="classes/animate.html#svgwrite.animate.Set" title="svgwrite.animate.Set"><code class="xref py py-class docutils literal notranslate"><span class="pre">Set</span></code></a>, <a class="reference internal" href="classes/animate.html#svgwrite.animate.Animate" title="svgwrite.animate.Animate"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animate</span></code></a>,
+<a class="reference internal" href="classes/animate.html#svgwrite.animate.AnimateColor" title="svgwrite.animate.AnimateColor"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimateColor</span></code></a>, <a class="reference internal" href="classes/animate.html#svgwrite.animate.AnimateMotion" title="svgwrite.animate.AnimateMotion"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimateMotion</span></code></a>,
+<a class="reference internal" href="classes/animate.html#svgwrite.animate.AnimateTransform" title="svgwrite.animate.AnimateTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimateTransform</span></code></a></p>
+</section>
+<section id="id8">
+<h3>滤镜效果<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
+<p>Filter Effects</p>
+<p><a class="reference internal" href="classes/filters.html#svgwrite.filters.Filter" title="svgwrite.filters.Filter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Filter</span></code></a></p>
+</section>
+</section>
+<section id="id9">
+<h2>混合<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h2>
+<p>Mixins</p>
+<p><a class="reference internal" href="classes/mixins.html#svgwrite.mixins.ViewBox" title="svgwrite.mixins.ViewBox"><code class="xref py py-class docutils literal notranslate"><span class="pre">ViewBox</span></code></a>,
+<a class="reference internal" href="classes/mixins.html#svgwrite.mixins.Transform" title="svgwrite.mixins.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transform</span></code></a>,
+<a class="reference internal" href="classes/mixins.html#svgwrite.mixins.XLink" title="svgwrite.mixins.XLink"><code class="xref py py-class docutils literal notranslate"><span class="pre">XLink</span></code></a>,
+<a class="reference internal" href="classes/mixins.html#svgwrite.mixins.Presentation" title="svgwrite.mixins.Presentation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Presentation</span></code></a>,
+<a class="reference internal" href="classes/mixins.html#svgwrite.mixins.MediaGroup" title="svgwrite.mixins.MediaGroup"><code class="xref py py-class docutils literal notranslate"><span class="pre">MediaGroup</span></code></a>,
+<a class="reference internal" href="classes/mixins.html#svgwrite.mixins.Markers" title="svgwrite.mixins.Markers"><code class="xref py py-class docutils literal notranslate"><span class="pre">Markers</span></code></a>,
+<a class="reference internal" href="classes/mixins.html#svgwrite.mixins.Clipping" title="svgwrite.mixins.Clipping"><code class="xref py py-class docutils literal notranslate"><span class="pre">Clipping</span></code></a>,</p>
+</section>
+<section id="id10">
+<h2>常用属性<a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h2>
+<p>Common Attributes</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="attributes/core.html">核心属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes/conditional_processing.html">条件处理属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes/document_event.html">文档事件属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes/graphical_event.html">图形事件属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes/presentation.html">演示属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes/xlink.html">XLink 属性</a></li>
+</ul>
+</div>
+</section>
+<section id="id11">
+<h2>基本数据类型<a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h2>
+<p>Basic Data Types</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<p>W3C: <a class="reference external" href="http://www.w3.org/TR/SVG11/types.html">http://www.w3.org/TR/SVG11/types.html</a></p>
+<p>你可以始终使用 Python 类型（ <cite>int</cite>， <cite>float</cite>）来表示长度、坐标或角度值，对于长度和坐标，默认单位是 <code class="docutils literal notranslate"><span class="pre">px</span></code>，对于角度，默认单位是 <code class="docutils literal notranslate"><span class="pre">deg</span></code>，或者你可以使用包含单位的字符串（例如 <code class="docutils literal notranslate"><span class="pre">100in</span></code>， <code class="docutils literal notranslate"><span class="pre">1.5cm</span></code>， <code class="docutils literal notranslate"><span class="pre">3.141529rad</span></code>）。</p>
+<p>示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Drawing</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># 画布区域为 100px x 100px</span>
+<span class="n">Drawing</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="s1">&#39;10cm&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;20cm&#39;</span><span class="p">)</span>  <span class="c1"># 画布区域为 10cm x 20cm</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<p>W3C: <a class="reference external" href="http://www.w3.org/TR/SVG11/types.html">http://www.w3.org/TR/SVG11/types.html</a></p>
+<p>You can always use python-types (<cite>int</cite>, <cite>float</cite>) for length, coordinate or angle
+values, for length and coordinates the default unit is <code class="docutils literal notranslate"><span class="pre">px</span></code>, for angles the
+default unit is <code class="docutils literal notranslate"><span class="pre">deg</span></code>, or you can use a string including a unit (e.g. <code class="docutils literal notranslate"><span class="pre">100in</span></code>,
+<code class="docutils literal notranslate"><span class="pre">1.5cm</span></code>, <code class="docutils literal notranslate"><span class="pre">3.141529rad</span></code>).</p>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Drawing</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># drawing area of 100px x 100px</span>
+<span class="n">Drawing</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="s1">&#39;10cm&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;20cm&#39;</span><span class="p">)</span> <span class="c1"># drawing area of 10cm x 20cm</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id12">
+<h2>数字<a class="headerlink" href="#id12" title="此标题的永久链接">#</a></h2>
+<p>Numbers</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">中文</label><div class="tab-content docutils container">
+<p>数字可以是整数或浮动数字，也可以使用科学计数法：</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><em>tiny profile</em>: 数字的 <strong>小数部分</strong> 不能超过 4 位小数，且必须在范围 -32,767.9999 到 +32,767.9999 之间（包括该范围）。</p>
+</div>
+<p>示例：</p>
+<ul class="simple">
+<li><p>10, -23, 0</p></li>
+<li><p>73.1234, -0.002, .154, -.897, +13.2, 0000.123</p></li>
+<li><p>1.24E+2, 1.24e+2, 1E0, -.0E-1</p></li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">英文</label><div class="tab-content docutils container">
+<p>Numbers can be intergers or floats, also in scientific notation:</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><em>tiny profile</em>: numbers must <strong>not</strong> have more than 4 decimal digits in the
+fractional part of their decimal expansion and must be in the range -32,767.9999
+to +32,767.9999, inclusive</p>
+</div>
+<p>Examples:</p>
+<ul class="simple">
+<li><p>10, -23, 0</p></li>
+<li><p>73.1234, -0.002, .154, -.897, +13.2, 0000.123</p></li>
+<li><p>1.24E+2, 1.24e+2,1E0, -.0E-1</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id13">
+<h2>角度<a class="headerlink" href="#id13" title="此标题的永久链接">#</a></h2>
+<p>Angles</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--1">中文</label><div class="tab-content docutils container">
+<p>&lt;angle&gt; 单位标识符是可选的。如果未提供，角度值默认以度为单位。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>单位</p></th>
+<th class="head"><p>标识符</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>deg</p></td>
+<td><p>角度，以度为单位</p></td>
+<td><p>(完整圆为 360deg)</p></td>
+</tr>
+<tr class="row-odd"><td><p>grad</p></td>
+<td><p>角度，以梯度为单位</p></td>
+<td><p>(完整圆为 400grad)</p></td>
+</tr>
+<tr class="row-even"><td><p>rad</p></td>
+<td><p>角度，以弧度为单位</p></td>
+<td><p>(完整圆为 2*PI)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">英文</label><div class="tab-content docutils container">
+<p>The &lt;angle&gt; unit identifier is optional. If not provided, the angle value is assumed to be in degrees.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>unit</p></th>
+<th class="head"><p>identifier</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>deg</p></td>
+<td><p>angle in degrees</p></td>
+<td><p>(full circle is 360deg)</p></td>
+</tr>
+<tr class="row-odd"><td><p>grad</p></td>
+<td><p>angle in grads</p></td>
+<td><p>(full circle is 400grad)</p></td>
+</tr>
+<tr class="row-even"><td><p>rad</p></td>
+<td><p>angle in radians</p></td>
+<td><p>(full circle is 2*PI)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="id14">
+<h2>长度<a class="headerlink" href="#id14" title="此标题的永久链接">#</a></h2>
+<p>Length</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--5-input--1" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--1">中文</label><div class="tab-content docutils container">
+<p>一个 <em>&lt;length&gt;</em> 是一个距离度量，表示为一个数字和单位，单位标识符必须使用小写字母。百分比长度值的含义取决于指定该百分比长度值的属性。</p>
+<p>两种常见情况是：</p>
+<ol class="arabic simple">
+<li><p>当百分比长度值表示视口的 <em>宽度</em> 或 <em>高度</em> 的百分比时，</p></li>
+<li><p>当百分比长度值表示给定对象的边界框 <em>宽度</em> 或 <em>高度</em> 的百分比时。</p></li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--5-input--2" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--2">英文</label><div class="tab-content docutils container">
+<p>A <em>&lt;length&gt;</em> is a distance measurement, given as a number along with a unit, the
+unit identifiers must be in lower case. The meaning of a percentage length value
+depends on the attribute for which the percentage length value has been specified.</p>
+<p>Two common cases are:</p>
+<ol class="arabic simple">
+<li><p>when a percentage length value represents a percentage of the viewport <em>width</em> or <em>height</em>, and</p></li>
+<li><p>when a percentage length value represents a percentage of the bounding box <em>width</em> or <em>height</em> on a given object.</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="id15">
+<h2>坐标<a class="headerlink" href="#id15" title="此标题的永久链接">#</a></h2>
+<p>Coordinates</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--6-input--1" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--1">中文</label><div class="tab-content docutils container">
+<p>一个 <em>&lt;coordinate&gt;</em> 是用户坐标系统中的一个长度，它是从用户坐标系统的原点沿相关轴（X 坐标为 x 轴，Y 坐标为 y 轴）测量的给定距离。它的语法与 <em>&lt;length&gt;</em> 相同。</p>
+</div>
+<input class="tab-input" id="tab-set--6-input--2" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--2">英文</label><div class="tab-content docutils container">
+<p>A <em>&lt;coordinate&gt;</em> is a length in the user coordinate system that is the given distance
+from the origin of the user coordinate system along the relevant axis (the x-axis
+for X coordinates, the y-axis for Y coordinates). Its syntax is the same as that
+for <em>&lt;length&gt;</em>.</p>
+</div>
+</div>
+</section>
+<section id="id16">
+<h2>单位<a class="headerlink" href="#id16" title="此标题的永久链接">#</a></h2>
+<p>Units</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--7-input--1" name="tab-set--7" type="radio"><label class="tab-label" for="tab-set--7-input--1">中文</label><div class="tab-content docutils container">
+<p>W3C: <a class="reference external" href="http://www.w3.org/TR/SVG11/coords.html#Units">http://www.w3.org/TR/SVG11/coords.html#Units</a></p>
+<p>当坐标或长度值是没有单位标识符的数字（例如，“25”）时，给定的坐标或长度默认以用户单位表示（即当前用户坐标系统中的一个值）。</p>
+<p>绝对单位标识符仅建议用于 <cite>width</cite> 和 <cite>height</cite> 属性，或在内容不包含任何变换且希望相对于设备像素网格或特定实际单位大小指定值的情况。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><em>tiny profile</em>: 除了 <strong>Drawing</strong> 对象的 <em>width</em> 和 <em>height</em> 属性外，不使用任何单位。</p>
+</div>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>单位</p></th>
+<th class="head"><p>标识符 描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>px</p></td>
+<td><p>一个 px 单位等于一个用户单位(user unit)</p></td>
+</tr>
+<tr class="row-odd"><td><p>em</p></td>
+<td><p>字体大小 (实际字体高度)</p></td>
+</tr>
+<tr class="row-even"><td><p>ex</p></td>
+<td><p>x 高度（实际字体中字母 ‘x’ 的高度）</p></td>
+</tr>
+<tr class="row-odd"><td><p>pt</p></td>
+<td><p>点（point）”1pt” 等于 “1.25px”（因此等于 1.25 用户单位）</p></td>
+</tr>
+<tr class="row-even"><td><p>pc</p></td>
+<td><p>派卡（pica）”1pc” 等于 “15px”（因此等于 15 用户单位）</p></td>
+</tr>
+<tr class="row-odd"><td><p>mm</p></td>
+<td><p>毫米（millimeter）”1mm” 等于 “3.543307px”（即 3.543307 用户单位）</p></td>
+</tr>
+<tr class="row-even"><td><p>cm</p></td>
+<td><p>厘米（centimeter）”1cm” 等于 “35.43307px”（即 35.43307 用户单位）</p></td>
+</tr>
+<tr class="row-odd"><td><p>in</p></td>
+<td><p>英寸（inch）”1in” 等于 “90px”（即 90 用户单位）</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<input class="tab-input" id="tab-set--7-input--2" name="tab-set--7" type="radio"><label class="tab-label" for="tab-set--7-input--2">英文</label><div class="tab-content docutils container">
+<p>W3C: <a class="reference external" href="http://www.w3.org/TR/SVG11/coords.html#Units">http://www.w3.org/TR/SVG11/coords.html#Units</a></p>
+<p>When a coordinate or length value is a number without a unit identifier (e.g., “25”),
+then the given coordinate or length is assumed to be in user units (i.e., a value
+in the current user coordinate system).</p>
+<p>Absolute units identifiers are only recommended for the <cite>width</cite> and the <cite>height</cite>
+on and situations where the content contains no transformations and it is desirable
+to specify values relative to the device pixel grid or to a particular real world
+unit size.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><em>tiny profile</em>: no usage of units except for the <em>width</em> and <em>height</em> attributes
+of the Drawing object.</p>
+</div>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>unit</p></th>
+<th class="head"><p>identifier description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>px</p></td>
+<td><p>one px unit is defined to be equal to one user unit</p></td>
+</tr>
+<tr class="row-odd"><td><p>em</p></td>
+<td><p>font-size (actual font height)</p></td>
+</tr>
+<tr class="row-even"><td><p>ex</p></td>
+<td><p>x-height (height of letter ‘x’ of actual font)</p></td>
+</tr>
+<tr class="row-odd"><td><p>pt</p></td>
+<td><p>point   “1pt” equals “1.25px” (and therefore 1.25 user units)</p></td>
+</tr>
+<tr class="row-even"><td><p>pc</p></td>
+<td><p>pica “1pc” equals “15px” (and therefore 15 user units)</p></td>
+</tr>
+<tr class="row-odd"><td><p>mm</p></td>
+<td><p>millimeter “1mm” would be “3.543307px” (3.543307 user units)</p></td>
+</tr>
+<tr class="row-even"><td><p>cm</p></td>
+<td><p>centimeter “1cm” equals “35.43307px” (and therefore 35.43307 user units)</p></td>
+</tr>
+<tr class="row-odd"><td><p>in</p></td>
+<td><p>inch “1in” equals “90px” (and therefore 90 user units)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="attributes/core.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">核心属性</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2014-2019, Manfred Moitzi &lt;me@mozman.at&gt;
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">概述</a><ul>
+<li><a class="reference internal" href="#svg">SVG 元素</a><ul>
+<li><a class="reference internal" href="#id2">结构元素</a></li>
+<li><a class="reference internal" href="#id3">图形元素</a></li>
+<li><a class="reference internal" href="#id4">文本对象</a></li>
+<li><a class="reference internal" href="#id5">绘图服务器</a></li>
+<li><a class="reference internal" href="#id6">蒙版</a></li>
+<li><a class="reference internal" href="#id7">动画</a></li>
+<li><a class="reference internal" href="#id8">滤镜效果</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id9">混合</a></li>
+<li><a class="reference internal" href="#id10">常用属性</a></li>
+<li><a class="reference internal" href="#id11">基本数据类型</a></li>
+<li><a class="reference internal" href="#id12">数字</a></li>
+<li><a class="reference internal" href="#id13">角度</a></li>
+<li><a class="reference internal" href="#id14">长度</a></li>
+<li><a class="reference internal" href="#id15">坐标</a></li>
+<li><a class="reference internal" href="#id16">单位</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

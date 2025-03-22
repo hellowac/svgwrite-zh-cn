@@ -1,0 +1,556 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="feBlend 滤镜元素" href="fe_blend.html" /><link rel="prev" title="Introduction" href="filters.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>滤镜原语概述 - svgwrite 1.4.3 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">svgwrite 1.4.3 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">svgwrite 1.4.3 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">内容/Contents</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview.html">概述</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/core.html">核心属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/conditional_processing.html">条件处理属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/document_event.html">文档事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/graphical_event.html">图形事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/presentation.html">演示属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/xlink.html">XLink 属性</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">SVG 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id1">其他 SVG 文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id2">SVG 实现状态</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块/Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../svgwrite.html">svgwrite 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html">utils 模块</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">结构对象/Structural Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base.html">BaseElement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drawing.html">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svg.html">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">Group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defs.html">Defs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symbol.html">Symbol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="marker.html">Marker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use.html">Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyperlink.html">Hyperlink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘制对象/Graphical Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="path.html">Path</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html">Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#rect">Rect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#circle">Circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#ellipse">Ellipse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polyline">Polyline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polygon">Polygon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#basic-shapes-examples">Basic Shapes Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image.html">Image</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">文本对象/Text Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#tspan">TSpan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#tref">TRef</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#textpath">TextPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#textarea">TextArea</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘图服务/Paint server</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gradients.html">线性渐变/LinearGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradients.html#radialgradient">径向渐变/RadialGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pattern.html">图案/Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidcolor.html">SolidColor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">遮盖/Masking</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="masking.html">ClipPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="masking.html#mask">Mask</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">动画/Animation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="animate.html">animate 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#set">Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatemotion">AnimateMotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#id8">Animate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatecolor">AnimateColor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatetransform">AnimateTransform</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="animate.html#id22">SVG 动画属性</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_events.html">Animation Events Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_target.html">Animation Target Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html">Animation Timing Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html">Animation Value Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_addition.html">Animation Addition Attributes</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">滤镜效果/Filter Effects</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html#filter-element">Filter Element</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">滤镜原语概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#svg">滤镜原语的通用svg属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_blend.html">feBlend 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_color_matrix.html">feColorMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_component_transfer.html">feComponentTransfer 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_composite.html">feComposite 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_convolve_matrix.html">feConvolveMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_diffuse_lighting.html">feDiffuseLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_displacement_map.html">feDisplacementMap 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_flood.html">feFlood 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_gaussian_blur.html">feGaussianBlur 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_image.html">feImage 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_merge.html">feMerge 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_morphology.html">feMorphology 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_offset.html">feOffset 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_specular_lighting.html">feSpecularLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_tile.html">feTile 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_turbulence.html">feTurbulence 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html">feDistantLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fepointlight">fePointLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fespotlight">feSpotLight 滤镜元素</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MixIns</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html">ViewBox Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#transform-mixin">Transform Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#xlink-mixin">XLink Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#presentation-mixin">Presentation Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#mediagroup-mixin">MediaGroup Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#markers-mixin">Markers Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#clipping-mixin">Clipping Mixin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">扩展/Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/inkscape.html">Inkscape 扩展</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="filter-primitive">
+<span id="id1"></span><h1>滤镜原语概述<a class="headerlink" href="#filter-primitive" title="此标题的永久链接">#</a></h1>
+<p>Filter Primitives Overview</p>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterPrimitivesOverview">http://www.w3.org/TR/SVG11/filters.html#FilterPrimitivesOverview</a></p>
+</div>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>除非另有说明，所有图像滤镜都作用于预乘RGBA样本。对于那些在非预乘数据上更自然工作的滤镜（如 <strong>feColorMatrix</strong> 和 <strong>feComponentTransfer</strong>），会临时撤销和重新执行预乘操作，按照规定进行。所有光栅效果的过滤操作接受 1 到 N 个输入 RGBA 图像，额外的属性作为参数，并生成单个输出 RGBA 图像。</p>
+<p>每个滤镜原语的 RGBA 结果将被限制在颜色和透明度值的允许范围内。因此，例如，来自某个滤镜原语的结果会将任何负值的颜色值或透明度值调整为零（颜色/透明度）。</p>
+<p>特定滤镜原语执行其操作的颜色空间由给定滤镜原语上的 <strong>color-interpolation-filters</strong> 属性的值决定。另一个属性， <strong>color-interpolation</strong>，决定其他颜色操作的颜色空间。因为这两个属性具有不同的初始值（ <strong>color-interpolation-filters</strong> 的初始值为 linearRGB，而 <strong>color-interpolation</strong> 的初始值为 sRGB），在某些情况下，为了实现特定的结果（例如，在与滤镜操作协调渐变插值时），可能需要显式地将 <strong>color-interpolation</strong> 设置为 linearRGB 或将 <strong>color-interpolation-filters</strong> 设置为 sRGB。请注意，下面的示例没有显式地设置 <strong>color-interpolation</strong> 或 <strong>color-interpolation-filters</strong>，因此这些属性的初始值适用于示例。</p>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>Unless otherwise stated, all image filters operate on premultiplied RGBA
+samples. Filters which work more naturally on non-premultiplied data
+(feColorMatrix and feComponentTransfer) will temporarily undo and redo
+premultiplication as specified. All raster effect filtering operations take
+1 to N input RGBA images, additional attributes as parameters, and produce a
+single output RGBA image.</p>
+<p>The RGBA result from each filter primitive will be clamped into the allowable
+ranges for colors and opacity values. Thus, for example, the result from a
+given filter primitive will have any negative color values or opacity values
+adjusted up to color/opacity of zero.</p>
+<p>The color space in which a particular filter primitive performs its operations
+is determined by the value of property <strong>color-interpolation-filters</strong> on the
+given filter primitive. A different property, <strong>color-interpolation</strong> determines
+the color space for other color operations. Because these two properties have
+different initial values (<strong>color-interpolation-filters</strong> has an initial value
+of linearRGB whereas <strong>color-interpolation</strong> has an initial value of sRGB),
+in some cases to achieve certain results (e.g., when coordinating gradient
+interpolation with a filtering operation) it will be necessary to explicitly
+set <strong>color-interpolation</strong> to linearRGB or <strong>color-interpolation-filters</strong>
+to sRGB on particular elements. Note that the examples below do not explicitly
+set either <strong>color-interpolation</strong> or <strong>color-interpolation-filters</strong>, so the
+initial values for these properties apply to the examples.</p>
+</div>
+</div>
+</section>
+<section id="svg">
+<h1>滤镜原语的通用svg属性<a class="headerlink" href="#svg" title="此标题的永久链接">#</a></h1>
+<p>Common SVG Attributes for Filter Primitives</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<p>除了 <strong>in</strong> 属性之外，以下所有属性都可用于所有滤镜原语元素：</p>
+<ul>
+<li><p><strong>x</strong> – <cite>&lt;coordinate&gt;</cite></p>
+<p>给定滤镜原语的子区域的最小 x 坐标，用于限制该滤镜原语的计算和渲染。请参阅滤镜原语子区域。</p>
+</li>
+<li><p><strong>y</strong> – <cite>&lt;coordinate&gt;</cite></p>
+<p>给定滤镜原语的子区域的最小 y 坐标，用于限制该滤镜原语的计算和渲染。请参阅滤镜原语子区域。</p>
+</li>
+<li><p><strong>width</strong> – <cite>&lt;length&gt;</cite></p>
+<p>给定滤镜原语的子区域的宽度，用于限制该滤镜原语的计算和渲染。请参阅滤镜原语子区域。</p>
+</li>
+<li><p><strong>height</strong> – <cite>&lt;length&gt;</cite></p>
+<p>给定滤镜原语的子区域的高度，用于限制该滤镜原语的计算和渲染。请参阅滤镜原语子区域。</p>
+</li>
+<li><p><strong>result</strong> – <cite>&lt;filter-primitive-reference&gt;</cite></p>
+<p>为该滤镜原语分配的名称。如果提供该属性，则通过处理该滤镜原语产生的图形可以通过同一 <strong>filter</strong> 元素中的后续滤镜原语的 <strong>in</strong> 属性进行引用。如果没有提供值，则输出仅在下一个滤镜原语没有为其 <strong>in</strong> 属性提供值的情况下，作为隐式输入重新用于该滤镜原语。</p>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<p>With the exception of the <strong>in</strong> attribute, all of the following attributes
+are available on all filter primitive elements:</p>
+<ul>
+<li><p><strong>x</strong> – <cite>&lt;coordinate&gt;</cite></p>
+<p>The minimum x coordinate for the subregion which restricts calculation and
+rendering of the given filter primitive. See filter primitive subregion.</p>
+</li>
+<li><p><strong>y</strong> – <cite>&lt;coordinate&gt;</cite></p>
+<p>The minimum y coordinate for the subregion which restricts calculation and
+rendering of the given filter primitive. See filter primitive subregion.</p>
+</li>
+<li><p><strong>width</strong> – <cite>&lt;length&gt;</cite></p>
+<p>The width of the subregion which restricts calculation and rendering of the
+given filter primitive. See filter primitive subregion.</p>
+</li>
+<li><p><strong>height</strong> – <cite>&lt;length&gt;</cite></p>
+<p>The height of the subregion which restricts calculation and rendering of
+the given filter primitive. See filter primitive subregion.</p>
+</li>
+<li><p><strong>result</strong> – <cite>&lt;filter-primitive-reference&gt;</cite></p>
+<p>Assigned name for this filter primitive. If supplied, then graphics that
+result from processing this filter primitive can be referenced by an <strong>in</strong>
+attribute on a subsequent filter primitive within the same <strong>filter</strong> element.
+If no value is provided, the output will only be available for re-use as
+the implicit input into the next filter primitive if that filter primitive
+provides no value for its <strong>in</strong> attribute.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>in</strong> – <code class="docutils literal notranslate"><span class="pre">'SourceGraphic</span> <span class="pre">|</span> <span class="pre">SourceAlpha</span> <span class="pre">|</span> <span class="pre">BackgroundImage</span> <span class="pre">|</span> <span class="pre">BackgroundAlpha</span> <span class="pre">|</span> <span class="pre">FillPaint</span> <span class="pre">|</span> <span class="pre">StrokePaint'</span></code> | <cite>&lt;filter-primitive-reference&gt;</cite></p>
+<p>标识给定滤镜原语的输入。值可以是六个关键字之一，或者是与同一 <strong>filter</strong> 元素中之前的 <strong>result</strong> 属性值匹配的字符串。如果没有提供值，并且这是第一个滤镜原语，则该滤镜原语将使用 <code class="docutils literal notranslate"><span class="pre">'SourceGraphic'</span></code> 作为其输入。如果没有提供值，并且这是后续滤镜原语，则该滤镜原语将使用上一个滤镜原语的结果作为输入。</p>
+<ul>
+<li><p><strong>SourceGraphic</strong></p>
+<p>此关键字表示作为 <strong>filter</strong> 元素的原始输入的图形元素。对于光栅效果滤镜原语，图形元素将被光栅化为初始透明的 RGBA 光栅图像（图像空间）。未被原始图形触及的像素将保持透明。图像被指定为在线性 RGBA 像素中呈现。此图像的 alpha 通道捕获了 SVG 中指定的任何抗锯齿效果。（由于光栅是线性的，此图像的 alpha 通道将表示每个像素的实际覆盖百分比。）</p>
+</li>
+<li><p><strong>SourceAlpha</strong></p>
+<p>此关键字表示作为 <strong>filter</strong> 元素的原始输入的图形元素。SourceAlpha 与 SourceGraphic 具有相同的规则，唯一的区别是仅使用 alpha 通道。输入图像是一个 RGBA 图像，其中 RGB 通道的颜色值默认为黑色，但其 alpha 通道与 SourceGraphic 相同。如果使用此选项，则某些实现可能需要将图形元素光栅化以提取 alpha 通道。</p>
+</li>
+<li><p><strong>BackgroundImage</strong></p>
+<p>此关键字表示 <strong>filter</strong> 元素被调用时，在滤镜区域下的画布图像快照。请参阅访问背景图像。</p>
+</li>
+<li><p><strong>BackgroundAlpha</strong></p>
+<p>与 BackgroundImage 相同，但仅使用 alpha 通道。请参阅 SourceAlpha 和访问背景图像。</p>
+</li>
+<li><p><strong>FillPaint</strong></p>
+<p>此关键字表示目标元素上 <strong>fill</strong> 属性的值，用于滤镜效果。FillPaint 图像在概念上具有无限的扩展性。通常，此图像在所有区域都是不透明的，但如果 <cite>“paint”</cite> 本身具有 alpha 值（例如，渐变或图案），则该图像可能在某些区域具有透明或半透明部分。</p>
+</li>
+<li><p><strong>StrokePaint</strong></p>
+<p>此关键字表示目标元素上 <strong>stroke</strong> 属性的值，用于滤镜效果。StrokePaint 图像在概念上具有无限的扩展性。通常，此图像在所有区域都是不透明的，但如果 <cite>“paint”</cite> 本身具有 alpha 值（例如，渐变或图案），则该图像可能在某些区域具有透明或半透明部分。</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>in</strong> – <code class="docutils literal notranslate"><span class="pre">'SourceGraphic</span> <span class="pre">|</span> <span class="pre">SourceAlpha</span> <span class="pre">|</span> <span class="pre">BackgroundImage</span> <span class="pre">|</span> <span class="pre">BackgroundAlpha</span>
+<span class="pre">|</span> <span class="pre">FillPaint</span> <span class="pre">|</span> <span class="pre">StrokePaint'</span></code> | <cite>&lt;filter-primitive-reference&gt;</cite></p>
+<p>Identifies input for the given filter primitive. The value can be either
+one of six keywords or can be a string which matches a previous <strong>result</strong>
+attribute value within the same <strong>filter</strong> element. If no value is provided
+and this is the first filter primitive, then this filter primitive will use
+<code class="docutils literal notranslate"><span class="pre">'SourceGraphic'</span></code> as its input. If no value is provided and this is a subsequent
+filter primitive, then this filter primitive will use the result from the
+previous filter primitive as its input.</p>
+<ul>
+<li><p><strong>SourceGraphic</strong></p>
+<p>This keyword represents the graphics elements that were the original input
+into the <strong>filter</strong> element. For raster effects filter primitives, the
+graphics elements will be rasterized into an initially clear RGBA raster
+in image space. Pixels left untouched by the original graphic will be left
+clear. The image is specified to be rendered in linear RGBA pixels. The
+alpha channel of this image captures any anti-aliasing specified by SVG.
+(Since the raster is linear, the alpha channel of this image will represent
+the exact percent coverage of each pixel.)</p>
+</li>
+<li><p><strong>SourceAlpha</strong></p>
+<p>This keyword represents the graphics elements that were the original
+input into the <strong>filter</strong> element. SourceAlpha has all of the same rules
+as SourceGraphic except that only the alpha channel is used. The input
+image is an RGBA image consisting of implicitly black color values for
+the RGB channels, but whose alpha channel is the same as SourceGraphic.
+If this option is used, then some implementations might need to rasterize
+the graphics elements in order to extract the alpha channel.</p>
+</li>
+<li><p><strong>BackgroundImage</strong></p>
+<p>This keyword represents an image snapshot of the canvas under the filter
+region at the time that the <strong>filter</strong> element was invoked. See Accessing
+the background image.</p>
+</li>
+<li><p><strong>BackgroundAlpha</strong></p>
+<p>Same as BackgroundImage except only the alpha channel is used. See
+SourceAlpha and Accessing the background image.</p>
+</li>
+<li><p><strong>FillPaint</strong></p>
+<p>This keyword represents the value of the <strong>fill</strong> property on the target
+element for the filter effect. The FillPaint image has conceptually
+infinite extent. Frequently this image is opaque everywhere, but it might
+not be if the <cite>“paint”</cite> itself has alpha, as in the case of a gradient or
+pattern which itself includes transparent or semi-transparent parts.</p>
+</li>
+<li><p><strong>StrokePaint</strong></p>
+<p>This keyword represents the value of the <strong>stroke</strong> property on the target
+element for the filter effect. The StrokePaint image has conceptually
+infinite extent. Frequently this image is opaque everywhere, but it might
+not be if the <cite>“paint”</cite> itself has alpha, as in the case of a gradient or
+pattern which itself includes transparent or semi-transparent parts.</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="fe_blend.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">feBlend 滤镜元素</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="filters.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Introduction</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2014-2019, Manfred Moitzi &lt;me@mozman.at&gt;
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>

@@ -1,0 +1,1181 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="线性渐变/LinearGradient" href="gradients.html" /><link rel="prev" title="Image" href="image.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>Text - svgwrite 1.4.3 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">svgwrite 1.4.3 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">svgwrite 1.4.3 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">内容/Contents</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview.html">概述</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/core.html">核心属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/conditional_processing.html">条件处理属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/document_event.html">文档事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/graphical_event.html">图形事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/presentation.html">演示属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/xlink.html">XLink 属性</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">SVG 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id1">其他 SVG 文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id2">SVG 实现状态</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块/Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../svgwrite.html">svgwrite 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html">utils 模块</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">结构对象/Structural Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base.html">BaseElement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drawing.html">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svg.html">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">Group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defs.html">Defs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symbol.html">Symbol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="marker.html">Marker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use.html">Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyperlink.html">Hyperlink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘制对象/Graphical Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="path.html">Path</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html">Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#rect">Rect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#circle">Circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#ellipse">Ellipse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polyline">Polyline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polygon">Polygon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#basic-shapes-examples">Basic Shapes Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image.html">Image</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">文本对象/Text Objects</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#tspan">TSpan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#tref">TRef</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#textpath">TextPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#textarea">TextArea</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘图服务/Paint server</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gradients.html">线性渐变/LinearGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradients.html#radialgradient">径向渐变/RadialGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pattern.html">图案/Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidcolor.html">SolidColor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">遮盖/Masking</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="masking.html">ClipPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="masking.html#mask">Mask</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">动画/Animation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="animate.html">animate 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#set">Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatemotion">AnimateMotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#id8">Animate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatecolor">AnimateColor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatetransform">AnimateTransform</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="animate.html#id22">SVG 动画属性</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_events.html">Animation Events Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_target.html">Animation Target Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html">Animation Timing Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html">Animation Value Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_addition.html">Animation Addition Attributes</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">滤镜效果/Filter Effects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html#filter-element">Filter Element</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_primitive.html">滤镜原语概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_primitive.html#svg">滤镜原语的通用svg属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_blend.html">feBlend 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_color_matrix.html">feColorMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_component_transfer.html">feComponentTransfer 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_composite.html">feComposite 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_convolve_matrix.html">feConvolveMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_diffuse_lighting.html">feDiffuseLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_displacement_map.html">feDisplacementMap 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_flood.html">feFlood 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_gaussian_blur.html">feGaussianBlur 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_image.html">feImage 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_merge.html">feMerge 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_morphology.html">feMorphology 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_offset.html">feOffset 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_specular_lighting.html">feSpecularLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_tile.html">feTile 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_turbulence.html">feTurbulence 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html">feDistantLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fepointlight">fePointLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fespotlight">feSpotLight 滤镜元素</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MixIns</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html">ViewBox Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#transform-mixin">Transform Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#xlink-mixin">XLink Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#presentation-mixin">Presentation Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#mediagroup-mixin">MediaGroup Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#markers-mixin">Markers Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#clipping-mixin">Clipping Mixin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">扩展/Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/inkscape.html">Inkscape 扩展</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="module-svgwrite.text">
+<span id="text"></span><h1>Text<a class="headerlink" href="#module-svgwrite.text" title="此标题的永久链接">#</a></h1>
+<p>Text that is to be rendered as part of an SVG document fragment is specified
+using the <strong>text</strong> element. The characters to be drawn are expressed as XML
+character data inside the <strong>text</strong> element.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.text.Text">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.text.</span></span><span class="sig-name descname"><span class="pre">Text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.text.Text" title="永久链接至目标">#</a></dt>
+<dd><p>The <strong>Text</strong> element defines a graphics element consisting of text.
+The characters to be drawn are expressed as XML character data inside the
+<strong>Text</strong> element.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/text.html#TextElement">http://www.w3.org/TR/SVG11/text.html#TextElement</a></p>
+</div>
+<p>Refer to <strong>TSpan</strong> SVG Attributes</p>
+<section id="id1">
+<h2>父类<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h2>
+<p>Parent Classes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="base.html#svgwrite.base.BaseElement" title="svgwrite.base.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.base.BaseElement</span></code></a></p></li>
+<li><p><a class="reference internal" href="#svgwrite.text.TSpan" title="svgwrite.text.TSpan"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.text.TSpan</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.Transform" title="svgwrite.mixins.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.Transform</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.Presentation" title="svgwrite.mixins.Presentation"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.Presentation</span></code></a></p></li>
+</ul>
+</section>
+</section>
+<section id="tspan">
+<h1>TSpan<a class="headerlink" href="#tspan" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.text.TSpan">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.text.</span></span><span class="sig-name descname"><span class="pre">TSpan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.text.TSpan" title="永久链接至目标">#</a></dt>
+<dd><p>Within a <strong>Text</strong> element, text and font properties
+and the current text position can be adjusted with absolute or relative
+coordinate values by using the <strong>TSpan</strong> element.
+The characters to be drawn are expressed as XML character data inside the
+<strong>TSpan</strong> element.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/text.html#TSpanElement">http://www.w3.org/TR/SVG11/text.html#TSpanElement</a></p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.text.TSpan.__init__">
+<span class="sig-prename descclassname"><span class="pre">TSpan.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.text.TSpan.__init__" title="永久链接至目标">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<em>string</em>) – <strong>tspan</strong> content</p></li>
+<li><p><strong>insert</strong> (<em>2-tuple</em>) – The <strong>insert</strong> parameter is the absolute insert point
+of the text, don’t use this parameter in combination
+with the <strong>x</strong> or the <strong>y</strong> parameter.</p></li>
+<li><p><strong>x</strong> (<em>list</em>) – list of absolute x-axis values for characters</p></li>
+<li><p><strong>y</strong> (<em>list</em>) – list of absolute y-axis values for characters</p></li>
+<li><p><strong>dx</strong> (<em>list</em>) – list of relative x-axis values for characters</p></li>
+<li><p><strong>dy</strong> (<em>list</em>) – list of relative y-axis values for characters</p></li>
+<li><p><strong>rotate</strong> (<em>list</em>) – list of rotation-values for characters (in degrees)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="id2">
+<h2>属性<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<p>Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="svgwrite.text.TSpan.text">
+<span class="sig-prename descclassname"><span class="pre">TSpan.</span></span><span class="sig-name descname"><span class="pre">text</span></span><a class="headerlink" href="#svgwrite.text.TSpan.text" title="永久链接至目标">#</a></dt>
+<dd><p>stores the text value.</p>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h2>方法<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<p>Methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">TSpan.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="永久链接至目标">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<em>string</em>) – <strong>tspan</strong> content</p></li>
+<li><p><strong>insert</strong> (<em>2-tuple</em>) – The <strong>insert</strong> parameter is the absolute insert point
+of the text, don’t use this parameter in combination
+with the <strong>x</strong> or the <strong>y</strong> parameter.</p></li>
+<li><p><strong>x</strong> (<em>list</em>) – list of absolute x-axis values for characters</p></li>
+<li><p><strong>y</strong> (<em>list</em>) – list of absolute y-axis values for characters</p></li>
+<li><p><strong>dx</strong> (<em>list</em>) – list of relative x-axis values for characters</p></li>
+<li><p><strong>dy</strong> (<em>list</em>) – list of relative y-axis values for characters</p></li>
+<li><p><strong>rotate</strong> (<em>list</em>) – list of rotation-values for characters (in degrees)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="id4">
+<h2>父类<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<p>Parent Classes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="base.html#svgwrite.base.BaseElement" title="svgwrite.base.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.base.BaseElement</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.Presentation" title="svgwrite.mixins.Presentation"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.Presentation</span></code></a></p></li>
+</ul>
+</section>
+<section id="svg">
+<h2>SVG 属性<a class="headerlink" href="#svg" title="此标题的永久链接">#</a></h2>
+<p>SVG Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>x</strong> – <cite>&lt;coordinate+&gt;</cite></p>
+<p>如果提供了单个 <cite>&lt;coordinate&gt;</cite>，则该值表示当前文本位置的新的绝对 X 坐标，用于渲染与此元素或其任何后代中的第一个字符相对应的字形。</p>
+<p>如果提供了 n 个 <cite>&lt;coordinates&gt;</cite> 的 <cite>list</cite>，则这些值表示当前文本位置的新的绝对 X 坐标，用于渲染与此元素或其任何后代中的前 n 个字符相对应的字形。</p>
+<p>如果提供的 <cite>&lt;coordinates&gt;</cite> 数量超过字符数，则额外的 <cite>&lt;coordinates&gt;</cite> 对字形位置不会产生影响。</p>
+<p>如果字符数超过 <cite>&lt;coordinates&gt;</cite> 的数量，则对于每个额外的字符：</p>
+<ol class="loweralpha simple">
+<li><p>如果祖先 <strong>Text</strong> 或 <strong>TSpan</strong> 元素通过 <strong>x</strong> 属性为给定字符指定了绝对 X 坐标，则使用该绝对 X 坐标作为该字符的起始 X 坐标（最近的祖先优先），否则</p></li>
+<li><p>渲染与给定字符相对应的字形的起始 X 坐标是当前 <strong>Text</strong> 元素中最近渲染的字形所得到的当前文本位置的 X 坐标。</p></li>
+</ol>
+<p>如果未指定该属性：</p>
+<ol class="loweralpha simple">
+<li><p>如果祖先 <strong>Text</strong> 或 <strong>TSpan</strong> 元素通过 <strong>x</strong> 属性为给定字符指定了绝对 X 坐标，则使用该绝对 X 坐标（最近的祖先优先），否则</p></li>
+<li><p>渲染与给定字符相对应的字形的起始 X 坐标是当前 <strong>Text</strong> 元素中最近渲染的字形所得到的当前文本位置的 X 坐标。</p></li>
+</ol>
+</li>
+<li><p><strong>y</strong> – <cite>&lt;coordinate+&gt;</cite></p>
+<p>对应的绝对 Y 坐标列表，用于该元素中字符的字形。<strong>y</strong> 属性的处理规则与 <strong>x</strong> 属性的处理规则相同。</p>
+</li>
+<li><p><strong>dx</strong> – <cite>&lt;length+&gt;</cite></p>
+<p>如果提供了单个 <cite>&lt;length&gt;</cite>，则该值表示当前文本位置的新的相对 X 坐标，用于渲染与此元素或其任何后代中的第一个字符相对应的字形。在渲染第一个字符的字形之前，当前文本位置将在当前用户坐标系的 x 轴上按 <cite>&lt;length&gt;</cite> 移动。</p>
+<p>如果提供了 n 个 <cite>&lt;length&gt;</cite> 的 <cite>list</cite>，则这些值表示渲染与此元素或其任何后代中的前 n 个字符相对应的字形之前，当前文本位置在 x 轴上的增量位移。因此，在渲染每个字符的字形之前，当前文本位置会按 <cite>&lt;length&gt;</cite> 在当前 <strong>Text</strong> 元素中前一个字符的字形渲染结果沿 x 轴偏移。</p>
+<p>如果提供的 <cite>&lt;lengths&gt;</cite> 数量超过字符数，则额外的 <cite>&lt;lengths&gt;</cite> 对字形位置不会产生影响。</p>
+<p>如果字符数超过 <cite>&lt;lengths&gt;</cite> 数量，则对于每个额外的字符：</p>
+<ol class="loweralpha simple">
+<li><p>如果祖先 <strong>Text</strong> 或 <strong>TSpan</strong> 元素通过 <strong>dx</strong> 属性为给定字符指定了相对 X 坐标，则当前文本位置会沿当前用户坐标系的 x 轴按该值移动（最近的祖先优先），否则</p></li>
+<li><p>不会沿 x 轴进行额外的位移。</p></li>
+</ol>
+<p>如果未指定该属性：</p>
+<ol class="loweralpha simple">
+<li><p>如果祖先 <strong>Text</strong> 或 <strong>TSpan</strong> 元素通过 <strong>dx</strong> 属性为给定字符指定了相对 X 坐标，则当前文本位置会沿当前用户坐标系的 x 轴按该值移动（最近的祖先优先），否则</p></li>
+<li><p>不会沿 x 轴进行额外的位移。</p></li>
+</ol>
+</li>
+<li><p><strong>dy</strong> – <cite>&lt;length+&gt;</cite></p>
+<p>对应的相对 Y 坐标列表，用于 <strong>tspan</strong> 元素中的字符。<strong>dy</strong> 属性的处理规则与 <strong>dx</strong> 属性的处理规则相同。</p>
+</li>
+<li><p><strong>rotate</strong> – <cite>&lt;angle+&gt;</cite></p>
+<p>在当前文本位置应用的附加旋转，将作用于该元素中每个字符的字形。</p>
+<p>如果提供了 <cite>&lt;numbers&gt;</cite> 的 <cite>list</cite>，则第一个 <cite>&lt;number&gt;</cite> 表示与此元素或其任何后代中的第一个字符相对应的字形的附加旋转，第二个 <cite>&lt;number&gt;</cite> 表示与第二个字符相对应的附加旋转，依此类推。</p>
+<p>如果提供的 <cite>&lt;numbers&gt;</cite> 数量超过字符数，则额外的 <cite>&lt;numbers&gt;</cite> 将被忽略。</p>
+<p>如果字符数超过 <cite>&lt;numbers&gt;</cite> 数量，则对于每个额外的字符，必须使用最后一个数值指定的旋转值。</p>
+<p>如果未指定该属性，并且祖先 <strong>Text</strong> 或 <strong>TSpan</strong> 元素通过 <strong>rotate</strong> 属性为给定字符指定了附加旋转，则对该字符应用给定的附加旋转（最近的祖先优先）。如果字符数超过祖先的 <strong>rotate</strong> 属性中指定的 <cite>&lt;numbers&gt;</cite> 数量，则对于每个额外的字符，必须使用最后一个数值指定的旋转值。</p>
+<p>此附加旋转对当前文本位置的修改规则没有影响，作为文本路径上的旋转以及 <strong>glyph-orientation-horizontal</strong> 或 <strong>glyph-orientation-vertical</strong> 的补充。</p>
+</li>
+<li><p><strong>class</strong> – <cite>string</cite></p>
+<p>为元素分配一个或多个 CSS 类名。</p>
+</li>
+<li><p><strong>style</strong> – <cite>string</cite></p>
+<p>允许直接在给定元素上指定每个元素的 CSS 样式规则。</p>
+</li>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><em>False</em>：如果即使外部资源不可用，文档渲染仍然可以继续，反之为 <em>True</em>。</p>
+</li>
+<li><p><strong>textLength</strong> – <cite>&lt;length&gt;</cite></p>
+<p>此属性的目的是允许作者在视觉渲染顺序（经过双向重排后）中精确对齐与此元素相对应的第一个和最后一个渲染的字形；因此，对于最后渲染的字符（在视觉渲染顺序中，经过双向重排后），超出正常字形进展的额外字符间距在用户代理确定适当的文本字符串扩展/压缩以适应 <strong>textLength</strong> 长度时将被忽略（在大多数情况下）。</p>
+</li>
+<li><p><strong>lengthAdjust</strong> – <cite>‘spacing | spacingAndGlyphs’</cite></p>
+<p>指示用户代理应采取哪种类型的调整，以使渲染后的文本长度与 <strong>textLength</strong> 属性中指定的值匹配。</p>
+<ul class="simple">
+<li><p><cite>‘spacing’</cite> 表示仅调整字形的进展值。字形本身不会被拉伸或压缩。</p></li>
+<li><p><cite>‘spacingAndGlyphs’</cite> 表示调整进展值，并且字形本身会在一个轴（即沿着行进方向）上被拉伸或压缩。</p></li>
+</ul>
+<p>如果未指定该属性，则效果等同于指定了 <em>spacing</em> 值。</p>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>x</strong> – <cite>&lt;coordinate+&gt;</cite></p>
+<p>If a single <cite>&lt;coordinate&gt;</cite> is provided, then the value represents the new
+absolute X coordinate for the current text position for rendering the
+glyphs that correspond to the first character within this element or
+any of its descendants.</p>
+<p>If <cite>list</cite> of n <cite>&lt;coordinates&gt;</cite> is provided, then the values represent
+new absolute X coordinates for the current text position for rendering
+the glyphs corresponding to each of the first n characters within this
+element or any of its descendants.</p>
+<p>If more <cite>&lt;coordinates&gt;</cite> are provided than characters, then the extra
+<cite>&lt;coordinates&gt;</cite> will have no effect on glyph positioning.</p>
+<p>If more characters exist than <cite>&lt;coordinates&gt;</cite> , then for each of these
+extra characters:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>if an ancestor <strong>Text</strong> or <strong>TSpan</strong>
+element specifies an absolute X coordinate for the given
+character via an <strong>x</strong> attribute, then that absolute X
+coordinate is used as the starting X coordinate for that
+character (nearest ancestor has precedence), else</p></li>
+<li><p>the starting X coordinate for rendering the glyphs corresponding
+to the given character is the X coordinate of the resulting
+current text position from the most recently rendered glyph for
+the current <strong>Text</strong> element.</p></li>
+</ol>
+</div></blockquote>
+<p>If the attribute is not specified:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>if an ancestor <strong>Text</strong> or <strong>TSpan</strong>
+element specifies an absolute X coordinate for a given character
+via an <strong>x</strong> attribute, then that absolute X coordinate is
+used (nearest ancestor has precedence), else</p></li>
+<li><p>the starting X coordinate for rendering the glyphs corresponding
+to a given character is the X coordinate of the resulting current
+text position from the most recently rendered glyph for the current
+<strong>Text</strong> element.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p><strong>y</strong> – <cite>&lt;coordinate+&gt;</cite></p>
+<p>The corresponding list of absolute Y coordinates for the glyphs
+corresponding to the characters within this element. The processing
+rules for the <strong>y</strong> attribute parallel the processing rules for
+the <strong>x</strong> attribute.</p>
+</li>
+<li><p><strong>dx</strong> – <cite>&lt;length+&gt;</cite></p>
+<p>If a single &lt;length&gt; is provided, this value represents the new
+relative X coordinate for the current text position for rendering
+the glyphs corresponding to the first character within this element
+or any of its descendants. The current text position is shifted
+along the x-axis of the current user coordinate system by <cite>&lt;length&gt;</cite>
+before the first character’s glyphs are rendered.</p>
+<p>If a <cite>list</cite> of n <cite>&lt;length&gt;</cite> is provided, then
+the values represent incremental shifts along the x-axis for the
+current text position before rendering the glyphs corresponding to
+the first n characters within this element or any of its descendants.
+Thus, before the glyphs are rendered corresponding to each character,
+the current text position resulting from drawing the glyphs for the
+previous character within the current <strong>Text</strong> element
+is shifted along the X axis of the current user coordinate system by
+<cite>&lt;length&gt;</cite> .</p>
+<p>If more <cite>&lt;lengths&gt;</cite> are provided than characters, then any extra
+<cite>&lt;lengths&gt;</cite> will have no effect on glyph positioning.</p>
+<p>If more characters exist than &lt;length&gt;s, then for each of these extra
+characters:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>if an ancestor <strong>Text</strong> or <strong>TSpan</strong>
+element specifies a relative X coordinate for the given character
+via a <strong>dx</strong> attribute, then the current text position is shifted
+along the x-axis of the current user coordinate system by that
+amount (nearest ancestor has precedence), else</p></li>
+<li><p>no extra shift along the x-axis occurs.</p></li>
+</ol>
+</div></blockquote>
+<p>If the attribute is not specified:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>if an ancestor <strong>Text</strong> or <strong>TSpan</strong>
+element specifies a relative X coordinate for a given character
+via a <strong>dx</strong> attribute, then the current text position is shifted
+along the x-axis of the current user coordinate system by that
+amount (nearest ancestor has precedence), else</p></li>
+<li><p>no extra shift along the x-axis occurs.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p><strong>dy</strong> – <cite>&lt;length+&gt;</cite></p>
+<p>The corresponding list of relative Y coordinates for the characters
+within the <strong>tspan</strong> element. The processing rules for the <strong>dy</strong> attribute
+parallel the processing rules for the <strong>dx</strong> attribute.</p>
+</li>
+<li><p><strong>rotate</strong> – <cite>&lt;angle+&gt;</cite></p>
+<p>The supplemental rotation about the current text position that will be
+applied to all of the glyphs corresponding to each character within
+this element.</p>
+<p>If a <cite>list</cite> of <cite>&lt;numbers&gt;</cite> is provided, then the first <cite>&lt;number&gt;</cite> represents
+the supplemental rotation for the glyphs corresponding to the first
+character within this element or any of its descendants, the second
+&lt;number&gt; represents the supplemental rotation for the glyphs that
+correspond to the second character, and so on.</p>
+<p>If more <cite>&lt;numbers&gt;</cite> are provided than there are characters, then the
+extra <cite>&lt;numbers&gt;</cite> will be ignored.</p>
+<p>If more characters are provided than <cite>&lt;numbers&gt;</cite>, then for each of these
+extra characters the rotation value specified by the last number must
+be used.</p>
+<p>If the attribute is not specified and if an ancestor <strong>Text</strong>
+or <strong>TSpan</strong> element specifies a supplemental rotation
+for a given character via a <strong>rotate</strong> attribute, then the given
+supplemental rotation is applied to the given character (nearest
+ancestor has precedence). If there are more characters than <cite>&lt;numbers&gt;</cite>
+specified in the ancestor’s <strong>rotate</strong> attribute, then for each of
+these extra characters the rotation value specified by the last number
+must be used.</p>
+<p>This supplemental rotation has no impact on the rules by which current
+text position is modified as glyphs get rendered and is supplemental
+to any rotation due to text on a path and to <strong>glyph-orientation-horizontal</strong>
+or <strong>glyph-orientation-vertical</strong>.</p>
+</li>
+<li><p><strong>class</strong> – <cite>string</cite></p>
+<p>assigns one or more css-class-names to an element</p>
+</li>
+<li><p><strong>style</strong> – <cite>string</cite></p>
+<p>allows per-element css-style rules to be specified directly on a given element</p>
+</li>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><em>False</em>: if document rendering can proceed even if external resources are
+unavailable else: <em>True</em></p>
+</li>
+<li><p><strong>textLength</strong> – <cite>&lt;length&gt;</cite></p>
+<p>The purpose of this attribute is to allow
+the author to achieve exact alignment, in visual rendering order after
+any bidirectional reordering, for the first and last rendered glyphs
+that correspond to this element; thus, for the last rendered character
+(in visual rendering order after any bidirectional reordering), any
+supplemental inter-character spacing beyond normal glyph advances are
+ignored (in most cases) when the user agent determines the appropriate
+amount to expand/compress the text string to fit within a length of
+<strong>textLength</strong>.</p>
+</li>
+<li><p><strong>lengthAdjust</strong> – <code class="docutils literal notranslate"><span class="pre">'spacing</span> <span class="pre">|</span> <span class="pre">spacingAndGlyphs'</span></code></p>
+<p>Indicates the type of adjustments which the user agent shall make to make
+the rendered length of the text match the value specified on the <strong>textLength</strong>
+attribute.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'spacing'</span></code> indicates that only the advance values are adjusted. The
+glyphs themselves are not stretched or compressed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'spacingAndGlyphs'</span></code> indicates that the advance values are adjusted and
+the glyphs themselves stretched or compressed in one axis (i.e., a
+direction parallel to the inline-progression-direction).</p></li>
+</ul>
+<p>If the attribute is not specified, the effect is as a value of <em>spacing</em>
+were specified.</p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id5">
+<h2>标准 SVG 属性<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<p>Standard SVG Attributes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../attributes/core.html"><span class="doc">Core Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/conditional_processing.html"><span class="doc">Conditional Processing Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/graphical_event.html"><span class="doc">Graphical Event Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/presentation.html"><span class="doc">Presentation Attributes</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="tref">
+<h1>TRef<a class="headerlink" href="#tref" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.text.TRef">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.text.</span></span><span class="sig-name descname"><span class="pre">TRef</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.text.TRef" title="永久链接至目标">#</a></dt>
+<dd><p>The textual content for a <strong>Text</strong> can be either character data directly
+embedded within the &lt;text&gt; element or the character data content of a
+referenced element, where the referencing is specified with a <strong>TRef</strong>
+element.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/text.html#TRefElement">http://www.w3.org/TR/SVG11/text.html#TRefElement</a></p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.text.TRef.__init__">
+<span class="sig-prename descclassname"><span class="pre">TRef.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.text.TRef.__init__" title="永久链接至目标">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> – create a reference this element, if element is a                         <cite>string</cite> its the <strong>id</strong> name of the referenced element,                         if element is a <a class="reference internal" href="base.html#svgwrite.base.BaseElement" title="svgwrite.base.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseElement</span></code></a>                         the <strong>id</strong> SVG Attribute is used to create the reference.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.text.TRef.set_href">
+<span class="sig-prename descclassname"><span class="pre">TRef.</span></span><span class="sig-name descname"><span class="pre">set_href</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.text.TRef.set_href" title="永久链接至目标">#</a></dt>
+<dd><p>Create a reference to <strong>element</strong>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> – if element is a <cite>string</cite> its the <strong>id</strong> name of the
+referenced element, if element is a <strong>BaseElement</strong> class the <strong>id</strong>
+SVG Attribute is used to create the reference.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="id6">
+<h2>父类<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
+<p>Parent Classes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="base.html#svgwrite.base.BaseElement" title="svgwrite.base.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.base.BaseElement</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.XLink" title="svgwrite.mixins.XLink"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.XLink</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.Presentation" title="svgwrite.mixins.Presentation"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.Presentation</span></code></a></p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>SVG 属性<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h2>
+<p>SVG Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>class</strong> – <cite>string</cite></p>
+<p>为元素分配一个或多个 CSS 类名。</p>
+</li>
+<li><p><strong>style</strong> – <cite>string</cite></p>
+<p>允许直接在给定元素上指定每个元素的 CSS 样式规则。</p>
+</li>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><em>False</em>：如果即使外部资源不可用，文档渲染仍然可以继续；否则为 <em>True</em>。</p>
+</li>
+<li><p><strong>xlink:href</strong> – <cite>&lt;string&gt;</cite></p>
+<p>指向一个元素的 IRI 引用，该元素的字符数据内容将作为此 <strong>tref</strong> 元素的字符数据。</p>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>class</strong> – <cite>string</cite></p>
+<p>assigns one or more css-class-names to an element</p>
+</li>
+<li><p><strong>style</strong> – <cite>string</cite></p>
+<p>allows per-element css-style rules to be specified directly on a given element</p>
+</li>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><em>False</em>: if document rendering can proceed even if external resources are
+unavailable else: <em>True</em></p>
+</li>
+<li><p><strong>xlink:href</strong> – <cite>&lt;string&gt;</cite>
+A IRI reference to an element whose character data content shall be used
+as character data for this <strong>tref</strong> element.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id8">
+<h2>标准 SVG 属性<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h2>
+<p>Standard SVG Attributes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../attributes/core.html"><span class="doc">Core Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/conditional_processing.html"><span class="doc">Conditional Processing Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/graphical_event.html"><span class="doc">Graphical Event Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/presentation.html"><span class="doc">Presentation Attributes</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="textpath">
+<h1>TextPath<a class="headerlink" href="#textpath" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.text.TextPath">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.text.</span></span><span class="sig-name descname"><span class="pre">TextPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startOffset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'align'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'exact'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.text.TextPath" title="永久链接至目标">#</a></dt>
+<dd><p>In addition to text drawn in a straight line, SVG also includes the
+ability to place text along the shape of a <strong>path</strong> element. To specify that
+a block of text is to be rendered along the shape of a <strong>path</strong>, include
+the given text within a <strong>textPath</strong> element which includes an <strong>xlink:href</strong>
+attribute with a IRI reference to a <strong>path</strong> element.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/text.html#TextPathElement">http://www.w3.org/TR/SVG11/text.html#TextPathElement</a></p>
+</div>
+<section id="id9">
+<h2>方法<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h2>
+<p>Methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.text.TextPath.__init__">
+<span class="sig-prename descclassname"><span class="pre">TextPath.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startOffset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'align'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'exact'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.text.TextPath.__init__" title="永久链接至目标">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – link to <strong>path</strong>, <strong>id</strong> string or <strong>Path</strong> object</p></li>
+<li><p><strong>text</strong> (<em>string</em>) – <strong>textPath</strong> content</p></li>
+<li><p><strong>startOffset</strong> (<em>number</em>) – text starts with offset from begin of path.</p></li>
+<li><p><strong>method</strong> (<em>string</em>) – <code class="docutils literal notranslate"><span class="pre">align|stretch</span></code></p></li>
+<li><p><strong>spacing</strong> (<em>string</em>) – <code class="docutils literal notranslate"><span class="pre">exact|auto</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="id10">
+<h2>父类<a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h2>
+<p>Parent Classes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="base.html#svgwrite.base.BaseElement" title="svgwrite.base.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.base.BaseElement</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.XLink" title="svgwrite.mixins.XLink"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.XLink</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.Presentation" title="svgwrite.mixins.Presentation"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.Presentation</span></code></a></p></li>
+</ul>
+</section>
+<section id="id11">
+<h2>SVG 属性<a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h2>
+<p>SVG Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>class</strong> – <cite>string</cite></p>
+<p>为元素分配一个或多个 CSS 类名。</p>
+</li>
+<li><p><strong>style</strong> – <cite>string</cite></p>
+<p>允许直接在给定元素上指定每个元素的 CSS 样式规则。</p>
+</li>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><em>False</em>：如果即使外部资源不可用，文档渲染仍然可以继续；否则为 <em>True</em>。</p>
+</li>
+<li><p><strong>xlink:href</strong> – <cite>string</cite></p>
+<p>指向一个元素的 IRI 引用，该元素的字符数据内容将作为此 <strong>TRef</strong> 元素的字符数据。</p>
+</li>
+<li><p><strong>startOffset</strong> – <cite>&lt;length&gt;</cite></p>
+<p>从 <strong>path</strong> 起始位置的偏移量，用于计算初始当前文本位置，采用用户代理的路径距离算法计算。值可以是百分比或在当前用户坐标系统中测量的路径距离。</p>
+</li>
+<li><p><strong>method</strong> – <code class="docutils literal notranslate"><span class="pre">'align</span> <span class="pre">|</span> <span class="pre">stretch'</span></code></p>
+<p>指示文本沿路径渲染的方式。</p>
+</li>
+<li><p><strong>spacing</strong> – <code class="docutils literal notranslate"><span class="pre">'auto</span> <span class="pre">|</span> <span class="pre">exact'</span></code></p>
+<p>指示用户代理应如何确定沿路径渲染的字形之间的间距。</p>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>class</strong> – <cite>string</cite></p>
+<p>assigns one or more css-class-names to an element</p>
+</li>
+<li><p><strong>style</strong> – <cite>string</cite></p>
+<p>allows per-element css-style rules to be specified directly on a given element</p>
+</li>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><em>False</em>: if document rendering can proceed even if external resources are
+unavailable else: <em>True</em></p>
+</li>
+<li><p><strong>xlink:href</strong> – <cite>string</cite></p>
+<p>A IRI reference to an element whose character data content shall be used
+as character data for this <strong>TRef</strong> element.</p>
+</li>
+<li><p><strong>startOffset</strong> – <cite>&lt;length&gt;</cite></p>
+<p>An offset from the start of the <strong>path</strong> for
+the initial current text position, calculated using the user agent’s
+distance along the path algorithm. Value as percentage or distance along
+the path measured in the current user coordinate system.</p>
+</li>
+<li><p><strong>method</strong> – <code class="docutils literal notranslate"><span class="pre">'align</span> <span class="pre">|</span> <span class="pre">stretch'</span></code></p>
+<p>Indicates the method by which text should be rendered along the path.</p>
+</li>
+<li><p><strong>spacing</strong> – <code class="docutils literal notranslate"><span class="pre">'auto</span> <span class="pre">|</span> <span class="pre">exact'</span></code></p>
+<p>Indicates how the user agent should determine the spacing between glyphs
+that are to be rendered along a path.</p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id12">
+<h2>标准 SVG 属性<a class="headerlink" href="#id12" title="此标题的永久链接">#</a></h2>
+<p>Standard SVG Attributes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../attributes/core.html"><span class="doc">Core Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/conditional_processing.html"><span class="doc">Conditional Processing Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/graphical_event.html"><span class="doc">Graphical Event Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/presentation.html"><span class="doc">Presentation Attributes</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="textarea">
+<h1>TextArea<a class="headerlink" href="#textarea" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.text.TextArea">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.text.</span></span><span class="sig-name descname"><span class="pre">TextArea</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.text.TextArea" title="永久链接至目标">#</a></dt>
+<dd><p>At this time <strong>textArea</strong> is only available for SVG 1.2 Tiny profile.</p>
+<p>The <strong>textArea</strong>  element allows simplistic wrapping of text content within a
+given region. The <cite>tiny</cite> profile of SVG specifies a single rectangular region.
+Other profiles may allow a sequence of arbitrary shapes.</p>
+<p>Text wrapping via the <strong>textArea</strong> element is available as a lightweight and
+convenient facility for simple text wrapping where a complete box model layout
+engine is not required.</p>
+<p>The layout of wrapped text is user agent dependent; thus, content developers
+need to be aware that there might be different results, particularly with
+regard to where line breaks occur.</p>
+<p>The TextArea class wraps every text added by write() or writeline() as
+<strong>tspan</strong> element.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVGMobile12/text.html#TextAreaElement">http://www.w3.org/TR/SVGMobile12/text.html#TextAreaElement</a></p>
+</div>
+<section id="id13">
+<h2>方法<a class="headerlink" href="#id13" title="此标题的永久链接">#</a></h2>
+<p>Methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.text.TextArea.write">
+<span class="sig-prename descclassname"><span class="pre">TextArea.</span></span><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.text.TextArea.write" title="永久链接至目标">#</a></dt>
+<dd><p>Add text as <strong>tspan</strong> elements, with extra-params for the <strong>tspan</strong> element.</p>
+<p>Use the ‘\n’ character for line breaks.</p>
+</dd></dl>
+
+</section>
+<section id="id14">
+<h2>父类<a class="headerlink" href="#id14" title="此标题的永久链接">#</a></h2>
+<p>Parent Classes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="base.html#svgwrite.base.BaseElement" title="svgwrite.base.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.base.BaseElement</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.Transform" title="svgwrite.mixins.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.Transform</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.Presentation" title="svgwrite.mixins.Presentation"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.Presentation</span></code></a></p></li>
+</ul>
+</section>
+<section id="id15">
+<h2>SVG 属性<a class="headerlink" href="#id15" title="此标题的永久链接">#</a></h2>
+<p>SVG Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">中文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>x</strong> – <em>&lt;coordinate&gt;</em></p>
+<p>文本内容将被放置的矩形区域的一个角落的 x 轴坐标。lacuna 值为 <code class="docutils literal notranslate"><span class="pre">'0'</span></code>。</p>
+</li>
+<li><p><strong>y</strong> – <em>&lt;coordinate&gt;</em></p>
+<p>文本内容将被放置的矩形区域的一个角落的 y 轴坐标。lacuna 值为 <code class="docutils literal notranslate"><span class="pre">'0'</span></code>。</p>
+</li>
+<li><p><strong>width</strong> – <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> | <em>&lt;coordinate&gt;</em></p>
+<p>文本内容将被放置的矩形区域的宽度。值为 <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> 表示矩形区域的宽度是无限的。lacuna 值为 <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>。</p>
+</li>
+<li><p><strong>height</strong> – <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> | <em>&lt;coordinate&gt;</em></p>
+<p>文本内容将被放置的矩形区域的高度。值为 <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> 表示矩形区域的高度是无限的。lacuna 值为 <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>。</p>
+</li>
+<li><p><strong>editable</strong> – <code class="docutils literal notranslate"><span class="pre">'auto'|</span> <span class="pre">simple'</span></code></p>
+<p>此属性指示文本是否可以编辑。参见 ‘editable’ 属性的定义。</p>
+</li>
+<li><p><strong>focusable</strong> – <code class="docutils literal notranslate"><span class="pre">'true</span> <span class="pre">|</span> <span class="pre">false</span> <span class="pre">|</span> <span class="pre">auto'</span></code></p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>值</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'true'</span></code></p></td>
+<td><p>元素是键盘可识别的，必须像其他任何可以获得焦点的 UI 组件一样处理。</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'false'</span></code></p></td>
+<td><p>元素不可聚焦。</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'auto'</span></code></p></td>
+<td><p>lacuna 值。等同于 <code class="docutils literal notranslate"><span class="pre">'false'</span></code>。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>例外情况：参见 <a class="reference external" href="http://www.w3.org/TR/SVGMobile12/interact.html#focusable-attr">http://www.w3.org/TR/SVGMobile12/interact.html#focusable-attr</a></p>
+</li>
+<li><p><strong>line-increment</strong> – <code class="docutils literal notranslate"><span class="pre">'auto</span> <span class="pre">|</span> <span class="pre">inherit'</span></code> | <cite>&lt;number&gt;</cite></p>
+<p><strong>line-increment</strong> 属性提供了对块级进展方向中每一行大小的有限控制。此属性适用于 <strong>textArea</strong> 元素及其子元素。<strong>line-increment</strong> 属性在用于非 <strong>textArea</strong> 元素或没有 <strong>textArea</strong> 元素作为祖先的元素时，不应产生任何效果。</p>
+</li>
+<li><p><strong>text-align</strong> – <code class="docutils literal notranslate"><span class="pre">'start</span> <span class="pre">|</span> <span class="pre">end</span> <span class="pre">|</span> <span class="pre">center</span> <span class="pre">|</span> <span class="pre">inherit'</span></code></p>
+<p>在流动文本的行进方向中，文本对齐通过 text-align 属性提供。</p>
+</li>
+<li><p><strong>display-align</strong> – <code class="docutils literal notranslate"><span class="pre">'auto</span> <span class="pre">|</span> <span class="pre">before</span> <span class="pre">|</span> <span class="pre">center</span> <span class="pre">|</span> <span class="pre">after</span> <span class="pre">|</span> <span class="pre">inherit'</span></code></p>
+<p><strong>display-align</strong> 属性指定 <strong>textArea</strong> 元素中文本内容在块级进展方向上的对齐方式。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>值</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'auto'</span></code></p></td>
+<td><p>对于 SVG，auto 等同于 before。</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'before'</span></code></p></td>
+<td><p>第一行的前边缘与第一区域的前边缘对齐。</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'center'</span></code></p></td>
+<td><p>行在块级进展方向上居中。</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'after'</span></code></p></td>
+<td><p>最后一行的后边缘与最后区域的后边缘对齐。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>布局规则：参见 <a class="reference external" href="http://www.w3.org/TR/SVGMobile12/text.html#TextAreaElement">http://www.w3.org/TR/SVGMobile12/text.html#TextAreaElement</a></p>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">英文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>x</strong> – <em>&lt;coordinate&gt;</em></p>
+<p>The x-axis coordinate of one corner of the rectangular region into which
+the text content will be placed. The lacuna value is <code class="docutils literal notranslate"><span class="pre">'0'</span></code>.</p>
+</li>
+<li><p><strong>y</strong> – <em>&lt;coordinate&gt;</em></p>
+<p>The y-axis coordinate of one corner of the rectangular region into which
+the text content will be placed. The lacuna value is <code class="docutils literal notranslate"><span class="pre">'0'</span></code>.</p>
+</li>
+<li><p><strong>width</strong> – <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> | <em>&lt;coordinate&gt;</em></p>
+<p>The width of the rectangular region into which the text content will be
+placed. A value of <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> indicates that the width of the rectangular
+region is infinite. The lacuna value is <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>.</p>
+</li>
+<li><p><strong>height</strong> – <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> | <em>&lt;coordinate&gt;</em></p>
+<p>The height of the rectangular region into which the text content will be
+placed. A value of <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> indicates that the height of the rectangular
+region is infinite. The lacuna value is <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>.</p>
+</li>
+<li><p><strong>editable</strong> – <code class="docutils literal notranslate"><span class="pre">'auto`|</span> <span class="pre">simple'</span></code></p>
+<p>This attribute indicates whether the text can be edited. See the definition
+of the ‘editable’ attribute.</p>
+</li>
+<li><p><strong>focusable</strong> – <code class="docutils literal notranslate"><span class="pre">'true</span> <span class="pre">|</span> <span class="pre">false</span> <span class="pre">|</span> <span class="pre">auto'</span></code></p>
+<p>Exception: see <a class="reference external" href="http://www.w3.org/TR/SVGMobile12/interact.html#focusable-attr">http://www.w3.org/TR/SVGMobile12/interact.html#focusable-attr</a></p>
+</li>
+<li><p><strong>line-increment</strong> – <code class="docutils literal notranslate"><span class="pre">'auto</span> <span class="pre">|</span> <span class="pre">inherit'</span></code> | <cite>&lt;number&gt;</cite></p>
+<p>The <strong>line-increment</strong> property provides limited control over the size of
+each line in the block-progression-direction. This property applies to the
+<strong>textArea</strong> element, and to child elements of the <strong>textArea</strong> element.
+The <strong>line-increment</strong> property must not have any effect when used on an
+element which is not, or does not have as an ancestor, a <strong>textArea</strong>
+element.</p>
+</li>
+<li><p><strong>text-align</strong> – <code class="docutils literal notranslate"><span class="pre">'start</span> <span class="pre">|</span> <span class="pre">end</span> <span class="pre">|</span> <span class="pre">center</span> <span class="pre">|</span> <span class="pre">inherit'</span></code></p>
+<p>Alignment in the inline progression direction in flowing text is provided
+by the text-align property.</p>
+</li>
+<li><p><strong>display-align</strong> – <code class="docutils literal notranslate"><span class="pre">'auto</span> <span class="pre">|</span> <span class="pre">before</span> <span class="pre">|</span> <span class="pre">center</span> <span class="pre">|</span> <span class="pre">after</span> <span class="pre">|</span> <span class="pre">inherit'</span></code></p>
+<p>The <strong>display-align</strong> property specifies the alignment, in the
+block-progression-direction, of the text content of the <strong>textArea</strong> element.</p>
+<p>Layout rules: see <a class="reference external" href="http://www.w3.org/TR/SVGMobile12/text.html#TextAreaElement">http://www.w3.org/TR/SVGMobile12/text.html#TextAreaElement</a></p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="gradients.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">线性渐变/LinearGradient</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="image.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Image</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2014-2019, Manfred Moitzi &lt;me@mozman.at&gt;
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Text</a><ul>
+<li><a class="reference internal" href="#svgwrite.text.Text"><code class="docutils literal notranslate"><span class="pre">Text</span></code></a></li>
+<li><a class="reference internal" href="#id1">父类</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tspan">TSpan</a><ul>
+<li><a class="reference internal" href="#svgwrite.text.TSpan"><code class="docutils literal notranslate"><span class="pre">TSpan</span></code></a><ul>
+<li><a class="reference internal" href="#svgwrite.text.TSpan.__init__"><code class="docutils literal notranslate"><span class="pre">TSpan.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">属性</a><ul>
+<li><a class="reference internal" href="#svgwrite.text.TSpan.text"><code class="docutils literal notranslate"><span class="pre">TSpan.text</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">方法</a><ul>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">TSpan.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">父类</a></li>
+<li><a class="reference internal" href="#svg">SVG 属性</a></li>
+<li><a class="reference internal" href="#id5">标准 SVG 属性</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tref">TRef</a><ul>
+<li><a class="reference internal" href="#svgwrite.text.TRef"><code class="docutils literal notranslate"><span class="pre">TRef</span></code></a><ul>
+<li><a class="reference internal" href="#svgwrite.text.TRef.__init__"><code class="docutils literal notranslate"><span class="pre">TRef.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.text.TRef.set_href"><code class="docutils literal notranslate"><span class="pre">TRef.set_href()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6">父类</a></li>
+<li><a class="reference internal" href="#id7">SVG 属性</a></li>
+<li><a class="reference internal" href="#id8">标准 SVG 属性</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#textpath">TextPath</a><ul>
+<li><a class="reference internal" href="#svgwrite.text.TextPath"><code class="docutils literal notranslate"><span class="pre">TextPath</span></code></a></li>
+<li><a class="reference internal" href="#id9">方法</a><ul>
+<li><a class="reference internal" href="#svgwrite.text.TextPath.__init__"><code class="docutils literal notranslate"><span class="pre">TextPath.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id10">父类</a></li>
+<li><a class="reference internal" href="#id11">SVG 属性</a></li>
+<li><a class="reference internal" href="#id12">标准 SVG 属性</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#textarea">TextArea</a><ul>
+<li><a class="reference internal" href="#svgwrite.text.TextArea"><code class="docutils literal notranslate"><span class="pre">TextArea</span></code></a></li>
+<li><a class="reference internal" href="#id13">方法</a><ul>
+<li><a class="reference internal" href="#svgwrite.text.TextArea.write"><code class="docutils literal notranslate"><span class="pre">TextArea.write()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id14">父类</a></li>
+<li><a class="reference internal" href="#id15">SVG 属性</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>

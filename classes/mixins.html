@@ -1,0 +1,776 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="Inkscape 扩展" href="../extensions/inkscape.html" /><link rel="prev" title="feDistantLight 滤镜元素" href="fe_lights.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>ViewBox Mixin - svgwrite 1.4.3 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">svgwrite 1.4.3 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">svgwrite 1.4.3 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">内容/Contents</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview.html">概述</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/core.html">核心属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/conditional_processing.html">条件处理属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/document_event.html">文档事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/graphical_event.html">图形事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/presentation.html">演示属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/xlink.html">XLink 属性</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">SVG 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id1">其他 SVG 文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id2">SVG 实现状态</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块/Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../svgwrite.html">svgwrite 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html">utils 模块</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">结构对象/Structural Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base.html">BaseElement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drawing.html">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svg.html">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">Group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defs.html">Defs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symbol.html">Symbol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="marker.html">Marker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use.html">Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyperlink.html">Hyperlink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘制对象/Graphical Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="path.html">Path</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html">Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#rect">Rect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#circle">Circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#ellipse">Ellipse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polyline">Polyline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polygon">Polygon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#basic-shapes-examples">Basic Shapes Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image.html">Image</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">文本对象/Text Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#tspan">TSpan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#tref">TRef</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#textpath">TextPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#textarea">TextArea</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘图服务/Paint server</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gradients.html">线性渐变/LinearGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradients.html#radialgradient">径向渐变/RadialGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pattern.html">图案/Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidcolor.html">SolidColor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">遮盖/Masking</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="masking.html">ClipPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="masking.html#mask">Mask</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">动画/Animation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="animate.html">animate 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#set">Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatemotion">AnimateMotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#id8">Animate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatecolor">AnimateColor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatetransform">AnimateTransform</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="animate.html#id22">SVG 动画属性</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_events.html">Animation Events Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_target.html">Animation Target Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html">Animation Timing Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html">Animation Value Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_addition.html">Animation Addition Attributes</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">滤镜效果/Filter Effects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html#filter-element">Filter Element</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_primitive.html">滤镜原语概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_primitive.html#svg">滤镜原语的通用svg属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_blend.html">feBlend 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_color_matrix.html">feColorMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_component_transfer.html">feComponentTransfer 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_composite.html">feComposite 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_convolve_matrix.html">feConvolveMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_diffuse_lighting.html">feDiffuseLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_displacement_map.html">feDisplacementMap 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_flood.html">feFlood 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_gaussian_blur.html">feGaussianBlur 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_image.html">feImage 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_merge.html">feMerge 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_morphology.html">feMorphology 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_offset.html">feOffset 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_specular_lighting.html">feSpecularLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_tile.html">feTile 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_turbulence.html">feTurbulence 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html">feDistantLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fepointlight">fePointLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fespotlight">feSpotLight 滤镜元素</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MixIns</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">ViewBox Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#transform-mixin">Transform Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#xlink-mixin">XLink Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#presentation-mixin">Presentation Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#mediagroup-mixin">MediaGroup Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#markers-mixin">Markers Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#clipping-mixin">Clipping Mixin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">扩展/Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/inkscape.html">Inkscape 扩展</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="viewbox-mixin">
+<h1>ViewBox Mixin<a class="headerlink" href="#viewbox-mixin" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.mixins.ViewBox">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.mixins.</span></span><span class="sig-name descname"><span class="pre">ViewBox</span></span><a class="headerlink" href="#svgwrite.mixins.ViewBox" title="永久链接至目标">#</a></dt>
+<dd><p>The <strong>ViewBox</strong> mixin provides the ability to specify that a
+given set of graphics stretch to fit a particular container element.</p>
+<p>The value of the <strong>viewBox</strong> attribute is a list of four numbers
+<strong>min-x</strong>, <strong>min-y</strong>, <strong>width</strong> and <strong>height</strong>, separated by whitespace
+and/or a comma, which specify a rectangle in <strong>user space</strong> which should
+be mapped to the bounds of the viewport established by the given element,
+taking into account attribute <strong>preserveAspectRatio</strong>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.ViewBox.viewbox">
+<span class="sig-prename descclassname"><span class="pre">ViewBox.</span></span><span class="sig-name descname"><span class="pre">viewbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">miny</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.ViewBox.viewbox" title="永久链接至目标">#</a></dt>
+<dd><p>Specify a rectangle in <strong>user space</strong> (no units allowed) which
+should be mapped to the bounds of the viewport established by the
+given element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>minx</strong> (<em>number</em>) – left border of the viewBox</p></li>
+<li><p><strong>miny</strong> (<em>number</em>) – top border of the viewBox</p></li>
+<li><p><strong>width</strong> (<em>number</em>) – width of the viewBox</p></li>
+<li><p><strong>height</strong> (<em>number</em>) – height of the viewBox</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.ViewBox.stretch">
+<span class="sig-prename descclassname"><span class="pre">ViewBox.</span></span><span class="sig-name descname"><span class="pre">stretch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.ViewBox.stretch" title="永久链接至目标">#</a></dt>
+<dd><p>Stretch viewBox in x and y direction to fill viewport, does not
+preserve aspect ratio.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.ViewBox.fit">
+<span class="sig-prename descclassname"><span class="pre">ViewBox.</span></span><span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">horiz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'center'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'middle'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'meet'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.ViewBox.fit" title="永久链接至目标">#</a></dt>
+<dd><p>Set the <strong>preserveAspectRatio</strong> attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>horiz</strong> (<em>string</em>) – horizontal alignment <code class="docutils literal notranslate"><span class="pre">'left</span> <span class="pre">|</span> <span class="pre">center</span> <span class="pre">|</span> <span class="pre">right'</span></code></p></li>
+<li><p><strong>vert</strong> (<em>string</em>) – vertical alignment <code class="docutils literal notranslate"><span class="pre">'top</span> <span class="pre">|</span> <span class="pre">middle</span> <span class="pre">|</span> <span class="pre">bottom'</span></code></p></li>
+<li><p><strong>scale</strong> (<em>string</em>) – scale method <code class="docutils literal notranslate"><span class="pre">'meet</span> <span class="pre">|</span> <span class="pre">slice'</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Scale methods</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'meet'</span></code></p></td>
+<td><p>preserve aspect ration and zoom to limits of viewBox</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'slice'</span></code></p></td>
+<td><p>preserve aspect ration and viewBox touch viewport on
+all bounds, viewBox will extend beyond the bounds of
+the viewport</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd></dl>
+
+</section>
+<section id="transform-mixin">
+<h1>Transform Mixin<a class="headerlink" href="#transform-mixin" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.mixins.Transform">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.mixins.</span></span><span class="sig-name descname"><span class="pre">Transform</span></span><a class="headerlink" href="#svgwrite.mixins.Transform" title="永久链接至目标">#</a></dt>
+<dd><p>The <strong>Transform</strong> mixin operates on the <strong>transform</strong> attribute.
+The value of the <strong>transform</strong> attribute is a <cite>&lt;transform-list&gt;</cite>, which
+is defined as a list of transform definitions, which are applied in the
+order provided. The individual transform definitions are separated by
+whitespace and/or a comma. All coordinates are <strong>user
+space coordinates</strong>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.Transform.translate">
+<span class="sig-prename descclassname"><span class="pre">Transform.</span></span><span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.Transform.translate" title="永久链接至目标">#</a></dt>
+<dd><p>Specifies a translation by <strong>tx</strong> and <strong>ty</strong>. If <strong>ty</strong> is not provided,
+it is assumed to be zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tx</strong> (<em>number</em>) – user coordinate - no units allowed</p></li>
+<li><p><strong>ty</strong> (<em>number</em>) – user coordinate - no units allowed</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.Transform.rotate">
+<span class="sig-prename descclassname"><span class="pre">Transform.</span></span><span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.Transform.rotate" title="永久链接至目标">#</a></dt>
+<dd><p>Specifies a rotation by <strong>angle</strong> degrees about a given point.
+If optional parameter <strong>center</strong> are not supplied, the rotate is
+about the origin of the current user coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angle</strong> (<em>number</em>) – rotate-angle in degrees</p></li>
+<li><p><strong>center</strong> (<em>2-tuple</em>) – rotate-center as user coordinate - no units allowed</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.Transform.skewX">
+<span class="sig-prename descclassname"><span class="pre">Transform.</span></span><span class="sig-name descname"><span class="pre">skewX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.Transform.skewX" title="永久链接至目标">#</a></dt>
+<dd><p>Specifies a skew transformation along the x-axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angle</strong> (<em>number</em>) – skew-angle in degrees, no units allowed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.Transform.skewY">
+<span class="sig-prename descclassname"><span class="pre">Transform.</span></span><span class="sig-name descname"><span class="pre">skewY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.Transform.skewY" title="永久链接至目标">#</a></dt>
+<dd><p>Specifies a skew transformation along the y-axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angle</strong> (<em>number</em>) – skew-angle in degrees, no units allowed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.Transform.scale">
+<span class="sig-prename descclassname"><span class="pre">Transform.</span></span><span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.Transform.scale" title="永久链接至目标">#</a></dt>
+<dd><p>Specifies a scale operation by <strong>sx</strong> and <strong>sy</strong>. If <strong>sy</strong> is not
+provided, it is assumed to be equal to <strong>sx</strong>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sx</strong> (<em>number</em>) – scalar factor x-axis, no units allowed</p></li>
+<li><p><strong>sy</strong> (<em>number</em>) – scalar factor y-axis, no units allowed</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="xlink-mixin">
+<h1>XLink Mixin<a class="headerlink" href="#xlink-mixin" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.mixins.XLink">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.mixins.</span></span><span class="sig-name descname"><span class="pre">XLink</span></span><a class="headerlink" href="#svgwrite.mixins.XLink" title="永久链接至目标">#</a></dt>
+<dd><p>XLink mixin</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.XLink.set_href">
+<span class="sig-prename descclassname"><span class="pre">XLink.</span></span><span class="sig-name descname"><span class="pre">set_href</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.XLink.set_href" title="永久链接至目标">#</a></dt>
+<dd><p>Create a reference to <strong>element</strong>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> – if element is a <cite>string</cite> its the <strong>id</strong> name of the
+referenced element, if element is a <strong>BaseElement</strong> class the <strong>id</strong>
+SVG Attribute is used to create the reference.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.XLink.set_xlink">
+<span class="sig-prename descclassname"><span class="pre">XLink.</span></span><span class="sig-name descname"><span class="pre">set_xlink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arcrole</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.XLink.set_xlink" title="永久链接至目标">#</a></dt>
+<dd><p>Set XLink attributes (for <cite>href</cite> use <a class="reference internal" href="#svgwrite.mixins.XLink.set_href" title="svgwrite.mixins.XLink.set_href"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_href()</span></code></a>).</p>
+</dd></dl>
+
+<p>Set <strong>xlink:actuate</strong> and <strong>xlink:type</strong> by the index operator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">element</span><span class="p">[</span><span class="s1">&#39;xlink:type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;simple&#39;</span>
+<span class="n">element</span><span class="p">[</span><span class="s1">&#39;xlink:actuate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;onLoad&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="presentation-mixin">
+<h1>Presentation Mixin<a class="headerlink" href="#presentation-mixin" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.mixins.Presentation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.mixins.</span></span><span class="sig-name descname"><span class="pre">Presentation</span></span><a class="headerlink" href="#svgwrite.mixins.Presentation" title="永久链接至目标">#</a></dt>
+<dd><p>Helper methods to set presentation attributes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.Presentation.fill">
+<span class="sig-prename descclassname"><span class="pre">Presentation.</span></span><span class="sig-name descname"><span class="pre">fill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.Presentation.fill" title="永久链接至目标">#</a></dt>
+<dd><p>Set SVG Properties <strong>fill</strong>, <strong>fill-rule</strong> and <strong>fill-opacity</strong>.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#FillProperty">http://www.w3.org/TR/SVG11/painting.html#FillProperty</a></p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#FillRuleProperty">http://www.w3.org/TR/SVG11/painting.html#FillRuleProperty</a></p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#FillOpacityProperty">http://www.w3.org/TR/SVG11/painting.html#FillOpacityProperty</a></p></li>
+</ul>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.Presentation.stroke">
+<span class="sig-prename descclassname"><span class="pre">Presentation.</span></span><span class="sig-name descname"><span class="pre">stroke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linecap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linejoin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">miterlimit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.Presentation.stroke" title="永久链接至目标">#</a></dt>
+<dd><p>Set SVG Properties <strong>stroke</strong>, <strong>stroke-width</strong>, <strong>stroke-opacity</strong>,
+<strong>stroke-linecap</strong> and <strong>stroke-miterlimit</strong>.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#StrokeProperty">http://www.w3.org/TR/SVG11/painting.html#StrokeProperty</a></p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#StrokeWidthProperty">http://www.w3.org/TR/SVG11/painting.html#StrokeWidthProperty</a></p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#StrokeOpacityProperty">http://www.w3.org/TR/SVG11/painting.html#StrokeOpacityProperty</a></p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#StrokeLinecapProperty">http://www.w3.org/TR/SVG11/painting.html#StrokeLinecapProperty</a></p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#StrokeMiterlimitProperty">http://www.w3.org/TR/SVG11/painting.html#StrokeMiterlimitProperty</a></p></li>
+</ul>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.Presentation.dasharray">
+<span class="sig-prename descclassname"><span class="pre">Presentation.</span></span><span class="sig-name descname"><span class="pre">dasharray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dasharray</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.Presentation.dasharray" title="永久链接至目标">#</a></dt>
+<dd><p>Set SVG Properties <strong>stroke-dashoffset</strong> and <strong>stroke-dasharray</strong>.</p>
+<p>Where <em>dasharray</em> specify the lengths of alternating dashes and gaps as
+&lt;list&gt; of &lt;int&gt; or &lt;float&gt; values or a &lt;string&gt; of comma and/or white
+space separated &lt;lengths&gt; or &lt;percentages&gt;. (e.g. as &lt;list&gt; dasharray=[1, 0.5]
+or as &lt;string&gt; dasharray=’1 0.5’)</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#StrokeDasharrayProperty">http://www.w3.org/TR/SVG11/painting.html#StrokeDasharrayProperty</a></p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#StrokeDashoffsetProperty">http://www.w3.org/TR/SVG11/painting.html#StrokeDashoffsetProperty</a></p></li>
+</ul>
+</div>
+</section>
+<section id="mediagroup-mixin">
+<h1>MediaGroup Mixin<a class="headerlink" href="#mediagroup-mixin" title="此标题的永久链接">#</a></h1>
+<blockquote>
+<div><p>SVG Tiny 1.2</p>
+<p>valid for SVG Elements: animation, audio, desc, image, metadata, title, video</p>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.mixins.MediaGroup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.mixins.</span></span><span class="sig-name descname"><span class="pre">MediaGroup</span></span><a class="headerlink" href="#svgwrite.mixins.MediaGroup" title="永久链接至目标">#</a></dt>
+<dd><p>Helper methods to set media group attributes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.MediaGroup.viewport_fill">
+<span class="sig-prename descclassname"><span class="pre">MediaGroup.</span></span><span class="sig-name descname"><span class="pre">viewport_fill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.MediaGroup.viewport_fill" title="永久链接至目标">#</a></dt>
+<dd><p>Set SVG Properties <strong>viewport-fill</strong> and <strong>viewport-fill-opacity</strong>.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVGMobile12/painting.html#viewport-fill-property">http://www.w3.org/TR/SVGMobile12/painting.html#viewport-fill-property</a></p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVGMobile12/painting.html#viewport-fill-opacity-property">http://www.w3.org/TR/SVGMobile12/painting.html#viewport-fill-opacity-property</a></p></li>
+</ul>
+</div>
+</section>
+<section id="markers-mixin">
+<h1>Markers Mixin<a class="headerlink" href="#markers-mixin" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.mixins.Markers">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.mixins.</span></span><span class="sig-name descname"><span class="pre">Markers</span></span><a class="headerlink" href="#svgwrite.mixins.Markers" title="永久链接至目标">#</a></dt>
+<dd><p>Helper methods to set marker attributes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.Markers.set_markers">
+<span class="sig-prename descclassname"><span class="pre">Markers.</span></span><span class="sig-name descname"><span class="pre">set_markers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">markers</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.Markers.set_markers" title="永久链接至目标">#</a></dt>
+<dd><p>Set markers for line elements (line, polygon, polyline, path) to
+values specified by  <cite>markers</cite>.</p>
+<ul class="simple">
+<li><p>if <cite>markers</cite> is a 3-tuple:</p>
+<ul>
+<li><p>attribute ‘marker-start’ = markers[0]</p></li>
+<li><p>attribute ‘marker-mid’ = markers[1]</p></li>
+<li><p>attribute ‘marker-end’ = markers[2]</p></li>
+</ul>
+</li>
+<li><p><cite>markers</cite> is a <cite>string</cite> or a <cite>Marker</cite> class:</p>
+<ul>
+<li><p>attribute ‘marker’ = <cite>FuncIRI</cite> of markers</p></li>
+</ul>
+</li>
+</ul>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#MarkerProperty">http://www.w3.org/TR/SVG11/painting.html#MarkerProperty</a></p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#MarkerStartProperty">http://www.w3.org/TR/SVG11/painting.html#MarkerStartProperty</a></p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#MarkerMidProperty">http://www.w3.org/TR/SVG11/painting.html#MarkerMidProperty</a></p></li>
+<li><p><a class="reference external" href="http://www.w3.org/TR/SVG11/painting.html#MarkerEndProperty">http://www.w3.org/TR/SVG11/painting.html#MarkerEndProperty</a></p></li>
+</ul>
+</div>
+</section>
+<section id="clipping-mixin">
+<h1>Clipping Mixin<a class="headerlink" href="#clipping-mixin" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.mixins.Clipping">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.mixins.</span></span><span class="sig-name descname"><span class="pre">Clipping</span></span><a class="headerlink" href="#svgwrite.mixins.Clipping" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.mixins.Clipping.clip_rect">
+<span class="sig-prename descclassname"><span class="pre">Clipping.</span></span><span class="sig-name descname"><span class="pre">clip_rect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.mixins.Clipping.clip_rect" title="永久链接至目标">#</a></dt>
+<dd><p>Set SVG Property <strong>clip</strong>.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/masking.html#OverflowAndClipProperties">http://www.w3.org/TR/SVG11/masking.html#OverflowAndClipProperties</a></p>
+</div>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../extensions/inkscape.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Inkscape 扩展</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="fe_lights.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">feDistantLight 滤镜元素</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2014-2019, Manfred Moitzi &lt;me@mozman.at&gt;
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">ViewBox Mixin</a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.ViewBox"><code class="docutils literal notranslate"><span class="pre">ViewBox</span></code></a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.ViewBox.viewbox"><code class="docutils literal notranslate"><span class="pre">ViewBox.viewbox()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.mixins.ViewBox.stretch"><code class="docutils literal notranslate"><span class="pre">ViewBox.stretch()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.mixins.ViewBox.fit"><code class="docutils literal notranslate"><span class="pre">ViewBox.fit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transform-mixin">Transform Mixin</a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.Transform"><code class="docutils literal notranslate"><span class="pre">Transform</span></code></a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.Transform.translate"><code class="docutils literal notranslate"><span class="pre">Transform.translate()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.mixins.Transform.rotate"><code class="docutils literal notranslate"><span class="pre">Transform.rotate()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.mixins.Transform.skewX"><code class="docutils literal notranslate"><span class="pre">Transform.skewX()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.mixins.Transform.skewY"><code class="docutils literal notranslate"><span class="pre">Transform.skewY()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.mixins.Transform.scale"><code class="docutils literal notranslate"><span class="pre">Transform.scale()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#xlink-mixin">XLink Mixin</a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.XLink"><code class="docutils literal notranslate"><span class="pre">XLink</span></code></a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.XLink.set_href"><code class="docutils literal notranslate"><span class="pre">XLink.set_href()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.mixins.XLink.set_xlink"><code class="docutils literal notranslate"><span class="pre">XLink.set_xlink()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#presentation-mixin">Presentation Mixin</a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.Presentation"><code class="docutils literal notranslate"><span class="pre">Presentation</span></code></a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.Presentation.fill"><code class="docutils literal notranslate"><span class="pre">Presentation.fill()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.mixins.Presentation.stroke"><code class="docutils literal notranslate"><span class="pre">Presentation.stroke()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.mixins.Presentation.dasharray"><code class="docutils literal notranslate"><span class="pre">Presentation.dasharray()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mediagroup-mixin">MediaGroup Mixin</a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.MediaGroup"><code class="docutils literal notranslate"><span class="pre">MediaGroup</span></code></a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.MediaGroup.viewport_fill"><code class="docutils literal notranslate"><span class="pre">MediaGroup.viewport_fill()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#markers-mixin">Markers Mixin</a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.Markers"><code class="docutils literal notranslate"><span class="pre">Markers</span></code></a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.Markers.set_markers"><code class="docutils literal notranslate"><span class="pre">Markers.set_markers()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#clipping-mixin">Clipping Mixin</a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.Clipping"><code class="docutils literal notranslate"><span class="pre">Clipping</span></code></a><ul>
+<li><a class="reference internal" href="#svgwrite.mixins.Clipping.clip_rect"><code class="docutils literal notranslate"><span class="pre">Clipping.clip_rect()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>

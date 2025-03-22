@@ -1,0 +1,1012 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="索引" href="#" /><link rel="search" title="搜索" href="search.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 --><title>索引 - svgwrite 1.4.3 文档</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">svgwrite 1.4.3 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">svgwrite 1.4.3 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">内容/Contents</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="overview.html">概述</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="attributes/core.html">核心属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/conditional_processing.html">条件处理属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/document_event.html">文档事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/graphical_event.html">图形事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/presentation.html">演示属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/xlink.html">XLink 属性</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">SVG 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html#id1">其他 SVG 文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html#id2">SVG 实现状态</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块/Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="svgwrite.html">svgwrite 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils/utils.html">utils 模块</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">结构对象/Structural Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/base.html">BaseElement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/drawing.html">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/svg.html">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/group.html">Group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/defs.html">Defs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/symbol.html">Symbol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/marker.html">Marker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/use.html">Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/hyperlink.html">Hyperlink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/script.html">Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/style.html">Style</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘制对象/Graphical Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/path.html">Path</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html">Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html#rect">Rect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html#circle">Circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html#ellipse">Ellipse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html#polyline">Polyline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html#polygon">Polygon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/shapes.html#basic-shapes-examples">Basic Shapes Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/image.html">Image</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">文本对象/Text Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/text.html#tspan">TSpan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/text.html#tref">TRef</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/text.html#textpath">TextPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/text.html#textarea">TextArea</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘图服务/Paint server</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/gradients.html">线性渐变/LinearGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/gradients.html#radialgradient">径向渐变/RadialGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/pattern.html">图案/Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/solidcolor.html">SolidColor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">遮盖/Masking</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/masking.html">ClipPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/masking.html#mask">Mask</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">动画/Animation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/animate.html">animate 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/animate.html#set">Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/animate.html#animatemotion">AnimateMotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/animate.html#id8">Animate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/animate.html#animatecolor">AnimateColor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/animate.html#animatetransform">AnimateTransform</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="classes/animate.html#id22">SVG 动画属性</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="attributes/animation_events.html">Animation Events Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/animation_target.html">Animation Target Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/animation_timing.html">Animation Timing Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/animation_value.html">Animation Value Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attributes/animation_addition.html">Animation Addition Attributes</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">滤镜效果/Filter Effects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/filters.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/filters.html#filter-element">Filter Element</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/filter_primitive.html">滤镜原语概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/filter_primitive.html#svg">滤镜原语的通用svg属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_blend.html">feBlend 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_color_matrix.html">feColorMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_component_transfer.html">feComponentTransfer 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_composite.html">feComposite 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_convolve_matrix.html">feConvolveMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_diffuse_lighting.html">feDiffuseLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_displacement_map.html">feDisplacementMap 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_flood.html">feFlood 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_gaussian_blur.html">feGaussianBlur 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_image.html">feImage 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_merge.html">feMerge 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_morphology.html">feMorphology 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_offset.html">feOffset 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_specular_lighting.html">feSpecularLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_tile.html">feTile 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_turbulence.html">feTurbulence 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_lights.html">feDistantLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_lights.html#fepointlight">fePointLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/fe_lights.html#fespotlight">feSpotLight 滤镜元素</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MixIns</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html">ViewBox Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html#transform-mixin">Transform Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html#xlink-mixin">XLink Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html#presentation-mixin">Presentation Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html#mediagroup-mixin">MediaGroup Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html#markers-mixin">Markers Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/mixins.html#clipping-mixin">Clipping Mixin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">扩展/Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="extensions/inkscape.html">Inkscape 扩展</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<section class="genindex-section">
+  <h1 id="index">索引</h1>
+  <div class="genindex-jumpbox"><a href="#_"><strong>_</strong></a> | <a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#V"><strong>V</strong></a> | <a href="#W"><strong>W</strong></a> | <a href="#X"><strong>X</strong></a> | <a href="#模"><strong>模</strong></a></div>
+</section>
+<section id="_" class="genindex-section">
+  <h2>_</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/base.html#svgwrite.base.BaseElement.__getitem__">__getitem__() （svgwrite.base.BaseElement 方法）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.Animate.__init__">__init__() （svgwrite.animate.Animate 方法）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.AnimateMotion.__init__">__init__() （svgwrite.animate.AnimateMotion 方法）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.AnimateTransform.__init__">__init__() （svgwrite.animate.AnimateTransform 方法）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.Set.__init__">__init__() （svgwrite.animate.Set 方法）</a>
+</li>
+        <li><a href="classes/base.html#svgwrite.base.BaseElement.__init__">__init__() （svgwrite.base.BaseElement 方法）</a>
+</li>
+        <li><a href="classes/hyperlink.html#svgwrite.container.Hyperlink.__init__">__init__() （svgwrite.container.Hyperlink 方法）</a>
+</li>
+        <li><a href="classes/marker.html#svgwrite.container.Marker.__init__">__init__() （svgwrite.container.Marker 方法）</a>
+</li>
+        <li><a href="classes/script.html#svgwrite.container.Script.__init__">__init__() （svgwrite.container.Script 方法）</a>
+</li>
+        <li><a href="classes/style.html#svgwrite.container.Style.__init__">__init__() （svgwrite.container.Style 方法）</a>
+</li>
+        <li><a href="classes/svg.html#svgwrite.container.SVG.__init__">__init__() （svgwrite.container.SVG 方法）</a>
+</li>
+        <li><a href="classes/use.html#svgwrite.container.Use.__init__">__init__() （svgwrite.container.Use 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.__init__">__init__() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/filters.html#svgwrite.filters.Filter.__init__">__init__() （svgwrite.filters.Filter 方法）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/gradients.html#svgwrite.gradients.LinearGradient.__init__">__init__() （svgwrite.gradients.LinearGradient 方法）</a>
+</li>
+        <li><a href="classes/gradients.html#svgwrite.gradients.RadialGradient.__init__">__init__() （svgwrite.gradients.RadialGradient 方法）</a>
+</li>
+        <li><a href="classes/image.html#svgwrite.image.Image.__init__">__init__() （svgwrite.image.Image 方法）</a>
+</li>
+        <li><a href="classes/path.html#svgwrite.path.Path.__init__">__init__() （svgwrite.path.Path 方法）</a>
+</li>
+        <li><a href="classes/pattern.html#svgwrite.pattern.Pattern.__init__">__init__() （svgwrite.pattern.Pattern 方法）</a>
+</li>
+        <li><a href="classes/shapes.html#svgwrite.shapes.Circle.__init__">__init__() （svgwrite.shapes.Circle 方法）</a>
+</li>
+        <li><a href="classes/shapes.html#svgwrite.shapes.Ellipse.__init__">__init__() （svgwrite.shapes.Ellipse 方法）</a>
+</li>
+        <li><a href="classes/shapes.html#svgwrite.shapes.Line.__init__">__init__() （svgwrite.shapes.Line 方法）</a>
+</li>
+        <li><a href="classes/shapes.html#svgwrite.shapes.Polyline.__init__">__init__() （svgwrite.shapes.Polyline 方法）</a>
+</li>
+        <li><a href="classes/shapes.html#svgwrite.shapes.Rect.__init__">__init__() （svgwrite.shapes.Rect 方法）</a>
+</li>
+        <li><a href="classes/solidcolor.html#svgwrite.solidcolor.SolidColor.__init__">__init__() （svgwrite.solidcolor.SolidColor 方法）</a>
+</li>
+        <li><a href="classes/text.html#svgwrite.text.TextPath.__init__">__init__() （svgwrite.text.TextPath 方法）</a>
+</li>
+        <li><a href="classes/text.html#svgwrite.text.TRef.__init__">__init__() （svgwrite.text.TRef 方法）</a>
+</li>
+        <li><a href="classes/text.html#id0">__init__() （svgwrite.text.TSpan 方法）</a>, <a href="classes/text.html#svgwrite.text.TSpan.__init__">[1]</a>
+</li>
+        <li><a href="classes/base.html#svgwrite.base.BaseElement.__setitem__">__setitem__() （svgwrite.base.BaseElement 方法）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.a">a() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/pattern.html#Pattern.add">add() （Pattern 方法）</a>
+</li>
+        <li><a href="classes/base.html#svgwrite.base.BaseElement.add">add() （svgwrite.base.BaseElement 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.add">add() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/gradients.html#svgwrite.gradients.LinearGradient.add_stop_color">add_stop_color() （svgwrite.gradients.LinearGradient 方法）</a>
+</li>
+        <li><a href="classes/gradients.html#svgwrite.gradients.RadialGradient.add_stop_color">add_stop_color() （svgwrite.gradients.RadialGradient 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.add_stylesheet">add_stylesheet() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.animate">animate() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.animateColor">animateColor() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/animate.html#svgwrite.animate.AnimateColor">AnimateColor（svgwrite.animate 中的类）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.animateMotion">animateMotion() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.AnimateMotion">AnimateMotion（svgwrite.animate 中的类）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.animateTransform">animateTransform() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.AnimateTransform">AnimateTransform（svgwrite.animate 中的类）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.Animate">Animate（svgwrite.animate 中的类）</a>
+</li>
+        <li><a href="classes/script.html#svgwrite.container.Script.append">append() （svgwrite.container.Script 方法）</a>
+</li>
+        <li><a href="classes/style.html#svgwrite.container.Style.append">append() （svgwrite.container.Style 方法）</a>
+</li>
+        <li><a href="classes/base.html#BaseElement.attribs">attribs（BaseElement 属性）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="B" class="genindex-section">
+  <h2>B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/base.html#svgwrite.base.BaseElement">BaseElement（svgwrite.base 中的类）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.circle">circle() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/shapes.html#svgwrite.shapes.Circle">Circle（svgwrite.shapes 中的类）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Clipping.clip_rect">clip_rect() （svgwrite.mixins.Clipping 方法）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.clipPath">clipPath() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/masking.html#svgwrite.masking.ClipPath">ClipPath（svgwrite.masking 中的类）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Clipping">Clipping（svgwrite.mixins 中的类）</a>
+</li>
+        <li><a href="classes/path.html#commands">commands</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="D" class="genindex-section">
+  <h2>D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Presentation.dasharray">dasharray() （svgwrite.mixins.Presentation 方法）</a>
+</li>
+        <li><a href="classes/svg.html#SVG.defs">defs（SVG 属性）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/defs.html#svgwrite.container.Defs">Defs（svgwrite.container 中的类）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.defs">defs（svgwrite.drawing.Drawing 属性）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing">Drawing（svgwrite.drawing 中的类）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/base.html#BaseElement.elements">elements（BaseElement 属性）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.ellipse">ellipse() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/shapes.html#svgwrite.shapes.Ellipse">Ellipse（svgwrite.shapes 中的类）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/svg.html#svgwrite.container.SVG.embed_font">embed_font() （svgwrite.container.SVG 方法）</a>
+</li>
+        <li><a href="classes/svg.html#svgwrite.container.SVG.embed_google_web_font">embed_google_web_font() （svgwrite.container.SVG 方法）</a>
+</li>
+        <li><a href="classes/svg.html#svgwrite.container.SVG.embed_stylesheet">embed_stylesheet() （svgwrite.container.SVG 方法）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="F" class="genindex-section">
+  <h2>F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/filters.html#Filter.feBlend">feBlend() （Filter 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feColorMatrix">feColorMatrix() （Filter 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feComponentTransfer">feComponentTransfer() （Filter 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feComposite">feComposite() （Filter 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feConvolveMatrix">feConvolveMatrix() （Filter 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feDiffuseLighting">feDiffuseLighting() （Filter 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feDisplacementMap">feDisplacementMap() （Filter 方法）</a>
+</li>
+        <li><a href="classes/fe_diffuse_lighting.html#feDiffuseLighting.feDistantLight">feDistantLight() （feDiffuseLighting 方法）</a>
+</li>
+        <li><a href="classes/fe_specular_lighting.html#feSpecularLighting.feDistantLight">feDistantLight() （feSpecularLighting 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feFlood">feFlood() （Filter 方法）</a>
+</li>
+        <li><a href="classes/fe_component_transfer.html#feFuncA">feFuncA()</a>
+</li>
+        <li><a href="classes/fe_component_transfer.html#feFuncB">feFuncB()</a>
+</li>
+        <li><a href="classes/fe_component_transfer.html#feFuncG">feFuncG()</a>
+</li>
+        <li><a href="classes/fe_component_transfer.html#feFuncR">feFuncR()</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feGaussianBlur">feGaussianBlur() （Filter 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feImage">feImage() （Filter 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feMerge">feMerge() （Filter 方法）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/fe_merge.html#feMerge.feMergeNode">feMergeNode() （feMerge 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feMorphology">feMorphology() （Filter 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feOffset">feOffset() （Filter 方法）</a>
+</li>
+        <li><a href="classes/fe_diffuse_lighting.html#feDiffuseLighting.fePointLight">fePointLight() （feDiffuseLighting 方法）</a>
+</li>
+        <li><a href="classes/fe_specular_lighting.html#feSpecularLighting.fePointLight">fePointLight() （feSpecularLighting 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feSpecularLighting">feSpecularLighting() （Filter 方法）</a>
+</li>
+        <li><a href="classes/fe_diffuse_lighting.html#feDiffuseLighting.feSpotLight">feSpotLight() （feDiffuseLighting 方法）</a>
+</li>
+        <li><a href="classes/fe_specular_lighting.html#feSpecularLighting.feSpotLight">feSpotLight() （feSpecularLighting 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feTile">feTile() （Filter 方法）</a>
+</li>
+        <li><a href="classes/filters.html#Filter.feTurbulence">feTurbulence() （Filter 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.filename">filename（svgwrite.drawing.Drawing 属性）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Presentation.fill">fill() （svgwrite.mixins.Presentation 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.filter">filter() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/filters.html#svgwrite.filters.Filter">Filter（svgwrite.filters 中的类）</a>
+</li>
+        <li><a href="classes/image.html#svgwrite.image.Image.fit">fit() （svgwrite.image.Image 方法）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.ViewBox.fit">fit() （svgwrite.mixins.ViewBox 方法）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.Animate.freeze">freeze() （svgwrite.animate.Animate 方法）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.g">g() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/base.html#svgwrite.base.BaseElement.get_funciri">get_funciri() （svgwrite.base.BaseElement 方法）</a>
+</li>
+        <li><a href="classes/base.html#svgwrite.base.BaseElement.get_id">get_id() （svgwrite.base.BaseElement 方法）</a>
+</li>
+        <li><a href="classes/base.html#svgwrite.base.BaseElement.get_iri">get_iri() （svgwrite.base.BaseElement 方法）</a>
+</li>
+        <li><a href="classes/gradients.html#svgwrite.gradients.LinearGradient.get_paint_server">get_paint_server() （svgwrite.gradients.LinearGradient 方法）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/gradients.html#svgwrite.gradients.RadialGradient.get_paint_server">get_paint_server() （svgwrite.gradients.RadialGradient 方法）</a>
+</li>
+        <li><a href="utils/utils.html#svgwrite.utils.get_unit">get_unit()（在 svgwrite.utils 模块中）</a>
+</li>
+        <li><a href="classes/base.html#svgwrite.base.BaseElement.get_xml">get_xml() （svgwrite.base.BaseElement 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.get_xml">get_xml() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/group.html#svgwrite.container.Group">Group（svgwrite.container 中的类）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="H" class="genindex-section">
+  <h2>H</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/hyperlink.html#svgwrite.container.Hyperlink">Hyperlink（svgwrite.container 中的类）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="I" class="genindex-section">
+  <h2>I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.image">image() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/image.html#svgwrite.image.Image">Image（svgwrite.image 中的类）</a>
+</li>
+        <li><a href="utils/utils.html#svgwrite.utils.iterflatlist">iterflatlist()（在 svgwrite.utils 模块中）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="L" class="genindex-section">
+  <h2>L</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.line">line() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.linearGradient">linearGradient() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/gradients.html#svgwrite.gradients.LinearGradient">LinearGradient（svgwrite.gradients 中的类）</a>
+</li>
+        <li><a href="classes/shapes.html#svgwrite.shapes.Line">Line（svgwrite.shapes 中的类）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.marker">marker() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Markers">Markers（svgwrite.mixins 中的类）</a>
+</li>
+        <li><a href="classes/marker.html#svgwrite.container.Marker">Marker（svgwrite.container 中的类）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.mask">mask() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/masking.html#svgwrite.masking.Mask">Mask（svgwrite.masking 中的类）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.MediaGroup">MediaGroup（svgwrite.mixins 中的类）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.path">path() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/path.html#svgwrite.path.Path">Path（svgwrite.path 中的类）</a>
+</li>
+        <li><a href="classes/pattern.html#svgwrite.pattern.Pattern">Pattern（svgwrite.pattern 中的类）</a>
+</li>
+        <li><a href="classes/shapes.html#Polyline.points">points（Polyline 属性）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.polygon">polygon() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/shapes.html#svgwrite.shapes.Polygon">Polygon（svgwrite.shapes 中的类）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.polyline">polyline() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/shapes.html#svgwrite.shapes.Polyline">Polyline（svgwrite.shapes 中的类）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Presentation">Presentation（svgwrite.mixins 中的类）</a>
+</li>
+        <li><a href="utils/utils.html#svgwrite.utils.pretty_xml">pretty_xml()（在 svgwrite.utils 模块中）</a>
+</li>
+        <li><a href="classes/path.html#svgwrite.path.Path.push">push() （svgwrite.path.Path 方法）</a>
+</li>
+        <li><a href="classes/path.html#svgwrite.path.Path.push_arc">push_arc() （svgwrite.path.Path 方法）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.radialGradient">radialGradient() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/gradients.html#svgwrite.gradients.RadialGradient">RadialGradient（svgwrite.gradients 中的类）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.rect">rect() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="utils/utils.html#svgwrite.utils.rect_top_left_corner">rect_top_left_corner()（在 svgwrite.utils 模块中）</a>
+</li>
+        <li><a href="classes/shapes.html#svgwrite.shapes.Rect">Rect（svgwrite.shapes 中的类）</a>
+</li>
+        <li><a href="utils/utils.html#svgwrite.utils.rgb">rgb()（在 svgwrite.utils 模块中）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Transform.rotate">rotate() （svgwrite.mixins.Transform 方法）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="S" class="genindex-section">
+  <h2>S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.save">save() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.saveas">saveas() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Transform.scale">scale() （svgwrite.mixins.Transform 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.script">script() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/script.html#svgwrite.container.Script">Script（svgwrite.container 中的类）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.set">set() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/base.html#svgwrite.base.BaseElement.set_desc">set_desc() （svgwrite.base.BaseElement 方法）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.Animate.set_event">set_event() （svgwrite.animate.Animate 方法）</a>
+</li>
+        <li><a href="classes/animate.html#Animate.set_href">set_href() （Animate 方法）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.XLink.set_href">set_href() （svgwrite.mixins.XLink 方法）</a>
+</li>
+        <li><a href="classes/text.html#svgwrite.text.TRef.set_href">set_href() （svgwrite.text.TRef 方法）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Markers.set_markers">set_markers() （svgwrite.mixins.Markers 方法）</a>
+</li>
+        <li><a href="classes/base.html#svgwrite.base.BaseElement.set_metadata">set_metadata() （svgwrite.base.BaseElement 方法）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.Animate.set_target">set_target() （svgwrite.animate.Animate 方法）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.Animate.set_timing">set_timing() （svgwrite.animate.Animate 方法）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.Animate.set_value">set_value() （svgwrite.animate.Animate 方法）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.AnimateMotion.set_value">set_value() （svgwrite.animate.AnimateMotion 方法）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.XLink.set_xlink">set_xlink() （svgwrite.mixins.XLink 方法）</a>
+</li>
+        <li><a href="classes/animate.html#svgwrite.animate.Set">Set（svgwrite.animate 中的类）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Transform.skewX">skewX() （svgwrite.mixins.Transform 方法）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Transform.skewY">skewY() （svgwrite.mixins.Transform 方法）</a>
+</li>
+        <li><a href="classes/solidcolor.html#svgwrite.solidcolor.SolidColor">SolidColor（svgwrite.solidcolor 中的类）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="utils/utils.html#svgwrite.utils.split_angle">split_angle()（在 svgwrite.utils 模块中）</a>
+</li>
+        <li><a href="utils/utils.html#svgwrite.utils.split_coordinate">split_coordinate()（在 svgwrite.utils 模块中）</a>
+</li>
+        <li><a href="classes/image.html#svgwrite.image.Image.stretch">stretch() （svgwrite.image.Image 方法）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.ViewBox.stretch">stretch() （svgwrite.mixins.ViewBox 方法）</a>
+</li>
+        <li><a href="utils/utils.html#svgwrite.utils.strlist">strlist()（在 svgwrite.utils 模块中）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Presentation.stroke">stroke() （svgwrite.mixins.Presentation 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.style">style() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/style.html#svgwrite.container.Style">Style（svgwrite.container 中的类）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.svg">svg() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li>
+    svgwrite
+
+        <ul>
+          <li><a href="svgwrite.html#module-svgwrite">模块</a>
+</li>
+        </ul></li>
+        <li>
+    svgwrite.drawing
+
+        <ul>
+          <li><a href="classes/drawing.html#module-svgwrite.drawing">模块</a>
+</li>
+        </ul></li>
+        <li>
+    svgwrite.gradients
+
+        <ul>
+          <li><a href="classes/gradients.html#module-svgwrite.gradients">模块</a>
+</li>
+        </ul></li>
+        <li>
+    svgwrite.text
+
+        <ul>
+          <li><a href="classes/text.html#module-svgwrite.text">模块</a>
+</li>
+        </ul></li>
+        <li>
+    svgwrite.utils
+
+        <ul>
+          <li><a href="utils/utils.html#module-svgwrite.utils">模块</a>
+</li>
+        </ul></li>
+        <li><a href="classes/svg.html#svgwrite.container.SVG">SVG（svgwrite.container 中的类）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.symbol">symbol() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/symbol.html#svgwrite.container.Symbol">Symbol（svgwrite.container 中的类）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="T" class="genindex-section">
+  <h2>T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.text">text() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.textArea">textArea() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/text.html#svgwrite.text.TextArea">TextArea（svgwrite.text 中的类）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.textPath">textPath() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/text.html#svgwrite.text.TextPath">TextPath（svgwrite.text 中的类）</a>
+</li>
+        <li><a href="classes/text.html#svgwrite.text.Text">Text（svgwrite.text 中的类）</a>
+</li>
+        <li><a href="classes/text.html#svgwrite.text.TSpan.text">text（svgwrite.text.TSpan 属性）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/base.html#svgwrite.base.BaseElement.tostring">tostring() （svgwrite.base.BaseElement 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.tostring">tostring() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Transform">Transform（svgwrite.mixins 中的类）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.Transform.translate">translate() （svgwrite.mixins.Transform 方法）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.tref">tref() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/text.html#svgwrite.text.TRef">TRef（svgwrite.text 中的类）</a>
+</li>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.tspan">tspan() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/text.html#svgwrite.text.TSpan">TSpan（svgwrite.text 中的类）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="U" class="genindex-section">
+  <h2>U</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/base.html#svgwrite.base.BaseElement.update">update() （svgwrite.base.BaseElement 方法）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.use">use() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+        <li><a href="classes/use.html#svgwrite.container.Use">Use（svgwrite.container 中的类）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="V" class="genindex-section">
+  <h2>V</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/mixins.html#svgwrite.mixins.ViewBox.viewbox">viewbox() （svgwrite.mixins.ViewBox 方法）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/mixins.html#svgwrite.mixins.ViewBox">ViewBox（svgwrite.mixins 中的类）</a>
+</li>
+        <li><a href="classes/mixins.html#svgwrite.mixins.MediaGroup.viewport_fill">viewport_fill() （svgwrite.mixins.MediaGroup 方法）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="W" class="genindex-section">
+  <h2>W</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/drawing.html#svgwrite.drawing.Drawing.write">write() （svgwrite.drawing.Drawing 方法）</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/text.html#svgwrite.text.TextArea.write">write() （svgwrite.text.TextArea 方法）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="X" class="genindex-section">
+  <h2>X</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="classes/mixins.html#svgwrite.mixins.XLink">XLink（svgwrite.mixins 中的类）</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="模" class="genindex-section">
+  <h2>模</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    模块
+
+        <ul>
+          <li><a href="svgwrite.html#module-svgwrite">svgwrite</a>
+</li>
+          <li><a href="classes/drawing.html#module-svgwrite.drawing">svgwrite.drawing</a>
+</li>
+          <li><a href="classes/gradients.html#module-svgwrite.gradients">svgwrite.gradients</a>
+</li>
+          <li><a href="classes/text.html#module-svgwrite.text">svgwrite.text</a>
+</li>
+          <li><a href="utils/utils.html#module-svgwrite.utils">svgwrite.utils</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2014-2019, Manfred Moitzi &lt;me@mozman.at&gt;
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

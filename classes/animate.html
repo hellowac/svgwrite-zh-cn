@@ -1,0 +1,1056 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="Animation Events Attributes" href="../attributes/animation_events.html" /><link rel="prev" title="ClipPath" href="masking.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>animate 模块 - svgwrite 1.4.3 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">svgwrite 1.4.3 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">svgwrite 1.4.3 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">内容/Contents</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview.html">概述</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/core.html">核心属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/conditional_processing.html">条件处理属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/document_event.html">文档事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/graphical_event.html">图形事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/presentation.html">演示属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/xlink.html">XLink 属性</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">SVG 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id1">其他 SVG 文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id2">SVG 实现状态</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块/Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../svgwrite.html">svgwrite 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html">utils 模块</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">结构对象/Structural Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base.html">BaseElement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drawing.html">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svg.html">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">Group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defs.html">Defs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symbol.html">Symbol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="marker.html">Marker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use.html">Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyperlink.html">Hyperlink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘制对象/Graphical Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="path.html">Path</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html">Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#rect">Rect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#circle">Circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#ellipse">Ellipse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polyline">Polyline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polygon">Polygon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#basic-shapes-examples">Basic Shapes Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image.html">Image</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">文本对象/Text Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#tspan">TSpan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#tref">TRef</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#textpath">TextPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#textarea">TextArea</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘图服务/Paint server</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gradients.html">线性渐变/LinearGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradients.html#radialgradient">径向渐变/RadialGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pattern.html">图案/Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidcolor.html">SolidColor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">遮盖/Masking</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="masking.html">ClipPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="masking.html#mask">Mask</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">动画/Animation</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">animate 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#set">Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#animatemotion">AnimateMotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id8">Animate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#animatecolor">AnimateColor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#animatetransform">AnimateTransform</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="#id22">SVG 动画属性</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_events.html">Animation Events Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_target.html">Animation Target Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html">Animation Timing Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html">Animation Value Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_addition.html">Animation Addition Attributes</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">滤镜效果/Filter Effects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html#filter-element">Filter Element</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_primitive.html">滤镜原语概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_primitive.html#svg">滤镜原语的通用svg属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_blend.html">feBlend 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_color_matrix.html">feColorMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_component_transfer.html">feComponentTransfer 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_composite.html">feComposite 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_convolve_matrix.html">feConvolveMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_diffuse_lighting.html">feDiffuseLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_displacement_map.html">feDisplacementMap 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_flood.html">feFlood 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_gaussian_blur.html">feGaussianBlur 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_image.html">feImage 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_merge.html">feMerge 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_morphology.html">feMorphology 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_offset.html">feOffset 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_specular_lighting.html">feSpecularLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_tile.html">feTile 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_turbulence.html">feTurbulence 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html">feDistantLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fepointlight">fePointLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fespotlight">feSpotLight 滤镜元素</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MixIns</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html">ViewBox Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#transform-mixin">Transform Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#xlink-mixin">XLink Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#presentation-mixin">Presentation Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#mediagroup-mixin">MediaGroup Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#markers-mixin">Markers Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#clipping-mixin">Clipping Mixin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">扩展/Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/inkscape.html">Inkscape 扩展</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="animate">
+<h1>animate 模块<a class="headerlink" href="#animate" title="此标题的永久链接">#</a></h1>
+<p>animate module</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>由于 Web 是一种动态媒介，因此 SVG 支持随时间改变矢量图形的能力。</p>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>Because the Web is a dynamic medium, SVG supports the ability to change
+vector graphics over time.</p>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/animate.html">http://www.w3.org/TR/SVG11/animate.html</a></p>
+</div>
+</section>
+<section id="set">
+<h1>Set<a class="headerlink" href="#set" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.animate.Set">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.animate.</span></span><span class="sig-name descname"><span class="pre">Set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">href</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.Set" title="永久链接至目标">#</a></dt>
+<dd><p>The <strong>set</strong> element provides a simple means of just setting the value
+of an attribute for a specified duration. It supports all attribute types,
+including those that cannot reasonably be interpolated, such as string
+and boolean values. The <strong>set</strong> element is non-additive. The additive and
+accumulate attributes are not allowed, and will be ignored if specified.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/animate.html#SetElement">http://www.w3.org/TR/SVG11/animate.html#SetElement</a></p>
+</div>
+<section id="parent-classes">
+<h2>Parent Classes<a class="headerlink" href="#parent-classes" title="此标题的永久链接">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="base.html#svgwrite.base.BaseElement" title="svgwrite.base.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.base.BaseElement</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.XLink" title="svgwrite.mixins.XLink"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.XLink</span></code></a></p></li>
+</ul>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="此标题的永久链接">#</a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.animate.Set.__init__">
+<span class="sig-prename descclassname"><span class="pre">Set.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">href</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.Set.__init__" title="永久链接至目标">#</a></dt>
+<dd><p>Set constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>href</strong> – target svg element, if <strong>href</strong> is not <cite>None</cite>; else
+the target SVG Element is the parent SVG Element.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Animate.set_href">
+<span class="sig-prename descclassname"><span class="pre">Animate.</span></span><span class="sig-name descname"><span class="pre">set_href</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Animate.set_href" title="永久链接至目标">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> – set target svg element to <cite>element</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.animate.Animate.set_target">
+<span class="sig-prename descclassname"><span class="pre">Animate.</span></span><span class="sig-name descname"><span class="pre">set_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributeName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributeType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.Animate.set_target" title="永久链接至目标">#</a></dt>
+<dd><p>Set animation attributes <a class="reference internal" href="../attributes/animation_target.html#attributename"><span class="std std-ref">attributeName</span></a> and <a class="reference internal" href="../attributes/animation_target.html#attributetype"><span class="std std-ref">attributeType</span></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.animate.Animate.set_event">
+<span class="sig-prename descclassname"><span class="pre">Animate.</span></span><span class="sig-name descname"><span class="pre">set_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">onbegin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onrepeat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.Animate.set_event" title="永久链接至目标">#</a></dt>
+<dd><p>Set animation attributes <a class="reference internal" href="../attributes/animation_events.html#onbegin"><span class="std std-ref">onbegin</span></a>, <a class="reference internal" href="../attributes/animation_events.html#onend"><span class="std std-ref">onend</span></a>, <a class="reference internal" href="../attributes/animation_events.html#onrepeat"><span class="std std-ref">onrepeat</span></a>
+and <a class="reference internal" href="../attributes/animation_events.html#onload"><span class="std std-ref">onload</span></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.animate.Animate.set_timing">
+<span class="sig-prename descclassname"><span class="pre">Animate.</span></span><span class="sig-name descname"><span class="pre">set_timing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">begin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeatCount</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeatDur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.Animate.set_timing" title="永久链接至目标">#</a></dt>
+<dd><p>Set animation attributes <a class="reference internal" href="../attributes/animation_timing.html#begin"><span class="std std-ref">begin</span></a>, <a class="reference internal" href="../attributes/animation_timing.html#end"><span class="std std-ref">end</span></a>, <a class="reference internal" href="../attributes/animation_timing.html#dur"><span class="std std-ref">dur</span></a>,
+<a class="reference internal" href="../attributes/animation_timing.html#min"><span class="std std-ref">min</span></a>, <a class="reference internal" href="../attributes/animation_timing.html#max"><span class="std std-ref">max</span></a>, <a class="reference internal" href="../attributes/animation_timing.html#restart"><span class="std std-ref">restart</span></a>, <a class="reference internal" href="../attributes/animation_timing.html#repeatcount"><span class="std std-ref">repeatCount</span></a> and
+<a class="reference internal" href="../attributes/animation_timing.html#repeatdur"><span class="std std-ref">repeatDur</span></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.animate.Animate.freeze">
+<span class="sig-prename descclassname"><span class="pre">Animate.</span></span><span class="sig-name descname"><span class="pre">freeze</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.Animate.freeze" title="永久链接至目标">#</a></dt>
+<dd><p>Freeze the animation effect. (see also <a class="reference internal" href="../attributes/animation_timing.html#animatefill"><span class="std std-ref">fill</span></a>)</p>
+</dd></dl>
+
+</section>
+<section id="svg">
+<h2>SVG 动画属性<a class="headerlink" href="#svg" title="此标题的永久链接">#</a></h2>
+<p>SVG Animation Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<ul class="simple">
+<li><p>onbegin、onend、onrepeat、onload (<a class="reference internal" href="../attributes/animation_events.html"><span class="doc">动画事件属性</span></a>)</p></li>
+<li><p>attributeType、attributeName (<a class="reference internal" href="../attributes/animation_target.html"><span class="doc">动画目标属性</span></a>)</p></li>
+<li><p>begin、dur、end、min、max、restart、repeatCount、repeatDur、fill (<a class="reference internal" href="../attributes/animation_timing.html"><span class="doc">动画计时属性</span></a>)</p></li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<ul class="simple">
+<li><p>onbegin, onend, onrepeat, onload (<a class="reference internal" href="../attributes/animation_events.html"><span class="doc">Animation Event Attributes</span></a>)</p></li>
+<li><p>attributeType, attributeName (<a class="reference internal" href="../attributes/animation_target.html"><span class="doc">Animation Target Attributes</span></a>)</p></li>
+<li><p>begin, dur, end, min, max, restart, repeatCount, repeatDur, fill (<a class="reference internal" href="../attributes/animation_timing.html"><span class="doc">Animation Timing Attributes</span></a>)</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>SVG 属性<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h2>
+<p>SVG Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><cite>False</cite>：如果外部资源不可用，文档渲染仍然可以继续；否则： <cite>True</cite>。</p>
+</li>
+<li><p><strong>to</strong> – <cite>&lt;value&gt;</cite></p>
+<p>指定在 <strong>set</strong> 元素持续时间内该属性的值。参数值必须与属性类型匹配。</p>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><em>False</em>: if document rendering can proceed even if external resources are
+unavailable else: <em>True</em></p>
+</li>
+<li><p><strong>to</strong> – <cite>&lt;value&gt;</cite>
+Specifies the value for the attribute during the duration of the <strong>set</strong>
+element. The argument value must match the attribute type.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>标准 SVG 属性<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<p>Standard SVG Attributes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../attributes/core.html"><span class="doc">Core Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/conditional_processing.html"><span class="doc">Conditional Processing Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/xlink.html"><span class="doc">XLink Attributes</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="animatemotion">
+<h1>AnimateMotion<a class="headerlink" href="#animatemotion" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.animate.AnimateMotion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.animate.</span></span><span class="sig-name descname"><span class="pre">AnimateMotion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">href</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.AnimateMotion" title="永久链接至目标">#</a></dt>
+<dd><p>The <strong>animateMotion</strong> element causes a referenced element to move
+along a motion path.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/animate.html#AnimateMotionElement">http://www.w3.org/TR/SVG11/animate.html#AnimateMotionElement</a></p>
+</div>
+<section id="id3">
+<h2>父类<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<p>Parent Classes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="base.html#svgwrite.base.BaseElement" title="svgwrite.base.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.base.BaseElement</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.XLink" title="svgwrite.mixins.XLink"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.XLink</span></code></a></p></li>
+<li><p><a class="reference internal" href="#svgwrite.animate.Set" title="svgwrite.animate.Set"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.animate.Set</span></code></a></p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>方法<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<p>Methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.animate.AnimateMotion.__init__">
+<span class="sig-prename descclassname"><span class="pre">AnimateMotion.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">href</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.AnimateMotion.__init__" title="永久链接至目标">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – the motion path</p></li>
+<li><p><strong>href</strong> – target svg element, if <strong>href</strong> is not <cite>None</cite>; else
+the target SVG Element is the parent SVG Element.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.animate.AnimateMotion.set_value">
+<span class="sig-prename descclassname"><span class="pre">AnimateMotion.</span></span><span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calcMode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyPoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.AnimateMotion.set_value" title="永久链接至目标">#</a></dt>
+<dd><p>Set animation attributes <cite>path</cite>, <cite>calcMode</cite>, <cite>keyPoints</cite> and <cite>rotate</cite>.</p>
+</dd></dl>
+
+</section>
+<section id="id5">
+<h2>SVG 动画属性<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<p>SVG Animation Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">中文</label><div class="tab-content docutils container">
+<ul class="simple">
+<li><p>onbegin、onend、onrepeat、onload (<a class="reference internal" href="../attributes/animation_events.html"><span class="doc">动画事件属性</span></a>)</p></li>
+<li><p>begin、dur、end、min、max、restart、repeatCount、repeatDur、fill (<a class="reference internal" href="../attributes/animation_timing.html"><span class="doc">动画计时属性</span></a>)</p></li>
+<li><p>calcMode、values、keyTimes、keySplines、from、to、by (<a class="reference internal" href="../attributes/animation_value.html"><span class="doc">动画值属性</span></a>)</p></li>
+<li><p>addition、accumulate (<a class="reference internal" href="../attributes/animation_addition.html"><span class="doc">动画添加属性</span></a>)</p></li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">英文</label><div class="tab-content docutils container">
+<ul class="simple">
+<li><p>onbegin, onend, onrepeat, onload (<a class="reference internal" href="../attributes/animation_events.html"><span class="doc">Animation Event Attributes</span></a>)</p></li>
+<li><p>begin, dur, end, min, max, restart, repeatCount, repeatDur, fill (<a class="reference internal" href="../attributes/animation_timing.html"><span class="doc">Animation Timing Attributes</span></a>)</p></li>
+<li><p>calcMode, values, keyTimes, keySplines, from, to, by (<a class="reference internal" href="../attributes/animation_value.html"><span class="doc">Animation Value Attributes</span></a>)</p></li>
+<li><p>additive, accumulate (<a class="reference internal" href="../attributes/animation_addition.html"><span class="doc">Animation Addition Attributes</span></a>)</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id6">
+<h2>SVG 属性<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
+<p>SVG Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--1">中文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><cite>False</cite>：如果外部资源不可用，文档渲染仍然可以继续；否则：<cite>True</cite>。</p>
+</li>
+<li><p><strong>calcMode</strong> – <code class="docutils literal notranslate"><span class="pre">'discrete</span> <span class="pre">|</span> <span class="pre">linear</span> <span class="pre">|</span> <span class="pre">paced</span> <span class="pre">|</span> <span class="pre">spline'</span></code></p>
+<p>指定动画的插值模式。</p>
+</li>
+<li><p><strong>path</strong> – <cite>&lt;path-data&gt;</cite> – <strong>path</strong> 参数</p>
+<p>运动路径，以与 <strong>Path</strong> 元素的 <a class="reference internal" href="path.html#pathcommands"><span class="std std-ref">d</span></a> 属性相同的格式表示，并以相同方式解释。运动路径动画的效果是将一个附加的转换矩阵添加到目标对象的 CTM 中，从而在当前用户坐标系统的 x 轴和 y 轴上进行平移，平移的 X 和 Y 值是根据时间计算得出的。</p>
+</li>
+<li><p><strong>keyPoints</strong> – <cite>&lt;list-of-numbers&gt;</cite></p>
+<p><strong>keyPoints</strong> 接受一个用分号分隔的浮动值列表，值范围在 0 到 1 之间，表示在由对应的 <strong>keyTimes</strong> 值指定的时间点上，物体在运动路径上移动的距离。距离计算使用用户代理的路径上距离算法。列表中的每个进度值对应于 <strong>keyTimes</strong> 属性列表中的一个值。</p>
+<p>如果指定了 <strong>keyPoints</strong> 列表，则 <strong>keyPoints</strong> 列表中的值必须与 <strong>keyTimes</strong> 列表中的值数量相同。</p>
+<p>如果 <strong>keyPoints</strong> 指定有任何错误（错误值、值太多或太少），则文档会出错。</p>
+</li>
+<li><p><strong>rotate</strong> – <cite>&lt;number&gt;</cite> | <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> | <code class="docutils literal notranslate"><span class="pre">'auto-reverse'</span></code></p>
+<p><strong>rotate</strong> 属性会将一个附加的转换矩阵后乘到目标元素的 CTM 中，以便在当前用户坐标系统的原点周围应用旋转转换。旋转转换在由于 <strong>path</strong> 属性计算出的附加平移转换之后应用。</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'auto'</span></code></p>
+<p>表示物体随着时间变化根据运动路径的方向（即方向切线向量）旋转。</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'auto-reverse'</span></code></p>
+<p>表示物体随着时间变化根据运动路径的方向（即方向切线向量）旋转，并加上 180 度。</p>
+</li>
+<li><p><cite>&lt;number&gt;</cite></p>
+<p>表示目标元素应用一个恒定的旋转转换，旋转角度为指定的度数。</p>
+<p>默认值为 <code class="docutils literal notranslate"><span class="pre">'0'</span></code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">英文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><em>False</em>: if document rendering can proceed even if external resources are
+unavailable else: <em>True</em></p>
+</li>
+<li><p><strong>calcMode</strong> – <code class="docutils literal notranslate"><span class="pre">'discrete</span> <span class="pre">|</span> <span class="pre">linear</span> <span class="pre">|</span> <span class="pre">paced</span> <span class="pre">|</span> <span class="pre">spline'</span></code></p>
+<p>Specifies the interpolation mode for the animation.</p>
+</li>
+<li><p><strong>path</strong> – <cite>&lt;path-data&gt;</cite> – <strong>path</strong> parameter</p>
+<p>The motion path, expressed in the same format and interpreted the same way
+as the <a class="reference internal" href="path.html#pathcommands"><span class="std std-ref">d</span></a> attribute on the <strong>Path</strong> element.
+The effect of a motion path animation is to add a supplemental
+transformation matrix onto the CTM for the referenced object which causes a
+translation along the x- and y-axes of the current user coordinate system
+by the computed X and Y values computed over time.</p>
+</li>
+<li><p><strong>keyPoints</strong> – <cite>&lt;list-of-numbers&gt;</cite></p>
+<p><strong>keyPoints</strong> takes a semicolon-separated list of floating point values
+between 0 and 1 and indicates how far along the motion path the object
+shall move at the moment in time specified by corresponding <strong>keyTimes</strong>
+value. Distance calculations use the user agent’s distance along the path
+algorithm. Each progress value in the list corresponds to a value in the
+<strong>keyTimes</strong> attribute list.</p>
+<p>If a list of <strong>keyPoints</strong> is specified, there must be exactly as many
+values in the <strong>keyPoints</strong> list as in the <strong>keyTimes</strong> list.</p>
+<p>If there are any errors in the <strong>keyPoints</strong> specification (bad values,
+too many or too few values), then the document is in error.</p>
+</li>
+<li><p><strong>rotate</strong> – <cite>&lt;number&gt;</cite> | <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> | <code class="docutils literal notranslate"><span class="pre">'auto-reverse'</span></code></p>
+<p>The <strong>rotate</strong> attribute post-multiplies a supplemental transformation
+matrix onto the CTM of the target element to apply a rotation
+transformation about the origin of the current user coordinate system.
+The rotation transformation is applied after the supplemental translation
+transformation that is computed due to the <strong>path</strong> attribute.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'auto'</span></code></p>
+<p>Indicates that the object is rotated over time by the angle of the
+direction (i.e., directional tangent vector) of the motion path.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'auto-reverse'</span></code></p>
+<p>Indicates that the object is rotated over time by the angle of the
+direction (i.e., directional tangent vector) of the motion path plus
+180 degrees.</p>
+</li>
+<li><p><cite>&lt;number&gt;</cite></p>
+<p>Indicates that the target element has a constant rotation transformation
+applied to it, where the rotation angle is the specified number of
+degrees.</p>
+<p>Default value is <code class="docutils literal notranslate"><span class="pre">'0'</span></code>.</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<ul>
+<li><p><strong>origin</strong> – <code class="docutils literal notranslate"><span class="pre">'default'</span></code></p>
+<p>The <strong>origin</strong> attribute is defined in the
+<a class="reference external" href="http://www.w3.org/TR/2001/REC-smil-animation-20010904/#MotionOriginAttribute">SMIL Animation specification</a></p>
+</li>
+</ul>
+</section>
+<section id="id7">
+<h2>标准 SVG 属性<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h2>
+<p>Standard SVG Attributes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../attributes/core.html"><span class="doc">Core Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/conditional_processing.html"><span class="doc">Conditional Processing Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/xlink.html"><span class="doc">XLink Attributes</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="id8">
+<h1>Animate<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.animate.Animate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.animate.</span></span><span class="sig-name descname"><span class="pre">Animate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributeName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">href</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.Animate" title="永久链接至目标">#</a></dt>
+<dd><p>The <strong>animate</strong> element allows scalar attributes and properties to be
+assigned different values over time .</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/animate.html#AnimateElement">http://www.w3.org/TR/SVG11/animate.html#AnimateElement</a></p>
+</div>
+<section id="id9">
+<h2>父类<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h2>
+<p>Parent Classes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="base.html#svgwrite.base.BaseElement" title="svgwrite.base.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.base.BaseElement</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.XLink" title="svgwrite.mixins.XLink"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.XLink</span></code></a></p></li>
+<li><p><a class="reference internal" href="#svgwrite.animate.Set" title="svgwrite.animate.Set"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.animate.Set</span></code></a></p></li>
+</ul>
+</section>
+<section id="id10">
+<h2>方法<a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h2>
+<p>Methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.animate.Animate.__init__">
+<span class="sig-prename descclassname"><span class="pre">Animate.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributeName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">href</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.Animate.__init__" title="永久链接至目标">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attributeName</strong> – name of the SVG Attribute to animate</p></li>
+<li><p><strong>values</strong> – interpolation values, <cite>string</cite> as <cite>&lt;semicolon-list&gt;</cite> or a python <cite>list</cite></p></li>
+<li><p><strong>href</strong> – target svg element, if <strong>href</strong> is not <cite>None</cite>; else
+the target SVG Element is the parent SVG Element.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.animate.Animate.set_value">
+<span class="sig-prename descclassname"><span class="pre">Animate.</span></span><span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calcMode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyTimes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keySplines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.Animate.set_value" title="永久链接至目标">#</a></dt>
+<dd><p>Set animation attributes <a class="reference internal" href="../attributes/animation_value.html#values"><span class="std std-ref">values</span></a>, <a class="reference internal" href="../attributes/animation_value.html#calcmode"><span class="std std-ref">calcMode</span></a>, <a class="reference internal" href="../attributes/animation_value.html#keytimes"><span class="std std-ref">keyTimes</span></a>,
+<a class="reference internal" href="../attributes/animation_value.html#keysplines"><span class="std std-ref">keySplines</span></a>, <a class="reference internal" href="../attributes/animation_value.html#from"><span class="std std-ref">from</span></a>, <a class="reference internal" href="../attributes/animation_value.html#to"><span class="std std-ref">to</span></a> and <a class="reference internal" href="../attributes/animation_value.html#by"><span class="std std-ref">by</span></a>.</p>
+</dd></dl>
+
+</section>
+<section id="id11">
+<h2>SVG 动画属性<a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h2>
+<p>SVG Animation Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--5-input--1" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--1">中文</label><div class="tab-content docutils container">
+<ul class="simple">
+<li><p>onbegin、onend、onrepeat、onload (<a class="reference internal" href="../attributes/animation_events.html"><span class="doc">动画事件属性</span></a>)</p></li>
+<li><p>attributeType、attributeName (<a class="reference internal" href="../attributes/animation_target.html"><span class="doc">动画目标属性</span></a>)</p></li>
+<li><p>begin、dur、end、min、max、restart、repeatCount、repeatDur、fill (<a class="reference internal" href="../attributes/animation_timing.html"><span class="doc">动画计时属性</span></a>)</p></li>
+<li><p>calcMode、values、keyTimes、keySplines、from、to、by (<a class="reference internal" href="../attributes/animation_value.html"><span class="doc">动画值属性</span></a>)</p></li>
+<li><p>addition、accumulate (<a class="reference internal" href="../attributes/animation_addition.html"><span class="doc">动画添加属性</span></a>)</p></li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--5-input--2" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--2">英文</label><div class="tab-content docutils container">
+<ul class="simple">
+<li><p>onbegin, onend, onrepeat, onload (<a class="reference internal" href="../attributes/animation_events.html"><span class="doc">Animation Event Attributes</span></a>)</p></li>
+<li><p>attributeType, attributeName (<a class="reference internal" href="../attributes/animation_target.html"><span class="doc">Animation Target Attributes</span></a>)</p></li>
+<li><p>begin, dur, end, min, max, restart, repeatCount, repeatDur, fill (<a class="reference internal" href="../attributes/animation_timing.html"><span class="doc">Animation Timing Attributes</span></a>)</p></li>
+<li><p>calcMode, values, keyTimes, keySplines, from, to, by (<a class="reference internal" href="../attributes/animation_value.html"><span class="doc">Animation Value Attributes</span></a>)</p></li>
+<li><p>additive, accumulate (<a class="reference internal" href="../attributes/animation_addition.html"><span class="doc">Animation Addition Attributes</span></a>)</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id12">
+<h2>SVG 属性<a class="headerlink" href="#id12" title="此标题的永久链接">#</a></h2>
+<p>SVG Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--6-input--1" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--1">中文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><em>False</em>: 如果即使外部资源不可用，文档渲染仍可继续，否则： <em>True</em></p>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--6-input--2" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--2">英文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><em>False</em>: if document rendering can proceed even if external resources are
+unavailable else: <em>True</em></p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id13">
+<h2>标准 SVG 属性<a class="headerlink" href="#id13" title="此标题的永久链接">#</a></h2>
+<p>Standard SVG Attributes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../attributes/core.html"><span class="doc">Core Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/conditional_processing.html"><span class="doc">Conditional Processing Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/xlink.html"><span class="doc">XLink Attributes</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="animatecolor">
+<h1>AnimateColor<a class="headerlink" href="#animatecolor" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.animate.AnimateColor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.animate.</span></span><span class="sig-name descname"><span class="pre">AnimateColor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributeName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">href</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.AnimateColor" title="永久链接至目标">#</a></dt>
+<dd><p>The <strong>animateColor</strong> element specifies a color transformation over
+time.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/animate.html#AnimateColorElement">http://www.w3.org/TR/SVG11/animate.html#AnimateColorElement</a></p>
+</div>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--7-input--1" name="tab-set--7" type="radio"><label class="tab-label" for="tab-set--7-input--1">中文</label><div class="tab-content docutils container">
+<p><strong>from</strong>、<strong>by</strong> 和 <strong>to</strong> 属性接受颜色值，其中每个颜色值使用以下语法表示（与 SVG 中可以接受颜色值的属性使用的语法相同）：</p>
+<blockquote>
+<div><p>&lt;color&gt; &lt;icccolor&gt;?</p>
+</div></blockquote>
+<p><strong>animateColor</strong> 元素的 <strong>values</strong> 属性包含一个用分号分隔的颜色值列表，每个颜色值都按上述语法表示。</p>
+<p>可以提供超出范围的颜色值，但用户代理的处理将依赖于实现。用户代理应该尽可能推迟对颜色值的限制，但请注意，系统差异可能会导致不同系统之间的一致性行为问题。</p>
+<p><strong>color-interpolation</strong> 属性应用于由 <strong>animateColor</strong> 动画产生的颜色插值。</p>
+</div>
+<input class="tab-input" id="tab-set--7-input--2" name="tab-set--7" type="radio"><label class="tab-label" for="tab-set--7-input--2">英文</label><div class="tab-content docutils container">
+<p>The <strong>from</strong>, <strong>by</strong> and <strong>to</strong> attributes take color values, where each
+color value is expressed using the following syntax (the same syntax as used
+in SVG’s properties that can take color values):</p>
+<blockquote>
+<div><p>&lt;color&gt; &lt;icccolor&gt;?</p>
+</div></blockquote>
+<p>The <strong>values</strong> attribute for the <strong>animateColor</strong> element consists of a
+semicolon-separated list of color values, with each color value expressed in
+the above syntax.</p>
+<p>Out of range color values can be provided, but user agent processing will be
+implementation dependent. User agents should clamp color values to allow
+color range values as late as possible, but note that system differences
+might preclude consistent behavior across different systems.</p>
+<p>The <strong>color-interpolation</strong> property applies to color interpolations that
+result from <strong>animateColor</strong> animations.</p>
+</div>
+</div>
+<section id="id14">
+<h2>父类<a class="headerlink" href="#id14" title="此标题的永久链接">#</a></h2>
+<p>Parent Classes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="base.html#svgwrite.base.BaseElement" title="svgwrite.base.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.base.BaseElement</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.XLink" title="svgwrite.mixins.XLink"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.XLink</span></code></a></p></li>
+<li><p><a class="reference internal" href="#svgwrite.animate.Animate" title="svgwrite.animate.Animate"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.animate.Animate</span></code></a></p></li>
+</ul>
+</section>
+<section id="id15">
+<h2>SVG 动画属性<a class="headerlink" href="#id15" title="此标题的永久链接">#</a></h2>
+<p>SVG Animation Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--8-input--1" name="tab-set--8" type="radio"><label class="tab-label" for="tab-set--8-input--1">中文</label><div class="tab-content docutils container">
+<ul class="simple">
+<li><p>onbegin, onend, onrepeat, onload (<a class="reference internal" href="../attributes/animation_events.html"><span class="doc">动画事件属性</span></a>)</p></li>
+<li><p>attributeType, attributeName (<a class="reference internal" href="../attributes/animation_target.html"><span class="doc">动画目标属性</span></a>)</p></li>
+<li><p>begin, dur, end, min, max, restart, repeatCount, repeatDur, fill (<a class="reference internal" href="../attributes/animation_timing.html"><span class="doc">动画时间属性</span></a>)</p></li>
+<li><p>calcMode, values, keyTimes, keySplines, from, to, by (<a class="reference internal" href="../attributes/animation_value.html"><span class="doc">动画值属性</span></a>)</p></li>
+<li><p>additive, accumulate (<a class="reference internal" href="../attributes/animation_addition.html"><span class="doc">动画附加属性</span></a>)</p></li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--8-input--2" name="tab-set--8" type="radio"><label class="tab-label" for="tab-set--8-input--2">英文</label><div class="tab-content docutils container">
+<ul class="simple">
+<li><p>onbegin, onend, onrepeat, onload (<a class="reference internal" href="../attributes/animation_events.html"><span class="doc">Animation Event Attributes</span></a>)</p></li>
+<li><p>attributeType, attributeName (<a class="reference internal" href="../attributes/animation_target.html"><span class="doc">Animation Target Attributes</span></a>)</p></li>
+<li><p>begin, dur, end, min, max, restart, repeatCount, repeatDur, fill (<a class="reference internal" href="../attributes/animation_timing.html"><span class="doc">Animation Timing Attributes</span></a>)</p></li>
+<li><p>calcMode, values, keyTimes, keySplines, from, to, by (<a class="reference internal" href="../attributes/animation_value.html"><span class="doc">Animation Value Attributes</span></a>)</p></li>
+<li><p>additive, accumulate (<a class="reference internal" href="../attributes/animation_addition.html"><span class="doc">Animation Addition Attributes</span></a>)</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id16">
+<h2>标准 SVG 属性<a class="headerlink" href="#id16" title="此标题的永久链接">#</a></h2>
+<p>Standard SVG Attributes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../attributes/core.html"><span class="doc">Core Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/conditional_processing.html"><span class="doc">Conditional Processing Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/xlink.html"><span class="doc">XLink Attributes</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="animatetransform">
+<h1>AnimateTransform<a class="headerlink" href="#animatetransform" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.animate.AnimateTransform">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.animate.</span></span><span class="sig-name descname"><span class="pre">AnimateTransform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transform</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.AnimateTransform" title="永久链接至目标">#</a></dt>
+<dd><p>The <strong>animateTransform</strong> element animates a transformation attribute
+on a target element, thereby allowing animations to control translation,
+scaling, rotation and/or skewing.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/animate.html#AnimateTransformElement">http://www.w3.org/TR/SVG11/animate.html#AnimateTransformElement</a></p>
+</div>
+<section id="id17">
+<h2>父类<a class="headerlink" href="#id17" title="此标题的永久链接">#</a></h2>
+<p>Parent Classes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="base.html#svgwrite.base.BaseElement" title="svgwrite.base.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.base.BaseElement</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.XLink" title="svgwrite.mixins.XLink"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.XLink</span></code></a></p></li>
+<li><p><a class="reference internal" href="#svgwrite.animate.Animate" title="svgwrite.animate.Animate"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.animate.Animate</span></code></a></p></li>
+</ul>
+</section>
+<section id="id18">
+<h2>方法<a class="headerlink" href="#id18" title="此标题的永久链接">#</a></h2>
+<p>Methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.animate.AnimateTransform.__init__">
+<span class="sig-prename descclassname"><span class="pre">AnimateTransform.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transform</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.animate.AnimateTransform.__init__" title="永久链接至目标">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> – target svg element, if element is not <cite>None</cite>; else
+the target svg element is the parent svg element.</p></li>
+<li><p><strong>transform</strong> (<em>string</em>) – <code class="docutils literal notranslate"><span class="pre">'translate</span> <span class="pre">|</span> <span class="pre">scale</span> <span class="pre">|</span> <span class="pre">rotate</span> <span class="pre">|</span> <span class="pre">skewX</span> <span class="pre">|</span> <span class="pre">skewY'</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="id19">
+<h2>SVG 动画属性<a class="headerlink" href="#id19" title="此标题的永久链接">#</a></h2>
+<p>SVG Animation Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--9-input--1" name="tab-set--9" type="radio"><label class="tab-label" for="tab-set--9-input--1">中文</label><div class="tab-content docutils container">
+<ul class="simple">
+<li><p>onbegin, onend, onrepeat, onload (<a class="reference internal" href="../attributes/animation_events.html"><span class="doc">动画事件属性</span></a>)</p></li>
+<li><p>attributeType, attributeName (<a class="reference internal" href="../attributes/animation_target.html"><span class="doc">动画目标属性</span></a>)</p></li>
+<li><p>begin, dur, end, min, max, restart, repeatCount, repeatDur, fill (<a class="reference internal" href="../attributes/animation_timing.html"><span class="doc">动画时间属性</span></a>)</p></li>
+<li><p>calcMode, values, keyTimes, keySplines, from, to, by (<a class="reference internal" href="../attributes/animation_value.html"><span class="doc">动画值属性</span></a>)</p></li>
+<li><p>additive, accumulate (<a class="reference internal" href="../attributes/animation_addition.html"><span class="doc">动画附加属性</span></a>)</p></li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--9-input--2" name="tab-set--9" type="radio"><label class="tab-label" for="tab-set--9-input--2">英文</label><div class="tab-content docutils container">
+<ul class="simple">
+<li><p>onbegin, onend, onrepeat, onload (<a class="reference internal" href="../attributes/animation_events.html"><span class="doc">Animation Event Attributes</span></a>)</p></li>
+<li><p>attributeType, attributeName (<a class="reference internal" href="../attributes/animation_target.html"><span class="doc">Animation Target Attributes</span></a>)</p></li>
+<li><p>begin, dur, end, min, max, restart, repeatCount, repeatDur, fill (<a class="reference internal" href="../attributes/animation_timing.html"><span class="doc">Animation Timing Attributes</span></a>)</p></li>
+<li><p>calcMode, values, keyTimes, keySplines, from, to, by (<a class="reference internal" href="../attributes/animation_value.html"><span class="doc">Animation Value Attributes</span></a>)</p></li>
+<li><p>additive, accumulate (<a class="reference internal" href="../attributes/animation_addition.html"><span class="doc">Animation Addition Attributes</span></a>)</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id20">
+<h2>SVG 属性<a class="headerlink" href="#id20" title="此标题的永久链接">#</a></h2>
+<p>SVG Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--10-input--1" name="tab-set--10" type="radio"><label class="tab-label" for="tab-set--10-input--1">中文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><em>False</em>: 如果文档渲染可以在外部资源不可用的情况下继续，否则：<em>True</em></p>
+</li>
+<li><p><strong>type</strong> – <code class="docutils literal notranslate"><span class="pre">'translate</span> <span class="pre">|</span> <span class="pre">scale</span> <span class="pre">|</span> <span class="pre">rotate</span> <span class="pre">|</span> <span class="pre">skewX</span> <span class="pre">|</span> <span class="pre">skewY'</span></code></p>
+<p>指示要随时间变化的变换类型。如果未指定该属性，则效果就像指定了 <strong>translate</strong> 的值一样。</p>
+</li>
+</ul>
+<p><strong>from</strong>、<strong>by</strong> 和 <strong>to</strong> 属性接受一个值，该值使用适用于给定变换类型的相同语法表示：</p>
+<ul class="simple">
+<li><p>对于 type = <code class="docutils literal notranslate"><span class="pre">'translate'</span></code>，每个单独的值表示为 <cite>&lt;tx&gt; [,&lt;ty&gt;]</cite>。</p></li>
+<li><p>对于 type = <code class="docutils literal notranslate"><span class="pre">'scale'</span></code>，每个单独的值表示为 <cite>&lt;sx&gt; [,&lt;sy&gt;]</cite>。</p></li>
+<li><p>对于 type = <code class="docutils literal notranslate"><span class="pre">'rotate'</span></code>，每个单独的值表示为 <cite>&lt;rotate-angle&gt; [&lt;cx&gt; &lt;cy&gt;]</cite>。</p></li>
+<li><p>对于 type = <code class="docutils literal notranslate"><span class="pre">'skewX'</span></code> 和 type = <code class="docutils literal notranslate"><span class="pre">'skewY'</span></code>，每个单独的值表示为 <cite>&lt;skew-angle&gt;</cite>。</p></li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--10-input--2" name="tab-set--10" type="radio"><label class="tab-label" for="tab-set--10-input--2">英文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>externalResourcesRequired</strong> – <cite>bool</cite></p>
+<p><em>False</em>: if document rendering can proceed even if external resources are
+unavailable else: <em>True</em></p>
+</li>
+<li><p><strong>type</strong> – <code class="docutils literal notranslate"><span class="pre">'translate</span> <span class="pre">|</span> <span class="pre">scale</span> <span class="pre">|</span> <span class="pre">rotate</span> <span class="pre">|</span> <span class="pre">skewX</span> <span class="pre">|</span> <span class="pre">skewY'</span></code></p>
+<p>Indicates the type of transformation which is to have its values change
+over time. If the attribute is not specified, then the effect is as if a
+value of <strong>translate</strong> were specified.</p>
+</li>
+</ul>
+<p>The <strong>from</strong>, <strong>by</strong> and <strong>to</strong> attributes take a value expressed using the
+same syntax that is available for the given transformation type:</p>
+<ul class="simple">
+<li><p>For a type = <code class="docutils literal notranslate"><span class="pre">'translate'</span></code>, each individual value is expressed as
+<cite>&lt;tx&gt; [,&lt;ty&gt;]</cite>.</p></li>
+<li><p>For a type = <code class="docutils literal notranslate"><span class="pre">'scale'</span></code>, each individual value is expressed as
+<cite>&lt;sx&gt; [,&lt;sy&gt;].</cite></p></li>
+<li><p>For a type = <code class="docutils literal notranslate"><span class="pre">'rotate'</span></code>, each individual value is expressed as
+<cite>&lt;rotate-angle&gt; [&lt;cx&gt; &lt;cy&gt;].</cite></p></li>
+<li><p>For a type = <code class="docutils literal notranslate"><span class="pre">'skewX'</span></code> and type = <code class="docutils literal notranslate"><span class="pre">'skewY'</span></code>, each individual value is
+expressed as <cite>&lt;skew-angle&gt;.</cite></p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id21">
+<h2>标准 SVG 属性<a class="headerlink" href="#id21" title="此标题的永久链接">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../attributes/core.html"><span class="doc">Core Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/conditional_processing.html"><span class="doc">Conditional Processing Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/xlink.html"><span class="doc">XLink Attributes</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="id22">
+<h1>SVG 动画属性<a class="headerlink" href="#id22" title="此标题的永久链接">#</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../attributes/animation_events.html">Animation Events Attributes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_events.html#onbegin">onbegin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_events.html#onend">onend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_events.html#onrepeat">onrepeat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_events.html#onload">onload</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../attributes/animation_target.html">Animation Target Attributes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_target.html#attributetype">attributeType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_target.html#attributename">attributeName</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../attributes/animation_timing.html">Animation Timing Attributes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html#begin">begin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html#dur">dur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html#end">end</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html#min">min</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html#max">max</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html#restart">restart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html#repeatcount">repeatCount</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html#repeatdur">repeatDur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html#fill">fill</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../attributes/animation_value.html">Animation Value Attributes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html#calcmode">calcMode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html#values">values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html#keytimes">keyTimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html#keysplines">keySplines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html#from">from</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html#to">to</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html#by">by</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../attributes/animation_addition.html">Animation Addition Attributes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_addition.html#additive">additive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_addition.html#accumulate">accumulate</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../attributes/animation_events.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Animation Events Attributes</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="masking.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">ClipPath</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2014-2019, Manfred Moitzi &lt;me@mozman.at&gt;
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>

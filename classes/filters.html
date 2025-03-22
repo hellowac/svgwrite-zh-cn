@@ -1,0 +1,702 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="滤镜原语概述" href="filter_primitive.html" /><link rel="prev" title="Animation Addition Attributes" href="../attributes/animation_addition.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>Introduction - svgwrite 1.4.3 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">svgwrite 1.4.3 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">svgwrite 1.4.3 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">内容/Contents</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview.html">概述</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/core.html">核心属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/conditional_processing.html">条件处理属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/document_event.html">文档事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/graphical_event.html">图形事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/presentation.html">演示属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/xlink.html">XLink 属性</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">SVG 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id1">其他 SVG 文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id2">SVG 实现状态</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块/Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../svgwrite.html">svgwrite 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html">utils 模块</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">结构对象/Structural Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base.html">BaseElement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drawing.html">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svg.html">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">Group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defs.html">Defs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symbol.html">Symbol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="marker.html">Marker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use.html">Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyperlink.html">Hyperlink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘制对象/Graphical Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="path.html">Path</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html">Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#rect">Rect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#circle">Circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#ellipse">Ellipse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polyline">Polyline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polygon">Polygon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#basic-shapes-examples">Basic Shapes Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image.html">Image</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">文本对象/Text Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#tspan">TSpan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#tref">TRef</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#textpath">TextPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#textarea">TextArea</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘图服务/Paint server</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gradients.html">线性渐变/LinearGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradients.html#radialgradient">径向渐变/RadialGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pattern.html">图案/Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidcolor.html">SolidColor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">遮盖/Masking</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="masking.html">ClipPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="masking.html#mask">Mask</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">动画/Animation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="animate.html">animate 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#set">Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatemotion">AnimateMotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#id8">Animate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatecolor">AnimateColor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatetransform">AnimateTransform</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="animate.html#id22">SVG 动画属性</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_events.html">Animation Events Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_target.html">Animation Target Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html">Animation Timing Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html">Animation Value Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_addition.html">Animation Addition Attributes</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">滤镜效果/Filter Effects</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#filter-element">Filter Element</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_primitive.html">滤镜原语概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_primitive.html#svg">滤镜原语的通用svg属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_blend.html">feBlend 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_color_matrix.html">feColorMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_component_transfer.html">feComponentTransfer 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_composite.html">feComposite 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_convolve_matrix.html">feConvolveMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_diffuse_lighting.html">feDiffuseLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_displacement_map.html">feDisplacementMap 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_flood.html">feFlood 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_gaussian_blur.html">feGaussianBlur 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_image.html">feImage 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_merge.html">feMerge 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_morphology.html">feMorphology 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_offset.html">feOffset 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_specular_lighting.html">feSpecularLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_tile.html">feTile 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_turbulence.html">feTurbulence 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html">feDistantLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fepointlight">fePointLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fespotlight">feSpotLight 滤镜元素</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MixIns</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html">ViewBox Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#transform-mixin">Transform Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#xlink-mixin">XLink Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#presentation-mixin">Presentation Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#mediagroup-mixin">MediaGroup Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#markers-mixin">Markers Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#clipping-mixin">Clipping Mixin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">扩展/Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/inkscape.html">Inkscape 扩展</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="此标题的永久链接">#</a></h1>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>本章介绍了SVG的声明式滤镜效果功能集，当与SVG的二维图形能力结合时，可以以一种方式描述Web上常见的许多艺术作品，使得客户端生成和修改变得容易。此外，将滤镜效果应用于SVG图形元素和容器元素，有助于保持文档的语义结构，而不是使用图像，因为图像通常具有固定的分辨率，并且往往会掩盖它们所替代元素的原始语义。这在应用于文本的效果时尤为显著。</p>
+<p>滤镜效果是通过 <strong>filter</strong> 元素定义的。要将滤镜效果应用于 <strong>图形元素</strong> 或 <strong>容器元素</strong> ，您需要在给定元素上设置 <strong>filter</strong> 属性的值，使其引用滤镜效果。</p>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>This chapter describes SVG’s declarative filter effects feature set, which
+when combined with the 2D power of SVG can describe much of the common
+artwork on the Web in such a way that client-side generation and alteration
+can be performed easily. In addition, the ability to apply filter effects to
+SVG graphics elements and container elements helps to maintain the semantic
+structure of the document, instead of resorting to images which aside from
+generally being a fixed resolution tend to obscure the original semantics
+of the elements they replace. This is especially true for effects applied to
+text.</p>
+<p>Filter effects are defined by <strong>filter</strong> elements. To apply a filter effect
+to a <strong>graphics element</strong> or a <strong>container element</strong>, you set the value of
+the <strong>filter</strong> property on the given element such that it references the
+filter effect.</p>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#Introduction">http://www.w3.org/TR/SVG11/filters.html#Introduction</a></p>
+</div>
+</section>
+<section id="filter-element">
+<h1>Filter Element<a class="headerlink" href="#filter-element" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.filters.Filter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.filters.</span></span><span class="sig-name descname"><span class="pre">Filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inherit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.filters.Filter" title="永久链接至目标">#</a></dt>
+<dd><p>The filter element is a container element for filter primitives, and
+also a <strong>factory</strong> for filter primitives.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterElement">http://www.w3.org/TR/SVG11/filters.html#FilterElement</a></p>
+</div>
+<section id="parent-classes">
+<h2>Parent Classes<a class="headerlink" href="#parent-classes" title="此标题的永久链接">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="base.html#svgwrite.base.BaseElement" title="svgwrite.base.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.base.BaseElement</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.XLink" title="svgwrite.mixins.XLink"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.XLink</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.Presentation" title="svgwrite.mixins.Presentation"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.Presentation</span></code></a></p></li>
+</ul>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="此标题的永久链接">#</a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.filters.Filter.__init__">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inherit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.filters.Filter.__init__" title="永久链接至目标">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>2-tuple</em>) – defines the start point of the filter effects region (<strong>x</strong>, <strong>y</strong>)</p></li>
+<li><p><strong>size</strong> (<em>2-tuple</em>) – defines the size of the filter effects region (<strong>width</strong>, <strong>height</strong>)</p></li>
+<li><p><strong>resolution</strong> – takes the form <code class="docutils literal notranslate"><span class="pre">'x-pixels</span> <span class="pre">[y-pixels]'</span></code>, and indicates
+the width and height of the intermediate images in pixels.</p></li>
+<li><p><strong>inherit</strong> – inherits properties from Filter <cite>inherit</cite> see: <strong>xlink:href</strong></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feBlend">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feBlend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feBlend" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_blend.html#feblend"><span class="std std-ref">feBlend 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feColorMatrix">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feColorMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feColorMatrix" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_color_matrix.html#fecolormatrix"><span class="std std-ref">feColorMatrix 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feComponentTransfer">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feComponentTransfer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feComponentTransfer" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_component_transfer.html#fecomponenttransfer"><span class="std std-ref">feComponentTransfer 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feComposite">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feComposite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feComposite" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_composite.html#fecomposite"><span class="std std-ref">feComposite 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feConvolveMatrix">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feConvolveMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feConvolveMatrix" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_convolve_matrix.html#feconvolvematrix"><span class="std std-ref">feConvolveMatrix 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feDiffuseLighting">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feDiffuseLighting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feDiffuseLighting" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_diffuse_lighting.html#fediffuselighting"><span class="std std-ref">feDiffuseLighting 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feDisplacementMap">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feDisplacementMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feDisplacementMap" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_displacement_map.html#fedisplacementmap"><span class="std std-ref">feDisplacementMap 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feFlood">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feFlood</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feFlood" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_flood.html#feflood"><span class="std std-ref">feFlood 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feGaussianBlur">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feGaussianBlur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feGaussianBlur" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_gaussian_blur.html#fegaussianblur"><span class="std std-ref">feGaussianBlur 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feImage">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">href</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feImage" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_image.html#feimage"><span class="std std-ref">feImage 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feMerge">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feMerge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feMerge" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_merge.html#femerge"><span class="std std-ref">feMerge 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feMorphology">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feMorphology</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feMorphology" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_morphology.html#femorphology"><span class="std std-ref">feMorphology 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feOffset">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feOffset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feOffset" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_offset.html#feoffset"><span class="std std-ref">feOffset 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feSpecularLighting">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feSpecularLighting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feSpecularLighting" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_specular_lighting.html#fespecularlighting"><span class="std std-ref">feSpecularLighting 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feTile">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feTile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feTile" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_tile.html#fetile"><span class="std std-ref">feTile 滤镜元素</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Filter.feTurbulence">
+<span class="sig-prename descclassname"><span class="pre">Filter.</span></span><span class="sig-name descname"><span class="pre">feTurbulence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Filter.feTurbulence" title="永久链接至目标">#</a></dt>
+<dd><p>create and add a <a class="reference internal" href="fe_turbulence.html#feturbulence"><span class="std std-ref">feTurbulence 滤镜元素</span></a></p>
+</dd></dl>
+
+</section>
+<section id="svg-attributes">
+<h2>SVG Attributes<a class="headerlink" href="#svg-attributes" title="此标题的永久链接">#</a></h2>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>filterUnits</strong> – <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse</span> <span class="pre">|</span> <span class="pre">objectBoundingBox'</span></code></p>
+<p>参见 <a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion">Filter effects region.</a></p>
+</li>
+<li><p><strong>primitiveUnits</strong> – <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse</span> <span class="pre">|</span> <span class="pre">objectBoundingBox'</span></code>
+指定滤镜原语内部各种长度值的坐标系统，以及定义滤镜原语子区域的属性。</p>
+<p>如果 <strong>primitiveUnits</strong> = <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse'</span></code>，则滤镜定义中的任何长度值都代表当前用户坐标系统中的值，这个坐标系统在引用 <strong>filter</strong> 元素时存在（即引用 <strong>filter</strong> 元素的元素的用户坐标系统，通过 <strong>filter</strong> 属性引用）。</p>
+<p>如果 <strong>primitiveUnits</strong> = <code class="docutils literal notranslate"><span class="pre">'objectBoundingBox'</span></code>，则滤镜定义中的任何长度值都代表引用元素的边界框的分数或百分比（参见对象边界框单位）。请注意，如果在 <cite>&lt;number-optional-number&gt;</cite> 值中只指定了一个数字，那么这个数字会在进行 <strong>primitiveUnits</strong> 计算之前进行扩展。</p>
+<p>如果没有指定 <strong>primitiveUnits</strong> 属性，则效果相当于指定了``’userSpaceOnUse’<a href="#id1"><span class="problematic" id="id2">``</span></a>。</p>
+</li>
+<li><p><strong>x</strong> – <cite>&lt;coordinate&gt;</cite> – <strong>start</strong> 参数</p>
+<p>参见 <a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion">Filter effects region.</a></p>
+</li>
+<li><p><strong>y</strong> – <cite>&lt;coordinate&gt;</cite> – <strong>start</strong> 参数</p>
+<p>参见 <a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion">Filter effects region.</a></p>
+</li>
+<li><p><strong>width</strong> – <cite>&lt;length&gt;</cite> – <strong>size</strong> 参数</p>
+<p>参见 <a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion">Filter effects region.</a></p>
+</li>
+<li><p><strong>height</strong> – <cite>&lt;length&gt;</cite> – <strong>size</strong> 参数</p>
+<p>参见 <a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion">Filter effects region.</a></p>
+</li>
+<li><p><strong>filterRes</strong> – <cite>&lt;number-optional-number&gt;</cite> – <strong>resolution</strong> 参数</p>
+<p>参见 <a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion">Filter effects region.</a></p>
+</li>
+<li><p><strong>xlink:href</strong> – <cite>&lt;iri&gt;</cite> – <strong>inherit</strong> 参数</p>
+<p>指向当前SVG文档片段中另一个 <strong>filter</strong> 元素的IRI引用。任何在引用的 <strong>filter</strong> 元素中定义，但在此元素中未定义的属性，都将由此元素继承。</p>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>filterUnits</strong> – <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse</span> <span class="pre">|</span> <span class="pre">objectBoundingBox'</span></code></p>
+<p>See <a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion">Filter effects region.</a></p>
+</li>
+<li><p><strong>primitiveUnits</strong> – <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse</span> <span class="pre">|</span> <span class="pre">objectBoundingBox'</span></code>
+Specifies the coordinate system for the various length values within the
+filter primitives and for the attributes that define the filter primitive
+subregion.</p>
+<p>If <strong>primitiveUnits</strong> = <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse'</span></code>, any length values within the
+filter definitions represent values in the current user coordinate system
+in place at the time when the <strong>filter</strong> element is referenced (i.e., the
+user coordinate system for the element referencing the <strong>filter</strong> element
+via a <strong>filter</strong> property).</p>
+<p>If <strong>primitiveUnits</strong> = <code class="docutils literal notranslate"><span class="pre">'objectBoundingBox'</span></code>, then any length values
+within the filter definitions represent fractions or percentages of the
+bounding box on the referencing element (see Object bounding box units).
+Note that if only one number was specified in a <cite>&lt;number-optional-number&gt;</cite>
+value this number is expanded out before the <strong>primitiveUnits</strong> computation
+takes place.</p>
+<p>If attribute <strong>primitiveUnits</strong> is not specified, then the effect is as if
+a value of <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse'</span></code> were specified.</p>
+</li>
+<li><p><strong>x</strong> – <cite>&lt;coordinate&gt;</cite> – <strong>start</strong> parameter</p>
+<p>See <a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion">Filter effects region.</a></p>
+</li>
+<li><p><strong>y</strong> – <cite>&lt;coordinate&gt;</cite> – <strong>start</strong> parameter</p>
+<p>See <a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion">Filter effects region.</a></p>
+</li>
+<li><p><strong>width</strong> – <cite>&lt;length&gt;</cite> – <strong>size</strong> parameter</p>
+<p>See <a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion">Filter effects region.</a></p>
+</li>
+<li><p><strong>height</strong> – <cite>&lt;length&gt;</cite> – <strong>size</strong> parameter</p>
+<p>See <a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion">Filter effects region.</a></p>
+</li>
+<li><p><strong>filterRes</strong> – <cite>&lt;number-optional-number&gt;</cite> – <strong>resolution</strong> parameter</p>
+<p>See <a class="reference external" href="http://www.w3.org/TR/SVG11/filters.html#FilterEffectsRegion">Filter effects region.</a></p>
+</li>
+<li><p><strong>xlink:href</strong> – <cite>&lt;iri&gt;</cite> – <strong>inherit</strong> parameter</p>
+<p>A IRI reference to another <strong>filter</strong> element within the current SVG document
+fragment. Any attributes which are defined on the referenced <strong>filter</strong> element
+which are not defined on this element are inherited by this element.</p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="standard-svg-attributes">
+<h2>Standard SVG Attributes<a class="headerlink" href="#standard-svg-attributes" title="此标题的永久链接">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../attributes/core.html"><span class="doc">Core Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/presentation.html"><span class="doc">Presentation Attributes</span></a></p></li>
+<li><p><a class="reference internal" href="../attributes/xlink.html"><span class="doc">XLink Attributes</span></a></p></li>
+</ul>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="此标题的永久链接">#</a></h2>
+<p>Source: <a class="reference external" href="https://secure.wikimedia.org/wikibooks/de/wiki/SVG/_Effekte#Urfilter_fePointLight.2C_Punktlichtquelle">https://secure.wikimedia.org/wikibooks/de/wiki/SVG/_Effekte#Urfilter_fePointLight.2C_Punktlichtquelle</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">svgwrite</span>
+<span class="n">dwg</span> <span class="o">=</span> <span class="n">svgwrite</span><span class="o">.</span><span class="n">Drawing</span><span class="p">(</span><span class="s2">&quot;fePointLight.svg&quot;</span><span class="p">)</span>
+
+<span class="n">filtr</span> <span class="o">=</span> <span class="n">dwg</span><span class="o">.</span><span class="n">defs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="n">dwg</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;DL&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+               <span class="n">filterUnits</span><span class="o">=</span><span class="s2">&quot;userSpaceOnUse&quot;</span><span class="p">))</span>
+<span class="n">diffuse_lighting</span> <span class="o">=</span> <span class="n">filtr</span><span class="o">.</span><span class="n">feDiffuseLighting</span><span class="p">(</span>
+    <span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+    <span class="n">surfaceScale</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">diffuseConstant</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">kernelUnitLength</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">lighting_color</span><span class="o">=</span><span class="s2">&quot;#f8f&quot;</span><span class="p">)</span>
+<span class="n">point_light</span> <span class="o">=</span> <span class="n">diffuse_lighting</span><span class="o">.</span><span class="n">fePointLight</span><span class="p">(</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">point_light</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="n">dwg</span><span class="o">.</span><span class="n">animate</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span>
+        <span class="n">values</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">dur</span><span class="o">=</span><span class="s1">&#39;30s&#39;</span><span class="p">,</span>
+        <span class="n">repeatDur</span><span class="o">=</span><span class="s1">&#39;indefinite&#39;</span><span class="p">))</span>
+<span class="n">point_light</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="n">dwg</span><span class="o">.</span><span class="n">animate</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span>
+        <span class="n">values</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">dur</span><span class="o">=</span><span class="s1">&#39;31s&#39;</span><span class="p">,</span>
+        <span class="n">repeatDur</span><span class="o">=</span><span class="s1">&#39;indefinite&#39;</span><span class="p">))</span>
+<span class="n">point_light</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="n">dwg</span><span class="o">.</span><span class="n">animate</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span>
+        <span class="n">values</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">dur</span><span class="o">=</span><span class="s1">&#39;37s&#39;</span><span class="p">,</span>
+        <span class="n">repeatDur</span><span class="o">=</span><span class="s1">&#39;indefinite&#39;</span><span class="p">))</span>
+<span class="n">dwg</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>and the XML result (with manual reformatting):</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span>
+<span class="nt">&lt;svg</span><span class="w"> </span><span class="na">baseProfile=</span><span class="s">&quot;full&quot;</span><span class="w"> </span><span class="na">height=</span><span class="s">&quot;100%&quot;</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;1.1&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;100%&quot;</span>
+<span class="w">  </span><span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span>
+<span class="w">  </span><span class="na">xmlns:ev=</span><span class="s">&quot;http://www.w3.org/2001/xml-events&quot;</span>
+<span class="w">  </span><span class="na">xmlns:xlink=</span><span class="s">&quot;http://www.w3.org/1999/xlink&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;defs&gt;</span>
+<span class="w">        </span><span class="nt">&lt;filter</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;DL&quot;</span><span class="w"> </span><span class="na">filterUnits=</span><span class="s">&quot;userSpaceOnUse&quot;</span>
+<span class="w">          </span><span class="na">x=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">y=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;500&quot;</span><span class="w"> </span><span class="na">height=</span><span class="s">&quot;500&quot;</span><span class="w"> </span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;feDiffuseLighting</span><span class="w"> </span><span class="na">diffuseConstant=</span><span class="s">&quot;1&quot;</span>
+<span class="w">              </span><span class="na">x=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">y=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;500&quot;</span><span class="w"> </span><span class="na">height=</span><span class="s">&quot;500&quot;</span>
+<span class="w">              </span><span class="na">in=</span><span class="s">&quot;SourceGraphic&quot;</span>
+<span class="w">              </span><span class="na">kernelUnitLength=</span><span class="s">&quot;1&quot;</span>
+<span class="w">              </span><span class="na">lighting-color=</span><span class="s">&quot;#f8f&quot;</span>
+<span class="w">              </span><span class="na">surfaceScale=</span><span class="s">&quot;10&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;fePointLight</span><span class="w"> </span><span class="na">x=</span><span class="s">&quot;500&quot;</span><span class="w"> </span><span class="na">y=</span><span class="s">&quot;250&quot;</span><span class="w"> </span><span class="na">z=</span><span class="s">&quot;250&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;animate</span><span class="w"> </span><span class="na">attributeName=</span><span class="s">&quot;x&quot;</span>
+<span class="w">                      </span><span class="na">dur=</span><span class="s">&quot;30s&quot;</span>
+<span class="w">                      </span><span class="na">repeatDur=</span><span class="s">&quot;indefinite&quot;</span>
+<span class="w">                      </span><span class="na">values=</span><span class="s">&quot;0;100;500;100;0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;animate</span><span class="w"> </span><span class="na">attributeName=</span><span class="s">&quot;y&quot;</span>
+<span class="w">                      </span><span class="na">dur=</span><span class="s">&quot;31s&quot;</span>
+<span class="w">                      </span><span class="na">repeatDur=</span><span class="s">&quot;indefinite&quot;</span>
+<span class="w">                      </span><span class="na">values=</span><span class="s">&quot;0;500;400;-100;0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;animate</span><span class="w"> </span><span class="na">attributeName=</span><span class="s">&quot;z&quot;</span>
+<span class="w">                      </span><span class="na">dur=</span><span class="s">&quot;37s&quot;</span>
+<span class="w">                      </span><span class="na">repeatDur=</span><span class="s">&quot;indefinite&quot;</span>
+<span class="w">                      </span><span class="na">values=</span><span class="s">&quot;0;1000;500;-100;0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/fePointLight&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/feDiffuseLighting&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/filter&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/defs&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="filter_primitive.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">滤镜原语概述</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../attributes/animation_addition.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Animation Addition Attributes</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2014-2019, Manfred Moitzi &lt;me@mozman.at&gt;
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>

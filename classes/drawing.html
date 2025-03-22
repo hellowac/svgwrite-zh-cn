@@ -1,0 +1,843 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="SVG" href="svg.html" /><link rel="prev" title="BaseElement" href="base.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>Drawing - svgwrite 1.4.3 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">svgwrite 1.4.3 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">svgwrite 1.4.3 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">内容/Contents</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview.html">概述</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/core.html">核心属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/conditional_processing.html">条件处理属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/document_event.html">文档事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/graphical_event.html">图形事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/presentation.html">演示属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/xlink.html">XLink 属性</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">SVG 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id1">其他 SVG 文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id2">SVG 实现状态</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块/Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../svgwrite.html">svgwrite 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html">utils 模块</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">结构对象/Structural Objects</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="base.html">BaseElement</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svg.html">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">Group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defs.html">Defs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symbol.html">Symbol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="marker.html">Marker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use.html">Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyperlink.html">Hyperlink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘制对象/Graphical Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="path.html">Path</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html">Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#rect">Rect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#circle">Circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#ellipse">Ellipse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polyline">Polyline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polygon">Polygon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#basic-shapes-examples">Basic Shapes Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image.html">Image</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">文本对象/Text Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#tspan">TSpan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#tref">TRef</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#textpath">TextPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#textarea">TextArea</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘图服务/Paint server</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gradients.html">线性渐变/LinearGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradients.html#radialgradient">径向渐变/RadialGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pattern.html">图案/Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidcolor.html">SolidColor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">遮盖/Masking</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="masking.html">ClipPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="masking.html#mask">Mask</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">动画/Animation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="animate.html">animate 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#set">Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatemotion">AnimateMotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#id8">Animate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatecolor">AnimateColor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatetransform">AnimateTransform</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="animate.html#id22">SVG 动画属性</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_events.html">Animation Events Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_target.html">Animation Target Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html">Animation Timing Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html">Animation Value Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_addition.html">Animation Addition Attributes</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">滤镜效果/Filter Effects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html#filter-element">Filter Element</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_primitive.html">滤镜原语概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_primitive.html#svg">滤镜原语的通用svg属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_blend.html">feBlend 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_color_matrix.html">feColorMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_component_transfer.html">feComponentTransfer 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_composite.html">feComposite 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_convolve_matrix.html">feConvolveMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_diffuse_lighting.html">feDiffuseLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_displacement_map.html">feDisplacementMap 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_flood.html">feFlood 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_gaussian_blur.html">feGaussianBlur 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_image.html">feImage 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_merge.html">feMerge 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_morphology.html">feMorphology 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_offset.html">feOffset 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_specular_lighting.html">feSpecularLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_tile.html">feTile 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_turbulence.html">feTurbulence 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html">feDistantLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fepointlight">fePointLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fespotlight">feSpotLight 滤镜元素</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MixIns</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html">ViewBox Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#transform-mixin">Transform Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#xlink-mixin">XLink Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#presentation-mixin">Presentation Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#mediagroup-mixin">MediaGroup Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#markers-mixin">Markers Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#clipping-mixin">Clipping Mixin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">扩展/Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/inkscape.html">Inkscape 扩展</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="module-svgwrite.drawing">
+<span id="drawing"></span><h1>Drawing<a class="headerlink" href="#module-svgwrite.drawing" title="此标题的永久链接">#</a></h1>
+<p>The <em>Drawing</em> object is the overall container for all SVG
+elements. It provides the methods to store the drawing into a file or a
+file-like object. If you want to use stylesheets, the reference links
+to this stylesheets were also stored (<cite>add_stylesheet</cite>)
+in the <em>Drawing</em> object.</p>
+<p>set/get SVG attributes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">element</span><span class="p">[</span><span class="s1">&#39;attribute&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+<span class="n">value</span> <span class="o">=</span> <span class="n">element</span><span class="p">[</span><span class="s1">&#39;attribute&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The Drawing object also includes a defs section, add elements to the defs
+section by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">drawing</span><span class="o">.</span><span class="n">defs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.drawing.</span></span><span class="sig-name descname"><span class="pre">Drawing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noname.svg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('100%',</span> <span class="pre">'100%')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing" title="永久链接至目标">#</a></dt>
+<dd><p>This is the SVG drawing represented by the top level <em>svg</em> element.</p>
+<p>A drawing consists of any number of SVG elements contained within the drawing
+element, stored in the <em>elements</em> attribute.</p>
+<p>A drawing can range from an empty drawing (i.e., no content inside of the drawing),
+to a very simple drawing containing a single SVG element such as a <em>rect</em>,
+to a complex, deeply nested collection of container elements and graphics elements.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.__init__">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noname.svg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('100%',</span> <span class="pre">'100%')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.__init__" title="永久链接至目标">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – filesystem filename valid for <code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></p></li>
+<li><p><strong>size</strong> (<em>2-tuple</em>) – width, height</p></li>
+<li><p><strong>extra</strong> (<em>keywords</em>) – additional svg-attributes for the <em>SVG</em> object</p></li>
+</ul>
+</dd>
+</dl>
+<p>Important (and not SVG Attributes) <strong>extra</strong> parameters:</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>profile</strong> (<em>string</em>) – <code class="docutils literal notranslate"><span class="pre">'tiny</span> <span class="pre">|</span> <span class="pre">full'</span></code> - define the SVG baseProfile</p></li>
+<li><p><strong>debug</strong> (<em>bool</em>) – switch validation on/off</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="id1">
+<h2>属性<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h2>
+<p>Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.filename">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#svgwrite.drawing.Drawing.filename" title="永久链接至目标">#</a></dt>
+<dd><p><cite>string</cite> should be valid for <code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.defs">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">defs</span></span><a class="headerlink" href="#svgwrite.drawing.Drawing.defs" title="永久链接至目标">#</a></dt>
+<dd><p>SVG defs section - as <a class="reference internal" href="defs.html#svgwrite.container.Defs" title="svgwrite.container.Defs"><code class="xref py py-class docutils literal notranslate"><span class="pre">Defs</span></code></a> object.</p>
+</dd></dl>
+
+</section>
+<section id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<p>Methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.add">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.add" title="永久链接至目标">#</a></dt>
+<dd><p>Add an SVG element as subelement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> – append this SVG element</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>the added element</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.write">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fileobj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.write" title="永久链接至目标">#</a></dt>
+<dd><p>Write XML string to <cite>fileobj</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fileobj</strong> – a file-like object</p></li>
+<li><p><strong>pretty</strong> – True for easy readable output</p></li>
+<li><p><strong>indent</strong> – how much to indent if pretty is enabled, by default 2 spaces</p></li>
+</ul>
+</dd>
+</dl>
+<p>Python 3.x - set encoding at the open command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.save">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pretty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.save" title="永久链接至目标">#</a></dt>
+<dd><p>Write the XML string to <cite>self.filename</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pretty</strong> – True for easy readable output</p></li>
+<li><p><strong>indent</strong> – how much to indent if pretty is enabled, by default 2 spaces</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.saveas">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">saveas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.saveas" title="永久链接至目标">#</a></dt>
+<dd><p>Write the XML string to <cite>filename</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – filesystem filename valid for <code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></p></li>
+<li><p><strong>pretty</strong> – True for easy readable output</p></li>
+<li><p><strong>indent</strong> – how much to indent if pretty is enabled, by default 2 spaces</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.add_stylesheet">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">add_stylesheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">href</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alternate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'no'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">media</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'screen'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.add_stylesheet" title="永久链接至目标">#</a></dt>
+<dd><p>Add a stylesheet reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>href</strong> (<em>string</em>) – link to stylesheet &lt;URI&gt;</p></li>
+<li><p><strong>title</strong> (<em>string</em>) – name of stylesheet</p></li>
+<li><p><strong>alternate</strong> (<em>string</em>) – <code class="docutils literal notranslate"><span class="pre">'yes'|'no'</span></code></p></li>
+<li><p><strong>media</strong> (<em>string</em>) – <code class="docutils literal notranslate"><span class="pre">'all</span> <span class="pre">|</span> <span class="pre">aureal</span> <span class="pre">|</span> <span class="pre">braille</span> <span class="pre">|</span> <span class="pre">embossed</span> <span class="pre">|</span> <span class="pre">handheld</span> <span class="pre">|</span> <span class="pre">print</span> <span class="pre">|</span> <span class="pre">projection</span> <span class="pre">|</span> <span class="pre">screen</span> <span class="pre">|</span> <span class="pre">tty</span> <span class="pre">|</span> <span class="pre">tv'</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.get_xml">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">get_xml</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.get_xml" title="永久链接至目标">#</a></dt>
+<dd><p>Get the XML representation as <cite>ElementTree</cite> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>XML <cite>ElementTree</cite> of this object and all its subelements</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.tostring">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">tostring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.tostring" title="永久链接至目标">#</a></dt>
+<dd><div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>获取 XML 表示形式作为 unicode “字符串”。如果将 SVG 对象嵌入 XHTML 页面，则必须链接到周围 XHTML 页面标题部分中的 CSS 文件（如果使用 CSS 类）。</p>
+<dl class="field-list simple">
+<dt class="field-odd">return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>此对象及其所有子元素的 unicode XML 字符串</p>
+</dd>
+</dl>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>Get the XML representation as unicode <cite>string</cite>. If you embed the SVG object
+into a XHTML page, you have to link to the CSS files (if you use CSS classes)
+in the header section of the surrounding XHTML page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>unicode XML string of this object and all its subelements</p>
+</dd>
+</dl>
+</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h2>工厂函数<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<p>Factory Methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.line">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start=(0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end=(0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.line" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="shapes.html#svgwrite.shapes.Line" title="svgwrite.shapes.Line"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.shapes.Line</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.rect">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">rect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">insert=(0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=(1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ry=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.rect" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="shapes.html#svgwrite.shapes.Rect" title="svgwrite.shapes.Rect"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.shapes.Rect</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.circle">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center=(0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.circle" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="shapes.html#svgwrite.shapes.Circle" title="svgwrite.shapes.Circle"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.shapes.Circle</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.ellipse">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">ellipse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center=(0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r=(1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.ellipse" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="shapes.html#svgwrite.shapes.Ellipse" title="svgwrite.shapes.Ellipse"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.shapes.Ellipse</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.polyline">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">polyline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.polyline" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="shapes.html#svgwrite.shapes.Polyline" title="svgwrite.shapes.Polyline"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.shapes.Polyline</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.polygon">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.polygon" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="shapes.html#svgwrite.shapes.Polygon" title="svgwrite.shapes.Polygon"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.shapes.Polygon</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.text">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insert=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dy=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.text" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="text.html#svgwrite.text.Text" title="svgwrite.text.Text"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.text.Text</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.tspan">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">tspan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insert=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dy=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.tspan" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="text.html#svgwrite.text.TSpan" title="svgwrite.text.TSpan"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.text.TSpan</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.tref">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">tref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.tref" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="text.html#svgwrite.text.TRef" title="svgwrite.text.TRef"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.text.TRef</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.textPath">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">textPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startOffset=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method='align'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spacing='exact'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.textPath" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="text.html#svgwrite.text.TextPath" title="svgwrite.text.TextPath"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.text.TextPath</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.textArea">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">textArea</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insert=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.textArea" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="text.html#svgwrite.text.TextArea" title="svgwrite.text.TextArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.text.TextArea</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.path">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.path" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="path.html#svgwrite.path.Path" title="svgwrite.path.Path"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.path.Path</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.image">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">href</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insert=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.image" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="image.html#svgwrite.image.Image" title="svgwrite.image.Image"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.image.Image</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.g">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">g</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.g" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="group.html#svgwrite.container.Group" title="svgwrite.container.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.container.Group</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.symbol">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">symbol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.symbol" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="symbol.html#svgwrite.container.Symbol" title="svgwrite.container.Symbol"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.container.Symbol</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.svg">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">svg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">insert=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.svg" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="svg.html#svgwrite.container.SVG" title="svgwrite.container.SVG"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.container.SVG</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.use">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">use</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">href</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insert=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.use" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="use.html#svgwrite.container.Use" title="svgwrite.container.Use"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.container.Use</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.a">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">a</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">href</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target='_blank'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.a" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="hyperlink.html#svgwrite.container.Hyperlink" title="svgwrite.container.Hyperlink"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.container.Hyperlink</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.marker">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">marker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">insert=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orient=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.marker" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="marker.html#svgwrite.container.Marker" title="svgwrite.container.Marker"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.container.Marker</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.script">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">script</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">href=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content=''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.script" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="script.html#svgwrite.container.Script" title="svgwrite.container.Script"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.container.Script</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.style">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">style</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content=''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.style" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="style.html#svgwrite.container.Style" title="svgwrite.container.Style"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.container.Style</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.linearGradient">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">linearGradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inherit=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.linearGradient" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="gradients.html#svgwrite.gradients.LinearGradient" title="svgwrite.gradients.LinearGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.gradients.LinearGradient</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.radialGradient">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">radialGradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">focal=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inherit=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.radialGradient" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="gradients.html#svgwrite.gradients.RadialGradient" title="svgwrite.gradients.RadialGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.gradients.RadialGradient</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.mask">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.mask" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="masking.html#svgwrite.masking.Mask" title="svgwrite.masking.Mask"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.masking.Mask</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.clipPath">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">clipPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.clipPath" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="masking.html#svgwrite.masking.ClipPath" title="svgwrite.masking.ClipPath"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.masking.ClipPath</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.set">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.set" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="animate.html#svgwrite.animate.Set" title="svgwrite.animate.Set"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.animate.Set</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.animate">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">animate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.animate" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="animate.html#svgwrite.animate.Animate" title="svgwrite.animate.Animate"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.animate.Animate</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.animateColor">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">animateColor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.animateColor" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="animate.html#svgwrite.animate.AnimateColor" title="svgwrite.animate.AnimateColor"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.animate.AnimateColor</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.animateMotion">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">animateMotion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.animateMotion" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="animate.html#svgwrite.animate.AnimateMotion" title="svgwrite.animate.AnimateMotion"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.animate.AnimateMotion</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.animateTransform">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">animateTransform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transform</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.animateTransform" title="永久链接至目标">#</a></dt>
+<dd><p>Create a <a class="reference internal" href="animate.html#svgwrite.animate.AnimateTransform" title="svgwrite.animate.AnimateTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.animate.AnimateTransform</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.drawing.Drawing.filter">
+<span class="sig-prename descclassname"><span class="pre">Drawing.</span></span><span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inherit=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">\*\*extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.drawing.Drawing.filter" title="永久链接至目标">#</a></dt>
+<dd><div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<p>创建一个 <a class="reference internal" href="filters.html#svgwrite.filters.Filter" title="svgwrite.filters.Filter"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.filters.Filter</span></code></a> 对象。（过滤器原语由 <strong>Filter</strong> 类的 <strong>工厂方法</strong> 创建）</p>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<p>Create a <a class="reference internal" href="filters.html#svgwrite.filters.Filter" title="svgwrite.filters.Filter"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.filters.Filter</span></code></a> object. (Filter Primitives are created by <strong>factory-methods</strong> of the class <strong>Filter</strong>)</p>
+</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="id4">
+<h2>父类<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<p>Parent Classes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="base.html#svgwrite.base.BaseElement" title="svgwrite.base.BaseElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.base.BaseElement</span></code></a></p></li>
+<li><p><a class="reference internal" href="symbol.html#svgwrite.container.Symbol" title="svgwrite.container.Symbol"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.container.Symbol</span></code></a></p></li>
+<li><p><a class="reference internal" href="svg.html#svgwrite.container.SVG" title="svgwrite.container.SVG"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.container.SVG</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.Transform" title="svgwrite.mixins.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.Transform</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.ViewBox" title="svgwrite.mixins.ViewBox"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.ViewBox</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.Presentation" title="svgwrite.mixins.Presentation"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.Presentation</span></code></a></p></li>
+<li><p><a class="reference internal" href="mixins.html#svgwrite.mixins.Clipping" title="svgwrite.mixins.Clipping"><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.mixins.Clipping</span></code></a></p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">svgwrite.elementfactory.ElementFactory</span></code></p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="svg.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">SVG</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="base.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">BaseElement</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2014-2019, Manfred Moitzi &lt;me@mozman.at&gt;
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Drawing</a><ul>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing"><code class="docutils literal notranslate"><span class="pre">Drawing</span></code></a><ul>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.__init__"><code class="docutils literal notranslate"><span class="pre">Drawing.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id1">属性</a><ul>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.filename"><code class="docutils literal notranslate"><span class="pre">Drawing.filename</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.defs"><code class="docutils literal notranslate"><span class="pre">Drawing.defs</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">方法</a><ul>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.add"><code class="docutils literal notranslate"><span class="pre">Drawing.add()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.write"><code class="docutils literal notranslate"><span class="pre">Drawing.write()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.save"><code class="docutils literal notranslate"><span class="pre">Drawing.save()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.saveas"><code class="docutils literal notranslate"><span class="pre">Drawing.saveas()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.add_stylesheet"><code class="docutils literal notranslate"><span class="pre">Drawing.add_stylesheet()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.get_xml"><code class="docutils literal notranslate"><span class="pre">Drawing.get_xml()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.tostring"><code class="docutils literal notranslate"><span class="pre">Drawing.tostring()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">工厂函数</a><ul>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.line"><code class="docutils literal notranslate"><span class="pre">Drawing.line()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.rect"><code class="docutils literal notranslate"><span class="pre">Drawing.rect()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.circle"><code class="docutils literal notranslate"><span class="pre">Drawing.circle()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.ellipse"><code class="docutils literal notranslate"><span class="pre">Drawing.ellipse()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.polyline"><code class="docutils literal notranslate"><span class="pre">Drawing.polyline()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.polygon"><code class="docutils literal notranslate"><span class="pre">Drawing.polygon()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.text"><code class="docutils literal notranslate"><span class="pre">Drawing.text()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.tspan"><code class="docutils literal notranslate"><span class="pre">Drawing.tspan()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.tref"><code class="docutils literal notranslate"><span class="pre">Drawing.tref()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.textPath"><code class="docutils literal notranslate"><span class="pre">Drawing.textPath()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.textArea"><code class="docutils literal notranslate"><span class="pre">Drawing.textArea()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.path"><code class="docutils literal notranslate"><span class="pre">Drawing.path()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.image"><code class="docutils literal notranslate"><span class="pre">Drawing.image()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.g"><code class="docutils literal notranslate"><span class="pre">Drawing.g()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.symbol"><code class="docutils literal notranslate"><span class="pre">Drawing.symbol()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.svg"><code class="docutils literal notranslate"><span class="pre">Drawing.svg()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.use"><code class="docutils literal notranslate"><span class="pre">Drawing.use()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.a"><code class="docutils literal notranslate"><span class="pre">Drawing.a()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.marker"><code class="docutils literal notranslate"><span class="pre">Drawing.marker()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.script"><code class="docutils literal notranslate"><span class="pre">Drawing.script()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.style"><code class="docutils literal notranslate"><span class="pre">Drawing.style()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.linearGradient"><code class="docutils literal notranslate"><span class="pre">Drawing.linearGradient()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.radialGradient"><code class="docutils literal notranslate"><span class="pre">Drawing.radialGradient()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.mask"><code class="docutils literal notranslate"><span class="pre">Drawing.mask()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.clipPath"><code class="docutils literal notranslate"><span class="pre">Drawing.clipPath()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.set"><code class="docutils literal notranslate"><span class="pre">Drawing.set()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.animate"><code class="docutils literal notranslate"><span class="pre">Drawing.animate()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.animateColor"><code class="docutils literal notranslate"><span class="pre">Drawing.animateColor()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.animateMotion"><code class="docutils literal notranslate"><span class="pre">Drawing.animateMotion()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.animateTransform"><code class="docutils literal notranslate"><span class="pre">Drawing.animateTransform()</span></code></a></li>
+<li><a class="reference internal" href="#svgwrite.drawing.Drawing.filter"><code class="docutils literal notranslate"><span class="pre">Drawing.filter()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">父类</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>

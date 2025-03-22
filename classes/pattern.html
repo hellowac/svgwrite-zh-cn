@@ -1,0 +1,618 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" /><link rel="next" title="SolidColor" href="solidcolor.html" /><link rel="prev" title="线性渐变/LinearGradient" href="gradients.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>图案/Pattern - svgwrite 1.4.3 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">svgwrite 1.4.3 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">svgwrite 1.4.3 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">内容/Contents</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview.html">概述</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/core.html">核心属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/conditional_processing.html">条件处理属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/document_event.html">文档事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/graphical_event.html">图形事件属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/presentation.html">演示属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/xlink.html">XLink 属性</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">SVG 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id1">其他 SVG 文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html#id2">SVG 实现状态</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">模块/Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../svgwrite.html">svgwrite 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html">utils 模块</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">结构对象/Structural Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base.html">BaseElement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drawing.html">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svg.html">SVG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">Group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defs.html">Defs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symbol.html">Symbol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="marker.html">Marker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use.html">Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyperlink.html">Hyperlink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="script.html">Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style.html">Style</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘制对象/Graphical Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="path.html">Path</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html">Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#rect">Rect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#circle">Circle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#ellipse">Ellipse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polyline">Polyline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#polygon">Polygon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html#basic-shapes-examples">Basic Shapes Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image.html">Image</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">文本对象/Text Objects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#tspan">TSpan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#tref">TRef</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#textpath">TextPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html#textarea">TextArea</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">绘图服务/Paint server</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gradients.html">线性渐变/LinearGradient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradients.html#radialgradient">径向渐变/RadialGradient</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">图案/Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidcolor.html">SolidColor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">遮盖/Masking</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="masking.html">ClipPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="masking.html#mask">Mask</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">动画/Animation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="animate.html">animate 模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#set">Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatemotion">AnimateMotion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#id8">Animate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatecolor">AnimateColor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animate.html#animatetransform">AnimateTransform</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="animate.html#id22">SVG 动画属性</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_events.html">Animation Events Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_target.html">Animation Target Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_timing.html">Animation Timing Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_value.html">Animation Value Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../attributes/animation_addition.html">Animation Addition Attributes</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">滤镜效果/Filter Effects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="filters.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters.html#filter-element">Filter Element</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_primitive.html">滤镜原语概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_primitive.html#svg">滤镜原语的通用svg属性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_blend.html">feBlend 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_color_matrix.html">feColorMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_component_transfer.html">feComponentTransfer 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_composite.html">feComposite 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_convolve_matrix.html">feConvolveMatrix 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_diffuse_lighting.html">feDiffuseLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_displacement_map.html">feDisplacementMap 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_flood.html">feFlood 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_gaussian_blur.html">feGaussianBlur 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_image.html">feImage 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_merge.html">feMerge 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_morphology.html">feMorphology 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_offset.html">feOffset 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_specular_lighting.html">feSpecularLighting 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_tile.html">feTile 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_turbulence.html">feTurbulence 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html">feDistantLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fepointlight">fePointLight 滤镜元素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fe_lights.html#fespotlight">feSpotLight 滤镜元素</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MixIns</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html">ViewBox Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#transform-mixin">Transform Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#xlink-mixin">XLink Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#presentation-mixin">Presentation Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#mediagroup-mixin">MediaGroup Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#markers-mixin">Markers Mixin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixins.html#clipping-mixin">Clipping Mixin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">扩展/Extensions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/inkscape.html">Inkscape 扩展</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="pattern">
+<h1>图案/Pattern<a class="headerlink" href="#pattern" title="此标题的永久链接">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="svgwrite.pattern.Pattern">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">svgwrite.pattern.</span></span><span class="sig-name descname"><span class="pre">Pattern</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">insert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inherit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.pattern.Pattern" title="永久链接至目标">#</a></dt>
+<dd><p>A pattern is used to fill or stroke an object using a pre-defined graphic
+object which can be replicated (“tiled”) at fixed intervals in x and y to
+cover the areas to be painted. Patterns are defined using a <cite>pattern</cite> element
+and then referenced by properties <cite>fill</cite> and <cite>stroke</cite> on a given graphics
+element to indicate that the given element shall be filled or stroked with
+the referenced pattern.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="http://www.w3.org/TR/SVG11/pservers.html#PatternElement">http://www.w3.org/TR/SVG11/pservers.html#PatternElement</a></p>
+</div>
+<section id="id1">
+<h2>方法<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h2>
+<p>Methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="svgwrite.pattern.Pattern.__init__">
+<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">insert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inherit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#svgwrite.pattern.Pattern.__init__" title="永久链接至目标">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>insert</strong> (<em>2-tuple</em>) – base point of the pattern (<strong>x</strong>, <strong>y</strong>)</p></li>
+<li><p><strong>size</strong> (<em>2-tuple</em>) – size of the pattern (<strong>width</strong>, <strong>height</strong>)</p></li>
+<li><p><strong>inherit</strong> – pattern inherits properties from <cite>inherit</cite> see: <strong>xlink:href</strong></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Pattern.add">
+<span class="sig-prename descclassname"><span class="pre">Pattern.</span></span><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Pattern.add" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p><strong>将元素</strong> 添加到模式内容中。</p>
+<p><strong>pattern</strong> 的内容是相对于一个新的坐标系统的。如果存在 <strong>viewBox</strong> 属性，则新坐标系统会根据 <strong>pattern</strong> 元素上的 <strong>x</strong>、<strong>y</strong>、<strong>width</strong>、<strong>height</strong> 和 <strong>patternUnits</strong> 属性，通过标准的 <strong>viewBox</strong> 和 <strong>preserveAspectRatio</strong> 规则拟合到该区域。如果没有 <strong>viewBox</strong> 属性，则新坐标系统的原点位于 (x, y)，其中 x 由 <strong>pattern</strong> 元素上的 <strong>x</strong> 属性确定，y 由 <strong>pattern</strong> 元素上的 <strong>y</strong> 属性确定。如下示例所示:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">pattern</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;10&quot;</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;10&quot;</span> <span class="n">width</span><span class="o">=</span><span class="s2">&quot;20&quot;</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;20&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">rect</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;5&quot;</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;5&quot;</span> <span class="n">width</span><span class="o">=</span><span class="s2">&quot;10&quot;</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;10&quot;</span><span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">pattern</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>或在 <a class="reference internal" href="../svgwrite.html#module-svgwrite" title="svgwrite"><code class="xref py py-mod docutils literal notranslate"><span class="pre">svgwrite</span></code></a> 中调用如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># dwg 是主 SVG 绘图</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="n">dwg</span><span class="o">.</span><span class="n">pattern</span><span class="p">(</span><span class="n">insert</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">pattern</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dwg</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">insert</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>在这个例子中，矩形的左上角位置距离模式图块的原点右侧 5 个单位，并且向下 5 个单位。</p>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>Add <strong>element</strong> to the pattern content.</p>
+<p>The contents of the <strong>pattern</strong> are relative to a new coordinate system.
+If there is a <strong>viewBox</strong> attribute, then the new coordinate system is fitted
+into the region defined by the <strong>x</strong>, <strong>y</strong>, <strong>width</strong>, <strong>height</strong> and
+<strong>patternUnits</strong> attributes on the <strong>pattern</strong> element using the standard
+rules for <strong>viewBox</strong> and <strong>preserveAspectRatio</strong>. If there is no <strong>viewBox</strong>
+attribute, then the new coordinate system has its origin at (x, y), where x
+is established by the <strong>x</strong> attribute on the <strong>pattern</strong> element, and y is
+established by the <strong>y</strong> attribute on the ‘pattern’ element. Thus, in the
+following example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">pattern</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;10&quot;</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;10&quot;</span> <span class="n">width</span><span class="o">=</span><span class="s2">&quot;20&quot;</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;20&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">rect</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;5&quot;</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;5&quot;</span> <span class="n">width</span><span class="o">=</span><span class="s2">&quot;10&quot;</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;10&quot;</span><span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">pattern</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>or as <a class="reference internal" href="../svgwrite.html#module-svgwrite" title="svgwrite"><code class="xref py py-mod docutils literal notranslate"><span class="pre">svgwrite</span></code></a> calls:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># dwg is the main svg drawing</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="n">dwg</span><span class="o">.</span><span class="n">pattern</span><span class="p">(</span><span class="n">insert</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">pattern</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dwg</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">insert</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>the rectangle has its top/left located 5 units to the right and 5 units down
+from the origin of the pattern tile.</p>
+</div>
+</div>
+</section>
+<section id="svg">
+<h2>SVG 属性<a class="headerlink" href="#svg" title="此标题的永久链接">#</a></h2>
+<p>SVG Attributes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>patternUnits</strong> – <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse</span> <span class="pre">|</span> <span class="pre">objectBoundingBox'</span></code></p>
+<p>定义 <strong>x</strong>、<strong>y</strong>、<strong>width</strong> 和 <strong>height</strong> 属性的坐标系统。</p>
+<p>如果 <cite>patternUnits= ‘userSpaceOnUse’</cite>，<strong>x</strong>、<strong>y</strong>、<strong>width</strong> 和 <strong>height</strong> 表示在当前用户坐标系统中的值，当前坐标系统是在引用 <strong>pattern</strong> 元素时存在的（即通过 <strong>fill</strong> 或 <strong>stroke</strong> 属性引用 <strong>pattern</strong> 元素的元素的用户坐标系统），然后应用由 <strong>patternTransform</strong> 属性指定的变换。</p>
+<p>如果 <cite>patternUnits= ‘objectBoundingBox’</cite>，则 <strong>x</strong>、<strong>y</strong>、<strong>width</strong> 和 <strong>height</strong> 属性的用户坐标系统是通过使用应用图案的元素的边界框来建立的（参见对象边界框单位），然后应用由 <strong>patternTransform</strong> 属性指定的变换。</p>
+<p>默认值为 <code class="docutils literal notranslate"><span class="pre">'objectBoundingBox'</span></code>。</p>
+</li>
+<li><p><strong>patternContentUnits</strong> – <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse</span> <span class="pre">|</span> <span class="pre">objectBoundingBox'</span></code></p>
+<p>定义 <strong>pattern</strong> 内容的坐标系统。请注意，如果指定了 <strong>viewBox</strong> 属性，则此属性无效。</p>
+<p>如果 <cite>patternContentUnits= ‘userSpaceOnUse’</cite>，<strong>pattern</strong> 元素内容的用户坐标系统是通过在引用 <strong>pattern</strong> 元素时采用当前的用户坐标系统建立的（即通过 <strong>fill</strong> 或 <strong>stroke</strong> 属性引用 <strong>pattern</strong> 元素的元素的用户坐标系统），然后应用由 <strong>patternTransform</strong> 属性指定的变换。</p>
+<p>如果 <cite>patternContentUnits= ‘objectBoundingBox’</cite>，则 <strong>pattern</strong> 元素内容的用户坐标系统是通过使用应用图案的元素的边界框来建立的（参见对象边界框单位），然后应用由 <strong>patternTransform</strong> 属性指定的变换。</p>
+<p>默认值为 <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse'</span></code>。</p>
+</li>
+<li><p><strong>patternTransform</strong> – <cite>&lt;transform-list&gt;</cite></p>
+<p>使用 <a class="reference internal" href="mixins.html#svgwrite.mixins.Transform" title="svgwrite.mixins.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transform</span></code></a> 接口设置变换。</p>
+<p>包含从图案坐标系统到目标坐标系统（即 <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse'</span></code> 或 <code class="docutils literal notranslate"><span class="pre">'objectBoundingBox'</span></code>）的可选附加变换的定义。这允许对图案瓦片进行扭曲等变换。这个附加的变换矩阵是后乘（即插入到之前定义的变换的右侧）任何已经定义的变换，包括将对象边界框单位转换为用户空间所需的隐式变换。</p>
+</li>
+<li><p><strong>x</strong> – <cite>&lt;coordinate&gt;</cite> – <strong>insert</strong> 参数</p>
+<p><strong>x</strong>、<strong>y</strong>、<strong>width</strong> 和 <strong>height</strong> 指定了图案瓦片的放置和间距。这些属性表示由 <strong>patternUnits</strong> 和 <strong>patternTransform</strong> 属性组合定义的坐标空间中的坐标和值。</p>
+<p>默认值为 <code class="docutils literal notranslate"><span class="pre">'0'</span></code>。</p>
+</li>
+<li><p><strong>y</strong> – <cite>&lt;coordinate&gt;</cite> – <strong>center</strong> 参数</p>
+<p>见 <strong>x</strong>。</p>
+<p>默认值为 <code class="docutils literal notranslate"><span class="pre">'0'</span></code>。</p>
+</li>
+<li><p><strong>width</strong> – <cite>&lt;length&gt;</cite> – <strong>size</strong> 参数</p>
+<p>见 <strong>x</strong>。</p>
+<p>负值是错误。零值会禁用元素的渲染（即不应用绘制）。</p>
+<p>默认值为 <code class="docutils literal notranslate"><span class="pre">'0'</span></code>。</p>
+</li>
+<li><p><strong>height</strong> – <cite>&lt;length&gt;</cite> – <strong>size</strong> 参数</p>
+<p>见 <strong>x</strong>。</p>
+<p>负值是错误。零值会禁用元素的渲染（即不应用绘制）。</p>
+<p>默认值为 <code class="docutils literal notranslate"><span class="pre">'0'</span></code>。</p>
+</li>
+<li><p><strong>xlink:href</strong> – <cite>string</cite> – <strong>inherit</strong> 参数</p>
+<p>指向当前 SVG 文档片段中另一个 <strong>pattern</strong> 元素的 URI 引用。任何在引用元素中定义但在当前元素中未定义的属性将由当前元素继承。如果该元素没有子元素，而引用的元素有子元素（可能是由于它自己的 <strong>xlink:href</strong> 属性），则当前元素继承该引用元素的子元素。继承可以是间接的，甚至可以通过任意级别的 <strong>xlink:href</strong> 属性间接继承。因此，如果引用的元素由于其自己的 <strong>xlink:href</strong> 属性继承了属性或子元素，那么当前元素也可以继承这些属性或子元素。</p>
+</li>
+<li><p><strong>preserveAspectRatio</strong> – <code class="docutils literal notranslate"><span class="pre">'[defer]</span> <span class="pre">&lt;align&gt;</span> <span class="pre">[&lt;meetOrSlice&gt;]'</span></code></p>
+<p>使用 <a class="reference internal" href="mixins.html#svgwrite.mixins.ViewBox" title="svgwrite.mixins.ViewBox"><code class="xref py py-class docutils literal notranslate"><span class="pre">ViewBox</span></code></a> 接口设置 <strong>viewBox</strong> 和 <strong>preserveAspectRatio</strong>。</p>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<ul>
+<li><p><strong>patternUnits</strong> – <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse</span> <span class="pre">|</span> <span class="pre">objectBoundingBox'</span></code></p>
+<p>Defines the coordinate system for attributes <strong>x</strong>, <strong>y</strong>, <strong>width</strong> and
+<strong>height</strong>.</p>
+<p>If patternUnits= <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse'</span></code> , <strong>x</strong> , <strong>y</strong>, <strong>width</strong> and <strong>height</strong>
+represent values in the coordinate system that results from taking the
+current user coordinate system in place at the time when the <strong>pattern</strong>
+element is referenced (i.e., the user coordinate system for the element
+referencing the <strong>pattern</strong> element via a <strong>fill</strong> or <strong>stroke</strong> property)
+and then applying the transform specified by attribute <strong>patternTransform</strong>.</p>
+<p>If patternUnits= <code class="docutils literal notranslate"><span class="pre">'objectBoundingBox'</span></code> , the user coordinate system for
+attributes <strong>x</strong>, <strong>y</strong>, <strong>width</strong> and <strong>height</strong> is established using the
+bounding box of the element to which the pattern is applied (see Object
+bounding box units) and then applying the transform specified by attribute
+<strong>patternTransform</strong>.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">'objectBoundingBox'</span></code>.</p>
+</li>
+<li><p><strong>patternContentUnits</strong> – <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse</span> <span class="pre">|</span> <span class="pre">objectBoundingBox'</span></code></p>
+<p>Defines the coordinate system for the contents of the <strong>pattern</strong>. Note that
+this attribute has no effect if attribute <strong>viewBox</strong> is specified.</p>
+<p>If patternContentUnits= <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse'</span></code> , the user coordinate system for
+the contents of the <strong>pattern</strong> element is the coordinate system that
+results from taking the current user coordinate system in place at the time
+when the <strong>pattern</strong> element is referenced (i.e., the user coordinate system
+for the element referencing the <strong>pattern</strong> element via a <strong>fill</strong> or
+<strong>stroke</strong> property) and then applying the transform specified by attribute
+<strong>patternTransform</strong>.</p>
+<p>If patternContentUnits= <code class="docutils literal notranslate"><span class="pre">'objectBoundingBox'</span></code> , the user coordinate system
+for the contents of the <strong>pattern</strong> element is established using the bounding
+box of the element to which the pattern is applied (see Object bounding box
+units) and then applying the transform specified by attribute
+<strong>patternTransform</strong>.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse'</span></code>.</p>
+</li>
+<li><p><strong>patternTransform</strong> – <cite>&lt;transform-list&gt;</cite></p>
+<p>Use the <a class="reference internal" href="mixins.html#svgwrite.mixins.Transform" title="svgwrite.mixins.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transform</span></code></a> interface to set transformations.</p>
+<p>Contains the definition of an optional additional transformation from the
+pattern coordinate system onto the target coordinate system (i.e.,
+<code class="docutils literal notranslate"><span class="pre">'userSpaceOnUse'</span></code> or <code class="docutils literal notranslate"><span class="pre">'objectBoundingBox'</span></code>). This allows for things
+such as skewing the pattern tiles. This additional transformation matrix is
+post-multiplied to (i.e., inserted to the right of) any previously defined
+transformations, including the implicit transformation necessary to convert
+from object bounding box units to user space.</p>
+</li>
+<li><p><strong>x</strong> – <cite>&lt;coordinate&gt;</cite> – <strong>insert</strong> parameter</p>
+<p><strong>x</strong>, <strong>y</strong>, <strong>width</strong> and <strong>height</strong> indicate how the pattern tiles are
+placed and spaced. These attributes represent coordinates and values in the
+coordinate space specified by the combination of attributes <strong>patternUnits</strong>
+and <strong>patternTransform</strong>.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">'0'</span></code>.</p>
+</li>
+<li><p><strong>y</strong> – <cite>&lt;coordinate&gt;</cite> – <strong>center</strong> parameter</p>
+<p>See <strong>x</strong>.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">'0'</span></code>.</p>
+</li>
+<li><p><strong>width</strong> – <cite>&lt;length&gt;</cite> – <strong>size</strong> parameter</p>
+<p>See <strong>x</strong>.</p>
+<p>A negative value is an error. A value of zero disables rendering of the
+element (i.e., no paint is applied).</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">'0'</span></code>.</p>
+</li>
+<li><p><strong>height</strong> – <cite>&lt;length&gt;</cite> – <strong>size</strong> parameter</p>
+<p>See <strong>x</strong>.</p>
+<p>A negative value is an error. A value of zero disables rendering of the
+element (i.e., no paint is applied).</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">'0'</span></code>.</p>
+</li>
+<li><p><strong>xlink:href</strong> – <cite>string</cite> – <strong>inherit</strong> parameter</p>
+<p>A URI reference to a different <strong>pattern</strong> element within the current SVG
+document fragment. Any attributes which are defined on the referenced
+element which are not defined on this element are inherited by this element.
+If this element has no children, and the referenced element does (possibly
+due to its own <strong>xlink:href</strong> attribute), then this element inherits the
+children from the referenced element. Inheritance can be indirect to an
+arbitrary level; thus, if the referenced element inherits attributes or
+children due to its own <strong>xlink:href</strong> attribute, then the current element
+can inherit those attributes or children.</p>
+</li>
+<li><p><strong>preserveAspectRatio</strong> – <code class="docutils literal notranslate"><span class="pre">'[defer]</span> <span class="pre">&lt;align&gt;</span> <span class="pre">[&lt;meetOrSlice&gt;]'</span></code></p>
+<p>Use the <a class="reference internal" href="mixins.html#svgwrite.mixins.ViewBox" title="svgwrite.mixins.ViewBox"><code class="xref py py-class docutils literal notranslate"><span class="pre">ViewBox</span></code></a> interface to set <strong>viewbox</strong>
+and <strong>preserveAspectRatio</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="solidcolor.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">SolidColor</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="gradients.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">线性渐变/LinearGradient</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2014-2019, Manfred Moitzi &lt;me@mozman.at&gt;
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">图案/Pattern</a><ul>
+<li><a class="reference internal" href="#svgwrite.pattern.Pattern"><code class="docutils literal notranslate"><span class="pre">Pattern</span></code></a></li>
+<li><a class="reference internal" href="#id1">方法</a><ul>
+<li><a class="reference internal" href="#svgwrite.pattern.Pattern.__init__"><code class="docutils literal notranslate"><span class="pre">Pattern.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#Pattern.add"><code class="docutils literal notranslate"><span class="pre">Pattern.add()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#svg">SVG 属性</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>
