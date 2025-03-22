@@ -1,22 +1,25 @@
 .. _feBlend:
 
-feBlend Filter Element
+feBlend 滤镜元素
 ======================
 
-.. tab:: 中文
-
-
-
-.. tab:: 英文
-
+feBlend Filter Element
 
 .. seealso:: http://www.w3.org/TR/SVG11/filters.html#feBlendElement
 
-This filter composites two objects together using commonly used imaging
-software blending modes. It performs a pixel-wise combination of two input
-images.
+.. tab:: 中文
 
-For common properties see: :ref:`filter_primitive`
+  此滤镜使用常用的图像处理软件混合模式将两个对象合成在一起。它执行对两个输入图像的逐像素组合。
+
+  有关常见属性，请参见：:ref:`filter_primitive`
+
+.. tab:: 英文
+
+  This filter composites two objects together using commonly used imaging
+  software blending modes. It performs a pixel-wise combination of two input
+  images.
+
+  For common properties see: :ref:`filter_primitive`
 
 SVG Attributes
 --------------

@@ -1,35 +1,47 @@
 .. _feComponentTransfer:
 
-feComponentTransfer Filter Element
+feComponentTransfer 滤镜元素
 ==================================
 
-.. tab:: 中文
-
-
-
-.. tab:: 英文
-
+feComponentTransfer Filter Element
 
 .. seealso:: http://www.w3.org/TR/SVG11/filters.html#feComponentTransferElement
 
-This filter primitive performs component-wise remapping of data::
+.. tab:: 中文
 
-  R' = feFuncR( R )
-  G' = feFuncG( G )
-  B' = feFuncB( B )
-  A' = feFuncA( A )
+  这个滤镜原语对数据进行分量级的重新映射：
 
-for every pixel. It allows operations like brightness adjustment, contrast
-adjustment, color balance or thresholding.
+    R' = feFuncR( R )
+    G' = feFuncG( G )
+    B' = feFuncB( B )
+    A' = feFuncA( A )
 
-The calculations are performed on non-premultiplied color values. If the
-input graphics consists of premultiplied color values, those values are
-automatically converted into non-premultiplied color values for this operation.
-(Note that the undoing and redoing of the premultiplication can be avoided if
-feFuncA is the identity transform and all alpha values on the source graphic
-are set to 1.)
+  对每个像素进行操作。它允许执行诸如亮度调整、对比度调整、颜色平衡或阈值处理等操作。
 
-For common properties see: :ref:`filter_primitive`
+  计算在非预乘的颜色值上进行。如果输入图形是预乘的颜色值，这些值会在此操作中自动转换为非预乘的颜色值。（请注意，如果 feFuncA 是恒等变换并且源图形的所有 alpha 值都设置为 1，则可以避免撤销和重新进行预乘操作。）
+
+  有关常见属性，请参见： :ref:`filter_primitive`
+
+.. tab:: 英文
+
+  This filter primitive performs component-wise remapping of data::
+
+    R' = feFuncR( R )
+    G' = feFuncG( G )
+    B' = feFuncB( B )
+    A' = feFuncA( A )
+
+  for every pixel. It allows operations like brightness adjustment, contrast
+  adjustment, color balance or thresholding.
+
+  The calculations are performed on non-premultiplied color values. If the
+  input graphics consists of premultiplied color values, those values are
+  automatically converted into non-premultiplied color values for this operation.
+  (Note that the undoing and redoing of the premultiplication can be avoided if
+  feFuncA is the identity transform and all alpha values on the source graphic
+  are set to 1.)
+
+  For common properties see: :ref:`filter_primitive`
 
 SVG Attributes
 --------------
@@ -38,13 +50,6 @@ SVG Attributes
 
 Methods
 -------
-
-.. tab:: 中文
-
-
-
-.. tab:: 英文
-
 
 .. method:: feFuncR(type_, \*\*extra)
 
@@ -64,13 +69,6 @@ Methods
 
 Parameters for feFuncX() Methods
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. tab:: 中文
-
-
-
-.. tab:: 英文
-
 
 * **type** -- ``'identity | table | discrete | linear | gamma'``
 
